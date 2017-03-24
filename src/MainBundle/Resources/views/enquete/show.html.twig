@@ -1,0 +1,48 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    <h1>Enquete</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ enquete.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ enquete.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ enquete.description }}</td>
+            </tr>
+            <tr>
+                <th>Startdate</th>
+                <td>{% if enquete.startDate %}{{ enquete.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Enddate</th>
+                <td>{% if enquete.endDate %}{{ enquete.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Published</th>
+                <td>{{ enquete.published }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('enquete_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
