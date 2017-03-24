@@ -186,5 +186,9 @@ class Enquete
     {
         return $this->published;
     }
-}
 
+    public function __toString()
+    {
+        return $this->title;
+    }
+}

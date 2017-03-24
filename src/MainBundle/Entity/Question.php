@@ -35,6 +35,11 @@ class Question
      */
     private $enqueteId;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\Enquete")
+     * @ORM\JoinColumn(name="enqueteId", referencedColumnName="id")
+     */
+    private $eqId;
 
     /**
      * Get id
@@ -93,5 +98,28 @@ class Question
     {
         return $this->enqueteId;
     }
-}
 
+    /**
+     * Set eqId
+     *
+     * @param \MainBundle\Entity\Enquete $eqId
+     *
+     * @return Question
+     */
+    public function setEqId(\MainBundle\Entity\Enquete $eqId = null)
+    {
+        $this->eqId = $eqId;
+    
+        return $this;
+    }
+
+    /**
+     * Get eqId
+     *
+     * @return \MainBundle\Entity\Enquete
+     */
+    public function getEqId()
+    {
+        return $this->eqId;
+    }
+}
