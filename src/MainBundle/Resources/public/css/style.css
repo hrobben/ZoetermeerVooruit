@@ -1,0 +1,24 @@
+.navbar{
+    background-image: -webkit-linear-gradient(top,#009FE3 0,#009FE3 100%);
+    background-image: -o-linear-gradient(top,#009FE3 0,#009FE3 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#009FE3),to(#009FE3));
+    background-image: linear-gradient(to bottom,#009FE3 0,#009FE3 100%);
+    border: none;
+    border-radius: 0;
+}
+
+/*Styling for brand name*/
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+/*Styling for nav links*/
+.navbar-inverse .navbar-nav>li>a {
+    color: #ffffff;
+}
+
+/*Link hover in navbar*/
+.navbar-inverse .navbar-nav>li>a:hover{
+    color: #FEEC02;
+    background-color: #009FF4;
+}
