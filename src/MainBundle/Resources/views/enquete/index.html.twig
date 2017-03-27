@@ -2,46 +2,28 @@
 
 {% block body %}
     <h1>Enquetes list</h1>
+    <a class="pull-right btn btn-success" href="{{ path('enquete_new') }}">Create a new enquete</a>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Startdate</th>
-                <th>Enddate</th>
-                <th>Published</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+
         {% for enquete in enquetes %}
-            <tr>
-                <td><a href="{{ path('enquete_show', { 'id': enquete.id }) }}">{{ enquete.id }}</a></td>
-                <td>{{ enquete.title }}</td>
-                <td>{{ enquete.description }}</td>
-                <td>{% if enquete.startDate %}{{ enquete.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if enquete.endDate %}{{ enquete.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ enquete.published }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('enquete_show', { 'id': enquete.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="..." alt="...">
+                        <div class="caption">
+                            <h3>{{ enquete.title }}</h3>
+                            <p>{{ enquete.description }}<br>{% if enquete.startDate %}{{ enquete.startDate|date('Y-m-d H:i:s') }}{% endif %}
+                                <br>{% if enquete.endDate %}{{ enquete.endDate|date('Y-m-d H:i:s') }}{% endif %}</p>
+                            <!--<p>{{ enquete.published }}</p>-->
+                            <p>
+                                <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Edit</a>
+                                <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Show</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('enquete_new') }}">Create a new enquete</a>
-        </li>
-    </ul>
+        {% endfor %}
+
 {% endblock %}

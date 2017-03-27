@@ -3,6 +3,7 @@
 namespace MainBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,16 @@ class EnqueteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('description')->add('startDate')->add('endDate')->add('published')        ;
+        $builder
+            ->add('title')
+            ->add('description')
+            ->add('startDate', DateType::class,[
+                'widget' => 'single_text'
+            ])
+            ->add('endDate', DateType::class,[
+                'widget' => 'single_text'
+            ])
+            ->add('published')        ;
     }
     
     /**
