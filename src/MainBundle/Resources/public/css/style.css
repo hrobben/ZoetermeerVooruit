@@ -1,24 +1,27 @@
 .navbar{
-    background-image: -webkit-linear-gradient(top,#009FE3 0,#009FE3 100%);
-    background-image: -o-linear-gradient(top,#009FE3 0,#009FE3 100%);
-    background-image: -webkit-gradient(linear,left top,left bottom,from(#009FE3),to(#009FE3));
-    background-image: linear-gradient(to bottom,#009FE3 0,#009FE3 100%);
-    border: none;
+    background-image: -webkit-linear-gradient(top,#0A70B8 0,#0A70B8 100%);
+    background-image: -o-linear-gradient(top,#0A70B8 0,#0A70B8 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#0A70B8),to(#0A70B8));
+    background-image: linear-gradient(to bottom,#0A70B8 0,#0A70B8 100%);
     border-radius: 0;
 }
 
 /*Styling for brand name*/
-.navbar-inverse .navbar-brand {
+.navbar-inverse{
+    border: none !important;
+}
+
+.navbar-brand {
     color: #ffffff;
 }
 
 /*Styling for nav links*/
 .navbar-inverse .navbar-nav>li>a {
     color: #ffffff;
+    border-bottom: 5px solid transparent;
 }
 
 /*Link hover in navbar*/
 .navbar-inverse .navbar-nav>li>a:hover{
-    color: #FEEC02;
-    background-color: #009FF4;
+    border-bottom:5px solid #FEEC02;
 }
