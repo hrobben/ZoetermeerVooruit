@@ -1,29 +1,24 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
-    <h1>Enquetes list</h1>
-    <a class="pull-right btn btn-success" href="{{ path('enquete_new') }}">Create a new enquete</a>
+    <h1>Enquetes</h1>
 
-
+    <div class="row">
         {% for enquete in enquetes %}
-            <div class="row">
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>{{ enquete.title }}</h3>
-                            <p>{{ enquete.description }}<br>{% if enquete.startDate %}{{ enquete.startDate|date('Y-m-d H:i:s') }}{% endif %}
-                                <br>{% if enquete.endDate %}{{ enquete.endDate|date('Y-m-d H:i:s') }}{% endif %}</p>
-                            <!--<p>{{ enquete.published }}</p>-->
-                            <p>
-                                <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Edit</a>
-                                <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Show</a>
-                            </p>
-                        </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>{{ enquete.title }}</h3>
+                        <p>{{ enquete.description }}</p>
+                        <p>
+                            <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Edit</a>
+                            <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Show</a>
+                        </p>
                     </div>
                 </div>
             </div>
-
         {% endfor %}
+    </div>
+    <a class="pull-left btn btn-success" href="{{ path('enquete_new') }}">Create a new enquete</a>
 
 {% endblock %}
