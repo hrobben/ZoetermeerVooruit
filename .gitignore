@@ -14,5 +14,4 @@
 !var/SymfonyRequirements.php
 /web/bundles/
 .idea/
-/vendor/*
-/vendor/sensio/framework-extra-bundle/Tests
+/vendor/

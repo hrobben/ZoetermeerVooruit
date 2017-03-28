@@ -25,7 +25,7 @@ class EnqueteType extends AbstractType
             ])
             ->add('published')        ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
