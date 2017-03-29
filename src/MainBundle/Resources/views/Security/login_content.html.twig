@@ -7,7 +7,7 @@
 <div class="" id="login-modal">
     <div class="modal-dialog">
         <div class="loginmodal-container">
-            <h1>Login</h1><br>
+            <img class="logo" src="{{ asset('bundles/main/images/ZV-volledigetext.png') }}">
             <form action="{{ path("fos_user_security_check") }}" method="post">
                 {% if csrf_token %}
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
