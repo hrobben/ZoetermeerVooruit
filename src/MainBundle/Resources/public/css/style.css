@@ -11,7 +11,7 @@ body{
 }
 
 /*Styling for brand name*/
-.navbar-main{
+.navbar-inverse{
     border: none !important;
 }
 
@@ -21,16 +21,16 @@ body{
 }
 
 /*Styling for nav links*/
-.navbar-main .navbar-nav>li {
+.navbar-inverse .navbar-nav>li {
     border-bottom: 5px solid transparent;
 }
 
-.navbar-main .navbar-nav>li>a{
+.navbar-inverse .navbar-nav>li>a{
     color: #ffffff;
 }
 
 /*Link hover in navbar*/
-.navbar-main .navbar-nav>li:hover {
+.navbar-inverse .navbar-nav>li:hover {
     border-bottom: 5px solid #0A70B8;
     background-color: transparent;
 }
