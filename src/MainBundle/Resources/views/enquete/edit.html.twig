@@ -1,6 +1,7 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
     <h1>Enquete edit</h1>
 
     {{ form_start(edit_form) }}
@@ -18,4 +19,10 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    {% else %}
+        <div>
+            <h3>Pagina niet gevonden</h3>
+            <p>Deze pagina is niet voor u geschrikt</p>
+        </div>
+    {% endif %}
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
+    {% if app.user %}
     <h1>Enquetes</h1>
 
     <div class="row">
@@ -21,4 +22,10 @@
     </div>
     <a class="pull-left btn btn-success" href="{{ path('enquete_new') }}">Maak een nieuwe enquete</a>
 
+{% else %}
+<div>
+    <h3>Pagina niet gevonden</h3>
+    <p>Deze pagina is niet voor u geschrikt</p>
+</div>
+{% endif %}
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
+    {% if is_granted ("ROLE_ADMIN") %}
     <h1>Question creation</h1>
 
     {{ form_start(form) }}
@@ -13,4 +14,10 @@
             <a href="{{ path('question_index') }}">Back to the list</a>
         </li>
     </ul>
+    {% else %}
+        <div>
+            <h3>Pagina niet gevonden</h3>
+            <p>Deze pagina is niet voor u geschrikt</p>
+        </div>
+    {% endif %}
 {% endblock %}

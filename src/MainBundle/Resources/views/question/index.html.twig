@@ -1,6 +1,7 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
+    {% if app.user %}
     <h1>Questions list</h1>
 
     <table>
@@ -38,4 +39,10 @@
             <a href="{{ path('question_new') }}">Create a new question</a>
         </li>
     </ul>
+    {% else %}
+        <div>
+            <h3>Pagina niet gevonden</h3>
+            <p>Deze pagina is niet voor u geschrikt</p>
+        </div>
+    {% endif %}
 {% endblock %}

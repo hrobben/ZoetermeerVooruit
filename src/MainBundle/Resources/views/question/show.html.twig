@@ -1,6 +1,7 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
+    {% if app.user %}
     <h1>Question</h1>
 
     <table>
@@ -33,4 +34,10 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    {% else %}
+        <div>
+            <h3>Pagina niet gevonden</h3>
+            <p>Deze pagina is niet voor u geschrikt</p>
+        </div>
+    {% endif %}
 {% endblock %}
