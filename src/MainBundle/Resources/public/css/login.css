@@ -65,13 +65,13 @@
 .btn-lg {
     /* border: 1px solid #3079ed; */
     border: 2px solid #0A70B8;
-    color: #FFCE02;
     text-shadow: 0 1px rgba(0,0,0,0.1);
     transition: background-color 1s ease;
     background-color: #0A70B8;
-    padding: 10px 0px;
+    padding: 10px 0;
     font-family: roboto;
     font-size: 14px;
+    color: #ffffff;
     /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 
