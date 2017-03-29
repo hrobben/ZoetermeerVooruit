@@ -43,9 +43,17 @@ body{
 
 .active{
     border-bottom: 5px solid #0A70B8 !important;
-    background-color: transparent;
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
     background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.open>a {
+    background-image: none;
+    box-shadow: none;
 }
