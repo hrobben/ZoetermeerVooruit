@@ -1,5 +1,5 @@
 body{
-    background-color: #b6e5ff;
+    background-color: #f2f2f2;
 }
 
 .navbar{
@@ -31,7 +31,7 @@ body{
 
 /*Link hover in navbar*/
 .navbar-inverse .navbar-nav>li:hover {
-    border-bottom: 5px solid #0A70B8;
+    border-bottom: 5px solid #FFCE02;
     background-color: transparent;
 }
 
@@ -42,7 +42,7 @@ body{
 }
 
 .active{
-    border-bottom: 5px solid #0A70B8 !important;
+    border-bottom: 5px solid #FFCE02 !important;
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
