@@ -1,8 +1,8 @@
 .navbar{
-    background-image: -webkit-linear-gradient(top,#0A70B8 0,#0A70B8 100%);
-    background-image: -o-linear-gradient(top,#0A70B8 0,#0A70B8 100%);
-    background-image: -webkit-gradient(linear,left top,left bottom,from(#0A70B8),to(#0A70B8));
-    background-image: linear-gradient(to bottom,#0A70B8 0,#0A70B8 100%);
+    background-image: -webkit-linear-gradient(top,#333 0,#333 100%);
+    background-image: -o-linear-gradient(top,#333 0,#333 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#333),to(#333));
+    background-image: linear-gradient(to bottom,#333 0,#333 100%);
     border-radius: 0;
 }
 
@@ -12,6 +12,7 @@
 }
 
 .navbar-brand {
+    padding: 5px;
     color: #ffffff;
 }
 
@@ -23,5 +24,11 @@
 
 /*Link hover in navbar*/
 .navbar-inverse .navbar-nav>li>a:hover{
-    border-bottom:5px solid #FEEC02;
+    border-bottom:5px solid #0A70B8;
+}
+
+.navbar-brand>img{
+    height: 100%;
+    width: auto;
+    z-index: 100;
 }
