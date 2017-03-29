@@ -1,3 +1,7 @@
+body{
+    background-color: #dddddd;
+}
+
 .navbar{
     background-image: -webkit-linear-gradient(top,#333 0,#333 100%);
     background-image: -o-linear-gradient(top,#333 0,#333 100%);
@@ -7,7 +11,7 @@
 }
 
 /*Styling for brand name*/
-.navbar-inverse{
+.navbar-main{
     border: none !important;
 }
 
@@ -17,18 +21,31 @@
 }
 
 /*Styling for nav links*/
-.navbar-inverse .navbar-nav>li>a {
-    color: #ffffff;
+.navbar-main .navbar-nav>li {
     border-bottom: 5px solid transparent;
 }
 
+.navbar-main .navbar-nav>li>a{
+    color: #ffffff;
+}
+
 /*Link hover in navbar*/
-.navbar-inverse .navbar-nav>li>a:hover{
-    border-bottom:5px solid #0A70B8;
+.navbar-main .navbar-nav>li:hover {
+    border-bottom: 5px solid #0A70B8;
+    background-color: transparent;
 }
 
 .navbar-brand>img{
     height: 100%;
     width: auto;
     z-index: 100;
+}
+
+.active{
+    border-bottom: 5px solid #0A70B8 !important;
+    background-color: transparent;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: transparent;
 }

@@ -20,11 +20,10 @@
                 <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
 
                 <input type="submit" id="_submit" class="btn btn-lg" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-                <a class="btn btn-group-xs" href="{{ path('fos_user_registration_register') }}">Registreren?</a>
             </form>
 
             <div class="login-help">
-                <a href="#">Register</a> - <a href="#">Forgot Password</a>
+                <a href="{{ path('fos_user_registration_register') }}">Heeft u nog geen account? Klik <b>hier</b> om te registreren.</a>
             </div>
         </div>
     </div>

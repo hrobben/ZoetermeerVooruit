@@ -17,6 +17,7 @@
     text-align: center;
     font-size: 1.8em;
     font-family: roboto;
+    margin-top: 0;
 }
 
 .loginmodal-container input[type=submit] {
@@ -84,15 +85,19 @@
 }
 
 .loginmodal-container a {
-    text-decoration: none;
-    color: #666;
+    text-decoration: underline;
+    color: #333;
     font-weight: 400;
     text-align: center;
     display: inline-block;
-    opacity: 0.6;
+    opacity: 0.8;
     transition: opacity ease 0.5s;
 }
 
 .login-help{
     font-size: 12px;
+}
+
+.login-help>a:hover{
+    color: #000000;
 }
