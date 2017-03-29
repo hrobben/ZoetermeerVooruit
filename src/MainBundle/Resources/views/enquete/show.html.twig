@@ -4,7 +4,8 @@
     {% if app.user%}
     <h1>Enquete</h1>
 
-    <table>
+<div class="">
+    <table class="record_properties table table-hover">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -32,7 +33,7 @@
             </tr>
         </tbody>
     </table>
-
+</div>
     <ul>
         <li>
             <a href="{{ path('enquete_index') }}">Back to the list</a>
