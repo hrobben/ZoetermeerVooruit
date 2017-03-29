@@ -101,3 +101,11 @@
 .login-help>a:hover{
     color: #000000;
 }
+
+.logo {
+    height: auto;
+    width: auto;
+    max-width:  100%;
+    max-height: 100px;
+    margin-bottom: 10px;
+}
