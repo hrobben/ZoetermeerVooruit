@@ -62,7 +62,6 @@
 
 .btn-lg {
     /* border: 1px solid #3079ed; */
-    border: 2px solid #0A70B8;
     text-shadow: 0 1px rgba(0,0,0,0.1);
     transition: background-color 1s ease;
     background-color: #0A70B8;
@@ -70,11 +69,11 @@
     font-family: roboto;
     font-size: 14px;
     color: #ffffff;
-    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 
 .btn-lg:hover {
-
+    color: #000;
+    background-color: #FFCE02;
 }
 
 .loginmodal-container a {
