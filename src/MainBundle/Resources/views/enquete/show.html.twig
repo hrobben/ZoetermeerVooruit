@@ -4,7 +4,7 @@
     {% if app.user%}
     <h1>Enquete</h1>
 
-    <table>
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -33,23 +33,19 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('enquete_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Edit</a>
-        </li>
-        <li>
+
+            <a id="button" class="btn btn-default" href="{{ path('enquete_index') }}">Back to the list</a>
+
+            <a id="button" class="btn btn-primary" href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Edit</a>
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input id="button" class="btn btn-danger" type="submit" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
     {% else %}
         <div>
             <h3>Pagina niet gevonden</h3>
-            <p>Deze pagina is niet voor u geschrikt</p>
+            <p>Deze pagina is niet voor u geschikt</p>
         </div>
     {% endif %}
 {% endblock %}

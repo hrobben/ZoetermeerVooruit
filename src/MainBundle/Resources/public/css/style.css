@@ -58,3 +58,8 @@ body{
     background-image: none;
     box-shadow: none;
 }
+
+#button{
+    float: left;
+    margin-left: 5px;
+}
