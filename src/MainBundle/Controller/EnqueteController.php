@@ -3,6 +3,8 @@
 namespace MainBundle\Controller;
 
 use MainBundle\Entity\Enquete;
+use MainBundle\Entity\Question;
+use MainBundle\Form\EnqueteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -40,6 +42,13 @@ class EnqueteController extends Controller
     public function newAction(Request $request)
     {
         $enquete = new Enquete();
+
+        //question
+        $question = new Question();
+        $question->setTitle('question1');
+        $enquete->getQuestions()->add($question);
+        //endquestion
+
         $form = $this->createForm('MainBundle\Form\EnqueteType', $enquete);
         $form->handleRequest($request);
 
