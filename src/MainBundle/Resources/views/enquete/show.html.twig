@@ -1,5 +1,9 @@
 {% extends '@Main/base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
 {% block body %}
     {% if app.user%}
     <h1>Enquete</h1>
@@ -33,17 +37,14 @@
             </tr>
         </tbody>
     </table>
-</div>
-    <ul>
-        <li>
-            <a href="{{ path('enquete_index') }}" class="btn btn-success">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-warning">Edit</a>
-        </li>
-        <li>
+
+
+            <a id="button" class="btn btn-default" href="{{ path('enquete_index') }}">Back to the list</a>
+
+            <a id="button" class="btn btn-primary" href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Edit</a>
+
             {{ form_start(delete_form) }}
-                <input type="submit" class="btn btn-danger" value="Delete">
+                <input id="button" class="btn btn-danger" type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
