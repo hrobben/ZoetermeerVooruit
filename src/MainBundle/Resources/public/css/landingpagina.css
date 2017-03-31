@@ -1,29 +1,57 @@
-body {
-    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
-
-/* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
-
-.business-header {
-    height: 400px;
-    background: url('http://placehold.it/1920x400') center center no-repeat scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}
-
-/* Customize the text color and shadow color and to optimize text legibility. */
-
 .tagline {
-    text-shadow: 0 0 10px #000;
-    color: #fff;
+    text-align: center;
 }
 
-.img-center {
-    margin: 0 auto;
+/* entire container, keeps perspective */
+.flip-container {
+    perspective: 1000px;
+}
+/* flip the pane when hovered */
+.flip-container:hover .flipper, .flip-container.hover .flipper {
+    transform: rotateY(180deg);
 }
 
-footer {
-    margin: 50px 0;
+.flip-container, .front, .back {
+    width: 320px;
+    height: 480px;
+    margin: 35px;
+    float: left;
+
+}
+
+.img-circle {
+    max-height: 300px;
+    width: auto;
+    position: fixed;
+}
+
+/* flip speed goes here */
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    backface-visibility: hidden;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+    transform: rotateY(180deg);
+    margin-left: inherit;
+    /* NIET AANPASSEN -- Ruben */
 }

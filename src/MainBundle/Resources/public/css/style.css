@@ -58,8 +58,3 @@ body{
     background-image: none;
     box-shadow: none;
 }
-
-.img-circle {
-    max-height: 300px;
-    width: auto;
-}
