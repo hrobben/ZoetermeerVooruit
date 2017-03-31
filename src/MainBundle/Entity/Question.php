@@ -122,4 +122,9 @@ class Question
     {
         return $this->eqId;
     }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 }
