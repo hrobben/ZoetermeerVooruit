@@ -46,7 +46,7 @@ class EnqueteController extends Controller
         //question
         $question = new Question();
         $question->setTitle('question1');
-        $enquete->getQuestions()->add($question);
+        $enquete->getQuestions();
         //endquestion
 
         $form = $this->createForm('MainBundle\Form\EnqueteType', $enquete);
