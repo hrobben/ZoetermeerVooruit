@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class EnqueteType extends AbstractType
 {
@@ -23,7 +24,10 @@ class EnqueteType extends AbstractType
             ->add('endDate', DateType::class,[
                 'widget' => 'single_text'
             ])
-            ->add('published')        ;
+            ->add('published')
+            ->add('questions', CollectionType::class, array(
+            'entry_type' => QuestionType::class
+        ));;
     }
 
     /**
