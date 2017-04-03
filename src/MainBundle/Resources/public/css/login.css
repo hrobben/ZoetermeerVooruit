@@ -63,17 +63,17 @@
 .btn-lg {
     /* border: 1px solid #3079ed; */
     text-shadow: 0 1px rgba(0,0,0,0.1);
-    transition: opacity 1s ease, color 0.6s ease;
-    background-color: #0A70B8;
+    transition: background-color 1s ease, color 0.6s ease;
+    background-color: #0a89d5;
     padding: 10px 0;
-    font-family: roboto;
+    font-family: roboto, serif;
     font-size: 14px;
     color: #ffffff;
 }
 
 .btn-lg:hover {
     color: #ffffff;
-    opacity: 0.6;
+    background-color: #0a68af;
 }
 
 .loginmodal-container a {
