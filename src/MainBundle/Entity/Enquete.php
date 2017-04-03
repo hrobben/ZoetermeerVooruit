@@ -57,8 +57,6 @@ class Enquete
      */
     private $published;
 
-    private $questions;
-
     /**
      * Get id
      *
@@ -190,23 +188,8 @@ class Enquete
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getQuestions()
-    {
-        return $this->questions;
-    }
-
-    /**
-     * @param mixed $questions
-     */
-    public function setQuestions($questions)
-    {
-        $this->questions = $questions;
-    }
-
-
-
     public function __toString()
     {
         return $this->title;
