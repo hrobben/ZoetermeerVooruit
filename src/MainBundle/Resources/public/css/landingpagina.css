@@ -13,16 +13,20 @@
 
 .flip-container, .front, .back {
     width: 320px;
-    height: 480px;
-    margin: 35px;
+    height: 320px;
     float: left;
-
 }
 
+.flip-container{
+    margin: 20px;
+}
+
+
 .img-circle {
-    max-height: 300px;
+    max-height: 100%;
     width: auto;
-    position: fixed;
+    margin: 0 auto;
+    display: block;
 }
 
 /* flip speed goes here */
@@ -53,5 +57,12 @@
 .back {
     transform: rotateY(180deg);
     margin-left: inherit;
+    text-align: center;
     /* NIET AANPASSEN -- Ruben */
+}
+
+.special-container{
+    height: 390px;
+    display: inline-block;
+    padding: 33px;
 }
