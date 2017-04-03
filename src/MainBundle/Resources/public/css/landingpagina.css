@@ -1,5 +1,8 @@
-.tagline {
-    text-align: center;
+.vollogo {
+    display: block;
+    margin: auto;
+    height: 200px;
+    width: auto;
 }
 
 /* entire container, keeps perspective */
