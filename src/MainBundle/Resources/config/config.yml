@@ -5,7 +5,9 @@ fos_user:
     from_email:
         address: "admin@admin.nl"
         sender_name: "Admin"
-
+    registration:
+        form:
+            type: MainBundle\Form\RegistrationType
 twig:
     form_themes: ['bootstrap_3_layout.html.twig']
 
