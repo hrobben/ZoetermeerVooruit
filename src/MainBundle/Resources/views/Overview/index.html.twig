@@ -1,1 +1,25 @@
 {% extends "@Main/base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="beheer col-md-3">
+        <h3>Enquêtes aanmaken</h3>
+        <a class="pull-left btn btn-success" href="{{ path('enquete_new') }}">Maak een nieuwe enquete</a>
+        <a class="pull-left btn btn-default" href="{{ path('enquete_index') }}">Ga naar de enquête pagina</a>
+    </div>
+    <div class="beheer col-md-3">
+        <h3>Vragen aanmaken</h3>
+        <a class="pull-left btn btn-success" href="{{ path('question_new') }}">Maak een nieuwe Vraag</a>
+        <a class="pull-left btn btn-default" href="{{ path('question_index') }}">Ga naar de vragen pagina</a>
+    </div>
+    <div class="beheer col-md-3">
+        <h3>Antwoorden aanmaken</h3>
+        <a class="pull-left btn btn-success" href="{{ path('choice_new') }}">Maak een nieuwe Antwoord</a>
+        <a class="pull-left btn btn-default" href="{{ path('choice_index') }}">Ga naar de antwoorden pagina</a>
+    </div>
+
+{% endblock %}

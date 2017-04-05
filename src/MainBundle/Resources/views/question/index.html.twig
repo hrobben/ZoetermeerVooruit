@@ -4,7 +4,7 @@
     {% if app.user %}
         <h1>Questions list</h1>
 
-        <table class="table table-responsive">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -20,25 +20,19 @@
                         <td>{{ question.title }}</td>
                         <td>{{ question.enqueteId }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('question_show', { 'id': question.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('question_edit', { 'id': question.id }) }}">edit</a>
-                                </li>
-                            </ul>
+
+                                    <a class="btn btn-info" href="{{ path('question_show', { 'id': question.id }) }}">show</a>
+
+                                    <a class="btn btn-primary" href="{{ path('question_edit', { 'id': question.id }) }}">edit</a>
+
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
 
-        <ul>
-            <li>
-                <a href="{{ path('question_new') }}">Create a new question</a>
-            </li>
-        </ul>
+        <a class="btn btn-success" href="{{ path('question_new') }}">Create a new question</a>
+
     {% else %}
         <div>
             <h3>Pagina niet gevonden</h3>
