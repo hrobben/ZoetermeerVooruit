@@ -27,7 +27,7 @@ class EnqueteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $enquetes = $em->getRepository('MainBundle:Enquete')->findAll();
+        $enquetes = $em->getRepository('MainBundle:Enquete')->findBy(array(), array('id' => 'DESC'));
 
         return $this->render('@Main/enquete/index.html.twig', array(
             'enquetes' => $enquetes,
