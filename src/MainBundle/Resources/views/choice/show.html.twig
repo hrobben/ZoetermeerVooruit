@@ -1,5 +1,9 @@
 {% extends '@Main/base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
 {% block body %}
     <h1>Choice</h1>
 
@@ -20,17 +24,12 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('choice_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('choice_edit', { 'id': choice.id }) }}">Edit</a>
-        </li>
-        <li>
+            <a class="btn btn-default" href="{{ path('choice_index') }}">Back to the list</a>
+
+            <a class="btn btn-primary" href="{{ path('choice_edit', { 'id': choice.id }) }}">Edit</a>
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
 {% endblock %}
