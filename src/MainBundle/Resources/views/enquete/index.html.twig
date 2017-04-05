@@ -6,20 +6,39 @@
 
         <div class="row">
             {% for enquete in enquetes %}
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3>{{ enquete.title }}</h3>
-                            <p>{{ enquete.description }}</p>
-                            {% if is_granted ('ROLE_ADMIN') %}
+                {% if is_granted ('ROLE_ADMIN') %}
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <h3>{{ enquete.title }}</h3>
+                                <p>{{ enquete.description }}</p>
+                                {% if is_granted ('ROLE_ADMIN') %}
                                 <p>
                                     <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Aanpassen</a>
-                            {% endif %}
+                                {% endif %}
                                     <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Weergeven</a>
                                 </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% elseif app.user %}
+                    {% if enquete.published %}
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h3>{{ enquete.title }}</h3>
+                                    <p>{{ enquete.description }}</p>
+                                    {% if is_granted ('ROLE_ADMIN') %}
+                                    <p>
+                                        <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Aanpassen</a>
+                                        {% endif %}
+                                        <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Weergeven</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
             {% endfor %}
         </div>
         {% if is_granted ('ROLE_ADMIN') %}
