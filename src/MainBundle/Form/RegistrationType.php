@@ -3,6 +3,7 @@
 namespace MainBundle\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -12,10 +13,10 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', [
+            ->add('firstname', null, [
                 'label' => 'Voornaam'
             ])
-            ->add('lastname', [
+            ->add('lastname', null, [
                 'label' => 'Achternaam'
             ])
             ->add('gender', ChoiceType::class, array(
@@ -28,19 +29,19 @@ class RegistrationType extends AbstractType
             ->add('birthdate', DateType::class, array(
                 'format' => 'dd MM yyyy',
             ))
-            ->add('address', [
+            ->add('address', null, [
                 'label' => 'Adres',
             ])
-            ->add('postal', [
+            ->add('postal', null, [
                 'label' => 'Postcode'
             ])
-            ->add('city', [
+            ->add('city', null, [
                 'label' => 'Woonplaats'
             ])
-            ->add('phone', [
+            ->add('phone', null, [
                 'label' => 'Telefoonnummer'
             ])
-            ->add('bankaccount', [
+            ->add('bankaccount', null, [
                 'label' => 'Bacnkrekening'
             ])
 
