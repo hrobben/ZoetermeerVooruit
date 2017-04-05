@@ -1,16 +1,18 @@
 {% extends '@Main/base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
 {% block body %}
     <h1>Choice creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input class="btn btn-success" type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('choice_index') }}">Back to the list</a>
-        </li>
-    </ul>
+
+            <a class="btn btn-default" href="{{ path('choice_index') }}">Back to the list</a>
+
 {% endblock %}
