@@ -28,6 +28,7 @@ class RegistrationType extends AbstractType
                 ))
             ->add('birthdate', DateType::class, array(
                 'format' => 'dd MM yyyy',
+                'years' => range(date('Y') - 107, date('Y'))
             ))
             ->add('address', null, [
                 'label' => 'Adres',
@@ -42,7 +43,7 @@ class RegistrationType extends AbstractType
                 'label' => 'Telefoonnummer'
             ])
             ->add('bankaccount', null, [
-                'label' => 'Bacnkrekening'
+                'label' => 'Bankrekening'
             ])
 
         ;
