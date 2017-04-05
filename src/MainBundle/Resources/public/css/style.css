@@ -63,6 +63,12 @@ body{
     max-height: 300px;
     width: auto;
 }
+
+.vinkje {
+    max-height: 30px;
+    width: auto;
+
+}
 .beheer {
     padding: 30px;
     max-width: 350px;
