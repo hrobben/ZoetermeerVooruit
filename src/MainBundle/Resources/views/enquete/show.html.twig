@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    {% if app.user%}
+    {% if app.user %}
     <h1>Enquete</h1>
 
     <table class="table table-striped">
@@ -38,11 +38,13 @@
     </table>
         <a id="button" class="btn btn-default" href="{{ path('enquete_index') }}">Back to the list</a>
 
+        {% if is_granted ('ROLE_ADMIN') %}
         <a id="button" class="btn btn-primary" href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Edit</a>
 
         {{ form_start(delete_form) }}
             <input id="button" class="btn btn-danger" type="submit" value="Delete">
         {{ form_end(delete_form) }}
+        {% endif %}
 
     {% else %}
         <div>
