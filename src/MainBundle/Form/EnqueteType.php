@@ -30,6 +30,7 @@ class EnqueteType extends AbstractType
             ])
             ->add('published', CheckboxType::class, [
                 'label' => 'Publiceren',
+                'required' => false,
             ]);
     }
 
