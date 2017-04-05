@@ -6,19 +6,19 @@
 
 {% block body %}
     {% if is_granted ('ROLE_ADMIN') %}
-    <h1>Enquete edit</h1>
+        <h1>Enquete edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input class="btn btn-primary" type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input class="btn btn-primary" type="submit" value="Aanpassen" />
+        {{ form_end(edit_form) }}
 
 
-            <a class="btn btn-default" href="{{ path('enquete_index') }}">Back to the list</a>
+        <a class="btn btn-default" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
 
-            {{ form_start(delete_form) }}
-                <input class="btn btn-danger" type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+        {{ form_start(delete_form) }}
+            <input class="btn btn-danger" type="submit" value="Verwijderen">
+        {{ form_end(delete_form) }}
 
     {% else %}
         <div>

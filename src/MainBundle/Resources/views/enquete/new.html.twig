@@ -6,14 +6,14 @@
 
 {% block body %}
     {% if is_granted ('ROLE_ADMIN') %}
-    <h1>Enquete creation</h1>
+        <h1>Enquete creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input class="btn btn-success" type="submit" value="Create" />
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input class="btn btn-success" type="submit" value="Create" />
+        {{ form_end(form) }}
 
-            <a class="btn btn-default" href="{{ path('enquete_index') }}">Back to the list</a>
+        <a class="btn btn-default" href="{{ path('enquete_index') }}">Back to the list</a>
 
     {% else %}
         <div>

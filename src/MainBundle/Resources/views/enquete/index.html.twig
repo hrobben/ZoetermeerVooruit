@@ -2,30 +2,30 @@
 
 {% block body %}
     {% if app.user %}
-    <h1>Enquetes</h1>
+        <h1>Enquetes</h1>
 
-    <div class="row">
-        {% for enquete in enquetes %}
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>{{ enquete.title }}</h3>
-                        <p>{{ enquete.description }}</p>
-                        <p>
-                            <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Edit</a>
-                            <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Show</a>
-                        </p>
+        <div class="row">
+            {% for enquete in enquetes %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>{{ enquete.title }}</h3>
+                            <p>{{ enquete.description }}</p>
+                            <p>
+                                <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Aanpassen</a>
+                                <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Weergeven</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
-    <a class="pull-left btn btn-success" href="{{ path('enquete_new') }}">Maak een nieuwe enquete</a>
+            {% endfor %}
+        </div>
+        <a class="pull-left btn btn-success" href="{{ path('enquete_new') }}">Maak een nieuwe enquete</a>
 
-{% else %}
-    <div>
-        <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
-        <p>Log in als Administrator om de pagina weer te geven.</p>
-    </div>
-{% endif %}
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
 {% endblock %}

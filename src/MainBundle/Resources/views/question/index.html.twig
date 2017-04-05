@@ -2,43 +2,43 @@
 
 {% block body %}
     {% if app.user %}
-    <h1>Questions list</h1>
+        <h1>Questions list</h1>
 
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Enqueteid</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for question in questions %}
-            <tr>
-                <td><a href="{{ path('question_show', { 'id': question.id }) }}">{{ question.id }}</a></td>
-                <td>{{ question.title }}</td>
-                <td>{{ question.enqueteId }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('question_show', { 'id': question.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('question_edit', { 'id': question.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Enqueteid</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for question in questions %}
+                    <tr>
+                        <td><a href="{{ path('question_show', { 'id': question.id }) }}">{{ question.id }}</a></td>
+                        <td>{{ question.title }}</td>
+                        <td>{{ question.enqueteId }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('question_show', { 'id': question.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('question_edit', { 'id': question.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('question_new') }}">Create a new question</a>
-        </li>
-    </ul>
+        <ul>
+            <li>
+                <a href="{{ path('question_new') }}">Create a new question</a>
+            </li>
+        </ul>
     {% else %}
         <div>
             <h3>Pagina niet gevonden</h3>

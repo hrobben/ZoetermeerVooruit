@@ -8,7 +8,6 @@
     {% if app.user%}
     <h1>Enquete</h1>
 
-<div class="">
     <table class="table table-striped">
         <tbody>
             <tr>
@@ -37,17 +36,14 @@
             </tr>
         </tbody>
     </table>
+        <a id="button" class="btn btn-default" href="{{ path('enquete_index') }}">Back to the list</a>
 
+        <a id="button" class="btn btn-primary" href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Edit</a>
 
-            <a id="button" class="btn btn-default" href="{{ path('enquete_index') }}">Back to the list</a>
+        {{ form_start(delete_form) }}
+            <input id="button" class="btn btn-danger" type="submit" value="Delete">
+        {{ form_end(delete_form) }}
 
-            <a id="button" class="btn btn-primary" href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Edit</a>
-
-            {{ form_start(delete_form) }}
-                <input id="button" class="btn btn-danger" type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
     {% else %}
         <div>
             <h3>Helaas, u kunt deze pagina niet bekijken.</h3>

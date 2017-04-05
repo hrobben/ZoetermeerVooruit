@@ -51,9 +51,9 @@ class Enquete
     private $endDate;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="published", type="smallint")
+     * @ORM\Column(name="published", type="boolean")
      */
     private $published;
 
@@ -166,7 +166,7 @@ class Enquete
     /**
      * Set published
      *
-     * @param integer $published
+     * @param boolean $published
      *
      * @return Enquete
      */
@@ -180,7 +180,7 @@ class Enquete
     /**
      * Get published
      *
-     * @return int
+     * @return boolean
      */
     public function getPublished()
     {
