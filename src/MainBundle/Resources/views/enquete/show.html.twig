@@ -36,13 +36,13 @@
             </tr>
         </tbody>
     </table>
-        <a id="button" class="btn btn-default" href="{{ path('enquete_index') }}">Back to the list</a>
+        <a id="button" class="btn btn-default" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
 
         {% if is_granted ('ROLE_ADMIN') %}
-        <a id="button" class="btn btn-primary" href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Edit</a>
+        <a id="button" class="btn btn-primary" href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Wijzigen</a>
 
         {{ form_start(delete_form) }}
-            <input id="button" class="btn btn-danger" type="submit" value="Delete">
+            <input id="button" class="btn btn-danger" type="submit" value="Verwijderen">
         {{ form_end(delete_form) }}
         {% endif %}
 
