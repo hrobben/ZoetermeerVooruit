@@ -1,6 +1,7 @@
 {% extends "@Main/base.html.twig" %}
 
 {% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
 
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
@@ -43,5 +44,11 @@
             </div>
         </div>
     </div>
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
 
 {% endblock %}
