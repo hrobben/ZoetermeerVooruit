@@ -31,6 +31,7 @@ class UserType extends AbstractType
             ))
             ->add('birthdate', DateType::class, array(
                 'format' => 'dd MM yyyy',
+                'label' => 'Geboortedatum',
                 'years' => range(date('Y') - 107, date('Y'))
             ))
             ->add('address', null, [

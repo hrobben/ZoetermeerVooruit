@@ -1,22 +1,22 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
-    <h1>Users list</h1>
+    <h1>Gebruikerslijst</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Gender</th>
-                <th>Birthdate</th>
-                <th>Address</th>
-                <th>Postal</th>
-                <th>City</th>
-                <th>Phone</th>
-                <th>Bankaccount</th>
-                <th>Actions</th>
+                <th>Voornaam</th>
+                <th>Achternaam</th>
+                <th>Geslacht</th>
+                <th>Geboortedatum</th>
+                <th>Adres</th>
+                <th>Postcode</th>
+                <th>Woonplaats</th>
+                <th>Telefoonnummer</th>
+                <th>Bankrekening</th>
+                <th>Beheeracties</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.gender }}</td>
-                <td>{% if user.birthdate %}{{ user.birthdate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if user.birthdate %}{{ user.birthdate|date('d-m-Y') }}{% endif %}</td>
                 <td>{{ user.address }}</td>
                 <td>{{ user.postal }}</td>
                 <td>{{ user.city }}</td>
