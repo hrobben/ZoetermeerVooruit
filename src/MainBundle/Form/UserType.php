@@ -2,14 +2,17 @@
 
 namespace MainBundle\Form;
 
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class RegistrationType extends AbstractType
+class UserType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -21,11 +24,11 @@ class RegistrationType extends AbstractType
             ])
             ->add('gender', ChoiceType::class, array(
                 'choices'   => array(
-                'Man'       => "Man",
-                'Vrouw'     => "Vrouw"
+                    'Man'       => "Man",
+                    'Vrouw'     => "Vrouw"
                 ),
                 'label'     => 'Geslacht',
-                ))
+            ))
             ->add('birthdate', DateType::class, array(
                 'format' => 'dd MM yyyy',
                 'label' => 'Geboortedatum',
@@ -49,23 +52,24 @@ class RegistrationType extends AbstractType
 
         ;
     }
-
-    public function getParent()
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
-        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
-
-        // Or for Symfony < 2.8
-        // return 'fos_user_registration';
+        $resolver->setDefaults(array(
+            'data_class' => 'MainBundle\Entity\User'
+        ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getBlockPrefix()
     {
         return 'mainbundle_user';
     }
 
-    // For Symfony 2.x
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
+
 }

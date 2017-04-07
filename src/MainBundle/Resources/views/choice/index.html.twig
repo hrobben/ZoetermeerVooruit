@@ -19,9 +19,9 @@
                 <td>{{ choice.questionId }}</td>
                 <td>{{ choice.choice }}</td>
                 <td>
-                    <a  class="btn btn-info" href="{{ path('choice_show', { 'id': choice.id }) }}">show</a>
+                    <a  class="btn btn-info" href="{{ path('choice_show', { 'id': choice.id }) }}">Weergeven</a>
 
-                    <a class="btn btn-primary" href="{{ path('choice_edit', { 'id': choice.id }) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('choice_edit', { 'id': choice.id }) }}">Wijzigen</a>
                 </td>
             </tr>
         {% endfor %}
@@ -29,6 +29,6 @@
     </table>
 
 
-            <a class="btn btn-success" href="{{ path('choice_new') }}">Create a new choice</a>
+            <a class="btn btn-success" href="{{ path('choice_new') }}">Maak een nieuw antwoord</a>
 
 {% endblock %}

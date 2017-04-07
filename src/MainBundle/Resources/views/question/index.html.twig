@@ -21,9 +21,9 @@
                         <td>{{ question.enqueteId }}</td>
                         <td>
 
-                                    <a class="btn btn-info" href="{{ path('question_show', { 'id': question.id }) }}">show</a>
+                            <a class="btn btn-info" href="{{ path('question_show', { 'id': question.id }) }}">Weergeven</a>
 
-                                    <a class="btn btn-primary" href="{{ path('question_edit', { 'id': question.id }) }}">edit</a>
+                            <a class="btn btn-primary" href="{{ path('question_edit', { 'id': question.id }) }}">Wijzigen</a>
 
                         </td>
                     </tr>
@@ -31,7 +31,7 @@
             </tbody>
         </table>
 
-        <a class="btn btn-success" href="{{ path('question_new') }}">Create a new question</a>
+        <a class="btn btn-success" href="{{ path('question_new') }}">Maak een nieuwe vraag</a>
 
     {% else %}
         <div>

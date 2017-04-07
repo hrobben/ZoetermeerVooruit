@@ -10,14 +10,14 @@
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input class="btn btn-primary" type="submit" value="Edit" />
+        <input class="btn btn-success" type="submit" value="opslaan" />
     {{ form_end(edit_form) }}
 
 
-            <a class="btn btn-default" href="{{ path('question_index') }}">Back to the list</a>
+            <a class="btn btn-default" href="{{ path('question_index') }}">Terug naar overzicht</a>
 
             {{ form_start(delete_form) }}
-                <input class="btn btn-danger" type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Verwijderen">
             {{ form_end(delete_form) }}
 
     {% else %}

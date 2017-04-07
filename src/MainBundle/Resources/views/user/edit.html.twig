@@ -1,19 +1,18 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
 {% endblock %}
 
 {% block body %}
-    <h1>Choice edit</h1>
+    <h1>User edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input class="btn btn-success" type="submit" value="Wijzigen" />
+        <input class="btn btn-success" type="submit"  value="Opslaan"/>
     {{ form_end(edit_form) }}
 
-
-            <a class="btn btn-default" href="{{ path('choice_index') }}">Terug naar overzicht</a>
+            <a class="btn btn-default" href="{{ path('user_index') }}">Terug naar overzicht</a>
 
             {{ form_start(delete_form) }}
                 <input class="btn btn-danger" type="submit" value="Verwijderen">

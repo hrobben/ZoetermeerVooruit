@@ -24,12 +24,12 @@
         </tbody>
     </table>
 
-            <a class="btn btn-default" href="{{ path('choice_index') }}">Back to the list</a>
+            <a class="btn btn-default" href="{{ path('choice_index') }}">Terug naar overzicht</a>
 
-            <a class="btn btn-primary" href="{{ path('choice_edit', { 'id': choice.id }) }}">Edit</a>
+            <a class="btn btn-primary" href="{{ path('choice_edit', { 'id': choice.id }) }}">Wijzigen</a>
 
             {{ form_start(delete_form) }}
-                <input class="btn btn-danger" type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Verwijderen">
             {{ form_end(delete_form) }}
 
 {% endblock %}

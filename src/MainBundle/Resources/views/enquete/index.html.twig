@@ -37,7 +37,7 @@
                                     <p>{{ enquete.description }}</p>
                                     {% if is_granted ('ROLE_ADMIN') %}
                                     <p>
-                                        <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Aanpassen</a>
+                                        <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Wijzigen</a>
                                         {% endif %}
                                         <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Weergeven</a>
                                     </p>
