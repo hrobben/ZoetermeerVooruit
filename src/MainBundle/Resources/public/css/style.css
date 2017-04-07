@@ -69,3 +69,15 @@ body{
     width: auto;
 
 }
+
+.btn {
+    border: 0px solid transparent;
+}
+
+.thumbnail {
+    border: 0px solid transparent;
+}
+
+.btn-danger, .btn-default, .btn-info, .btn-primary, .btn-success, .btn-warning {
+    text-shadow: 0 -0px 0 rgba(0,0,0,.2);
+}
