@@ -32,32 +32,6 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a new user entity.
-     *
-     * @Route("/new", name="user_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $user = new User();
-        $form = $this->createForm('MainBundle\Form\UserType', $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush($user);
-
-            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
-        }
-
-        return $this->render('@Main/user/new.html.twig', array(
-            'user' => $user,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
      * Finds and displays a user entity.
      *
      * @Route("/{id}", name="user_show")
