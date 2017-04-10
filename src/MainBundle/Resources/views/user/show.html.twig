@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
     <h1>User</h1>
 
     <table class="table table-striped">
@@ -58,4 +59,11 @@
             {{ form_start(delete_form) }}
                 <input class="btn btn-danger" type="submit" value="Delete" value="Verwijderen">
             {{ form_end(delete_form) }}
+
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
 {% endblock %}
