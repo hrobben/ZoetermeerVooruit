@@ -1,0 +1,35 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    <h1>Bedrijfslijst</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Userid</th>
+                <th>Bedrijfsnaam</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for company in companies %}
+            <tr>
+                <td><a href="{{ path('company_show', { 'id': company.id }) }}">{{ company.id }}</a></td>
+                <td>{{ company.userId }}</td>
+                <td>{{ company.companyname }}</td>
+                <td>
+
+                    <a class="btn btn-info" href="{{ path('company_show', { 'id': company.id }) }}">Weergeven</a>
+
+                    <a class="btn btn-primary" href="{{ path('company_edit', { 'id': company.id }) }}">Wijzigen</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('company_new') }}">Voeg een bedrijf toe</a>
+
+{% endblock %}
