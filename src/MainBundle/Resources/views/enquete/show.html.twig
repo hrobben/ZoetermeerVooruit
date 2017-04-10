@@ -24,11 +24,11 @@
             </tr>
             <tr>
                 <th>Startdate</th>
-                <td>{% if enquete.startDate %}{{ enquete.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if enquete.startDate %}{{ enquete.startDate|date('d-m-y H:i') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Enddate</th>
-                <td>{% if enquete.endDate %}{{ enquete.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if enquete.endDate %}{{ enquete.endDate|date('d-m-y H:i') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Published</th>
