@@ -6,6 +6,7 @@
 
 {% block body %}
     {% if is_granted ("ROLE_ADMIN") %}
+<div class="col-md-6 col-md-offset-3 thumbnail" style="padding: 20px 20px 50px 20px;background-color: #f7f7f7;" >
     <h1>Question creation</h1>
 
     {{ form_start(form) }}
@@ -14,8 +15,8 @@
     {{ form_end(form) }}
 
 
-            <a class="btn btn-default" href="{{ path('question_index') }}">Terug naar overzicht</a>
-
+    <a class="btn btn-default" href="{{ path('question_index') }}">Terug naar overzicht</a>
+</div>
     {% else %}
         <div>
             <h3>Pagina niet gevonden</h3>

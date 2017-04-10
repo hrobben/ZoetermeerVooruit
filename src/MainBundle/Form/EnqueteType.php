@@ -21,13 +21,11 @@ class EnqueteType extends AbstractType
             ->add('title', null, ['label' => 'Enquetenaam'])
             ->add('description', null, ['label' => 'Beschrijving'])
             ->add('startDate', DateTimeType::class,[
-                'date_widget' => 'single_text',
-                'date_format' => 'dd-MM-yyyy',
+                'date_format' => 'dd MM yyyy',
                 'label' => 'Startdatum',
             ])
             ->add('endDate', DateTimeType::class,[
-                'date_widget' => 'single_text',
-                'date_format' => 'dd-MM-yyyy',
+                'date_format' => 'dd MM yyyy',
                 'label' => 'Einddatum',
             ])
             ->add('published', CheckboxType::class, [
