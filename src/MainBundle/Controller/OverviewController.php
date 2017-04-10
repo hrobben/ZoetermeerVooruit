@@ -2,6 +2,7 @@
 
 namespace MainBundle\Controller;
 
+use MainBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -19,6 +20,12 @@ class OverviewController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('@Main/Overview/index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $users = $em->getRepository('MainBundle:User')->findAll();
+
+        return $this->render('@Main/Overview/index.html.twig', array(
+            'users' => $users,
+        ));
     }
 }

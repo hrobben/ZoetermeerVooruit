@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
     <h1>Antwoorden maken</h1>
 
     {{ form_start(form) }}
@@ -15,4 +16,11 @@
 
             <a class="btn btn-default" href="{{ path('choice_index') }}">Terug naar overzicht</a>
 
+
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
 {% endblock %}
