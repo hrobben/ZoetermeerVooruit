@@ -1,7 +1,8 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
-    <h1>Payment</h1>
+    {% if is_granted ('ROLE_ADMIN') %}
+        <h1>Payment</h1>
 
     <table>
         <tbody>
@@ -37,4 +38,10 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
 {% endblock %}
