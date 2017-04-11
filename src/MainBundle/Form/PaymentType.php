@@ -22,7 +22,8 @@ class PaymentType extends AbstractType
                     'label' => 'Datum van betaling',
                 ])
                 ->add('amount', MoneyType::class, array(
-        'divisor' => 1,
+                'divisor' => 100,
+
                 'label'=>'Bedrag',
     ))        ;
     }
