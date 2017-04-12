@@ -1,0 +1,17 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    <h1>Company edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input class="btn btn-success" type="submit" value="Opslaan" />
+    {{ form_end(edit_form) }}
+
+        <a class="btn btn-default" href="{{ path('company_index') }}">Terug naar overzicht</a>
+
+        {{ form_start(delete_form) }}
+            <input class="btn btn-danger" type="submit" value="Verwijderen">
+        {{ form_end(delete_form) }}
+
+{% endblock %}

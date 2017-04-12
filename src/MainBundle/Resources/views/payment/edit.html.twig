@@ -1,0 +1,28 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+        {% if is_granted ('ROLE_ADMIN') %}
+<h1>Payment edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('payment_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+        {% else %}
+            <div>
+                <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+                <p>Log in als Administrator om de pagina weer te geven.</p>
+            </div>
+        {% endif %}
+{% endblock %}

@@ -2,26 +2,18 @@
 
 namespace MainBundle\Form;
 
-use MainBundle\Entity\Question;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class QuestionType extends AbstractType
+class CompanyType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('eqId', null, [
-                'label' => 'Enquetenaam'
-            ])
-            ->add('title', null, [
-                'label' => 'Vraagnaam'
-            ]);
-//            ->add('enqueteId')
+        $builder->add('userId')->add('companyname')        ;
     }
     
     /**
@@ -30,7 +22,7 @@ class QuestionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Question::class,
+            'data_class' => 'MainBundle\Entity\Company'
         ));
     }
 
@@ -39,7 +31,7 @@ class QuestionType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'mainbundle_question';
+        return 'mainbundle_company';
     }
 
 
