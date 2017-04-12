@@ -25,9 +25,11 @@ class QuestionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $questions = $em->getRepository('MainBundle:Question')->findAll();
+        $enquetes = $em->getRepository('MainBundle:Enquete')->findAll();
 
         return $this->render('@FOSUser/question/index.html.twig', array(
             'questions' => $questions,
+            'enquetes' => $enquetes,
         ));
     }
 

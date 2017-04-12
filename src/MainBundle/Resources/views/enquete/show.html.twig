@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    {% if app.user %}
+    {% if is_granted ('ROLE_ADMIN') %}
     <h1>Enquete</h1>
 
     <table class="table table-striped">
@@ -24,11 +24,11 @@
             </tr>
             <tr>
                 <th>Startdate</th>
-                <td>{% if enquete.startDate %}{{ enquete.startDate|date('d-m-y H:i') }}{% endif %}</td>
+                <td>{% if enquete.startDate %}{{ enquete.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Enddate</th>
-                <td>{% if enquete.endDate %}{{ enquete.endDate|date('d-m-y H:i') }}{% endif %}</td>
+                <td>{% if enquete.endDate %}{{ enquete.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Published</th>
@@ -38,14 +38,32 @@
     </table>
         <a id="button" class="btn btn-default" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
 
-        {% if is_granted ('ROLE_ADMIN') %}
         <a id="button" class="btn btn-primary" href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Wijzigen</a>
 
         {{ form_start(delete_form) }}
             <input id="button" class="btn btn-danger" type="submit" value="Verwijderen">
         {{ form_end(delete_form) }}
-        {% endif %}
 
+    {% elseif app.user %}
+        <div class="col-sm-8 col-sm-offset-2">
+            <hr>
+        <h2 class="text-center">{{ enquete.title }}</h2>
+        <p class="text-center">{{ enquete.description }}</p>
+            <form name="enquete-{{ enquete.id }}" method="post">
+                {% for question in questions %}
+                    <hr>
+                    <p><b>{{ question.title }}</b></p>
+                    {% for choice in choices if choice.questionId == question.id %}
+                        <div class="radio">
+                            <label><input type="radio" name="{{ question.id }}">{{ choice.choice }}</label>
+                        </div>
+                    {% endfor %}
+
+                {% endfor %}
+                    <hr>
+                    <input class="btn btn-success" type="submit" value="Versturen" style="margin-bottom: 20px">
+            </form>
+        </div>
     {% else %}
         <div>
             <h3>Helaas, u kunt deze pagina niet bekijken.</h3>

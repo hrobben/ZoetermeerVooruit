@@ -52,7 +52,7 @@ class EnqueteController extends Controller
             $em->persist($enquete);
             $em->flush($enquete);
 
-            return $this->redirectToRoute('enquete_show', array('id' => $enquete->getId()));
+            return $this->redirectToRoute('question_new', array('enquetenaam' => $enquete->getTitle()));
         }
 
         return $this->render('@Main/enquete/new.html.twig', array(
@@ -65,14 +65,32 @@ class EnqueteController extends Controller
      * Finds and displays a enquete entity.
      *
      * @Route("/{id}", name="enquete_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function showAction(Enquete $enquete)
+    public function showAction(Request $request, Enquete $enquete)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $questions = $em->getRepository('MainBundle:Question')->findBy(array('enqueteId' => $enquete->getId()));
+        $choices = $em->getRepository('MainBundle:Choice')->findAll();
+
         $deleteForm = $this->createDeleteForm($enquete);
+
+//        $form = $this->createFormBuilder()->getForm();
+//        if ($request->getMethod() == 'POST')
+//        {
+//            $form->getData();
+//
+//            if ($form->isSubmitted() && $form->isValid())
+//            {
+//                return true;
+//            }
+//        }
 
         return $this->render('@Main/enquete/show.html.twig', array(
             'enquete' => $enquete,
+            'questions' => $questions,
+            'choices' => $choices,
             'delete_form' => $deleteForm->createView(),
         ));
     }

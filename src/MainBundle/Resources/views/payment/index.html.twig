@@ -2,7 +2,7 @@
 
 {% block body %}
     {% if is_granted ('ROLE_ADMIN') %}
-        <h1>Payments list</h1>
+        <h1>Betalinglijst</h1>
 
     <table class="table">
         <thead>
@@ -26,25 +26,19 @@
                 <td>{% if payment.date %}{{ payment.date|date('d-m-Y') }}{% endif %}</td>
                 <td>&euro;{{ payment.amount }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('payment_show', { 'id': payment.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('payment_edit', { 'id': payment.id }) }}">edit</a>
-                        </li>
-                    </ul>
+
+                    <a class="btn btn-info" href="{{ path('payment_show', { 'id': payment.id }) }}">Weergeven</a>
+
+                    <a class="btn btn-primary" href="{{ path('payment_edit', { 'id': payment.id }) }}">Wijzigen</a>
+
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('payment_new') }}">Create a new payment</a>
-        </li>
-    </ul>
+        <a class="btn btn-success" href="{{ path('payment_new') }}">Maak een betaling</a>
+
     {% else %}
         <div>
             <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
