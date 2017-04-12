@@ -41,6 +41,8 @@
                                 <div class="caption">
                                     <h3>{{ enquete.title }}</h3>
                                     <p>{{ enquete.description }}</p>
+                                    <p>Start: {% if enquete.startDate %}{{ enquete.startDate|date('d-m-y H:i') }}{% endif %}</p>
+                                    <p>Eindigd: {% if enquete.endDate %}{{ enquete.endDate|date('d-m-y H:i') }}{% endif %}</p>
                                     {% if is_granted ('ROLE_ADMIN') %}
                                     <p>
                                         <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Wijzigen</a>
