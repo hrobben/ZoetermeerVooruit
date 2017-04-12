@@ -13,7 +13,13 @@ class ChoiceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('quId')->add('choice')        ;
+        $builder
+            ->add('quId', null, [
+                'label' => "Vraagnaam"
+                ])
+            ->add('choice', null, [
+                'label' => "Antwoord",
+                ]);
     }
     
     /**

@@ -6,16 +6,16 @@
 
 {% block body %}
     {% if is_granted ('ROLE_ADMIN') %}
-    <h1>Antwoorden maken</h1>
+    <div class="col-md-6 col-md-offset-3 thumbnail" style="padding: 20px 20px 50px 20px;background-color: #f7f7f7;" >
+        <h1>Antwoorden maken</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input class="btn btn-success" type="submit" value="Opslaan" />
-    {{ form_end(form) }}
-
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input class="btn btn-success" type="submit" value="Opslaan" />
+        {{ form_end(form) }}
 
             <a class="btn btn-default" href="{{ path('choice_index') }}">Terug naar overzicht</a>
-
+    </div>
 
     {% else %}
         <div>
@@ -23,4 +23,9 @@
             <p>Log in als Administrator om de pagina weer te geven.</p>
         </div>
     {% endif %}
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        $('#mainbundle_choice_quId option:last').prop('selected', true);
+    </script>
 {% endblock %}

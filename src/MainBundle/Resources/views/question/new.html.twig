@@ -24,3 +24,8 @@
         </div>
     {% endif %}
 {% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+    $('#mainbundle_question_eqId option:last').prop('selected', true);
+</script>
+{% endblock %}
