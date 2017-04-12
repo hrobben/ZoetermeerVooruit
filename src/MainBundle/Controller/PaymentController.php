@@ -23,11 +23,12 @@ class PaymentController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+        $users = $em->getRepository('MainBundle:User')->findAll();
         $payments = $em->getRepository('MainBundle:Payment')->findAll();
 
         return $this->render('@Main/payment/index.html.twig', array(
             'payments' => $payments,
+            'users' => $users,
         ));
     }
 
