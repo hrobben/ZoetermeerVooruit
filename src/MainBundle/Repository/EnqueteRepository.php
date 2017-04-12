@@ -10,5 +10,16 @@ namespace MainBundle\Repository;
  */
 class EnqueteRepository extends \Doctrine\ORM\EntityRepository
 {
+//    public function getChoicesFromQuestions()
+//    {
+//        $qb = $this->getEntityManager()->createQueryBuilder();
+//        $qb->select('question')
+//            ->from('\MainBundle\Entity\Question', 'q')
+//            ->join('q.choices', 'c')
+//            ->where('q.enqueteId' );
+//
+//
+//        return $qb->getQuery()->getResult();
+//    }
 }
 

@@ -18,7 +18,11 @@
                     <tr>
                         <td><a href="{{ path('question_show', { 'id': question.id }) }}">{{ question.id }}</a></td>
                         <td>{{ question.title }}</td>
-                        <td>{{ question.enqueteId }}</td>
+                        {% for enquete in enquetes %}
+                            {% if enquete.id == question.enqueteId %}
+                            <td>{{ enquete.title }}</td>
+                            {% endif %}
+                        {% endfor %}
                         <td>
 
                             <a class="btn btn-info" href="{{ path('question_show', { 'id': question.id }) }}">Weergeven</a>
