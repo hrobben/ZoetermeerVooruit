@@ -1,5 +1,13 @@
 {% extends '@Main/base.html.twig' %}
 
+{% block title %}
+        {% if is_granted ('ROLE_ADMIN') %}
+            Bekijk {{ enquete.title }}
+        {% else %}
+            Enquete {{ enquete.title }}
+        {% endif %}
+{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
 {% endblock %}
@@ -36,6 +44,25 @@
             </tr>
         </tbody>
     </table>
+    <div>
+        <hr>
+        {% set q = 1 %}
+        {% set a = 1 %}
+        {% for question in questions %}
+            <p>Vraag {{ q }}: <b>{{ question.title }}</b></p>
+            {% for choice in choices if choice.questionId == question.id %}
+                <ul>
+                    <li>Antwoord {{a}}: <b>{{ choice.choice }}</b></li>
+                </ul>
+                {% set a = a+1 %}
+            {% endfor %}
+            {% set a = 1 %}
+            {% set q = q+1 %}
+            <hr>
+
+        {% endfor %}
+    </div>
+
         <a id="button" class="btn btn-default" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
 
         <a id="button" class="btn btn-primary" href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Wijzigen</a>

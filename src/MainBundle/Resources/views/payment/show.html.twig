@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <th>Amount</th>
-                <td>&euro;{{ payment.amount | number_format(2) }}</td>
+                <td>{% if payment.amount %}&euro;{{ payment.amount | number_format(2)|replace('.',',') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
