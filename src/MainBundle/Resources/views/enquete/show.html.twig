@@ -1,5 +1,13 @@
 {% extends '@Main/base.html.twig' %}
 
+{% block title %}
+        {% if is_granted ('ROLE_ADMIN') %}
+            Bekijk {{ enquete.title }}
+        {% else %}
+            Enquete {{ enquete.title }}
+        {% endif %}
+{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
 {% endblock %}
@@ -41,11 +49,11 @@
         {% set q = 1 %}
         {% set a = 1 %}
         {% for question in questions %}
-            <p><b>Vraag {{ q }}: {{ question.title }}</b></p>
+            <p>Vraag {{ q }}: <b>{{ question.title }}</b></p>
             {% for choice in choices if choice.questionId == question.id %}
-                <div>
-                    <p>Antwoord {{a}}: {{ choice.choice }}</p>
-                </div>
+                <ul>
+                    <li>Antwoord {{a}}: <b>{{ choice.choice }}</b></li>
+                </ul>
                 {% set a = a+1 %}
             {% endfor %}
             {% set a = 1 %}
