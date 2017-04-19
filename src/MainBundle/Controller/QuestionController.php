@@ -45,12 +45,14 @@ class QuestionController extends Controller
         $form = $this->createForm('MainBundle\Form\QuestionType', $question);
         $form->handleRequest($request);
 
+        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush($question);
 
-            return $this->redirectToRoute('question_show', array('id' => $question->getId()));
+            return $this->redirectToRoute('choice_new', array('id' => $question->getId()));
         }
 
         return $this->render('@Main/question/new.html.twig', array(

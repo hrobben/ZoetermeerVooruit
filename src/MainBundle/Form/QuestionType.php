@@ -10,13 +10,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class QuestionType extends AbstractType
 {
 
-    protected $enquetenaam;
-
-    public function __construct(array $enquetenaam = null)
-    {
-        $this->enquetenaam = $enquetenaam;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -25,14 +18,14 @@ class QuestionType extends AbstractType
         $builder
             ->add('eqId', null, [
                 'label' => 'Enquetenaam',
-                'value' => $this->enquetenaam
+                'data' => 'Enquete 1',
             ])
             ->add('title', null, [
                 'label' => 'Vraagnaam'
             ]);
 //            ->add('enqueteId')
     }
-    
+
     /**
      * {@inheritdoc}
      */
