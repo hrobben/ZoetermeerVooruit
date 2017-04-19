@@ -2,3 +2,7 @@
     float: left;
     margin-right: 5px;
 }
+
+.negative-margin{
+    margin-left: -3px;
+}

@@ -2,61 +2,62 @@
 
 {% block body %}
     {% if app.user %}
-        <h1 style="margin-bottom: 40px">Enquete overzicht
-        {% if is_granted ('ROLE_ADMIN') %}
-            <a class="pull-right btn btn-success" href="{{ path('enquete_new') }}">Maak een nieuwe enquete</a>
-        {% endif %}
-        </h1>
+        <div class="container">
+            <h1 style="margin-bottom: 40px">Enquete overzicht
+            {% if is_granted ('ROLE_ADMIN') %}
+                <a class="pull-right btn btn-success" href="{{ path('enquete_new') }}">Maak een nieuwe enquete</a>
+            {% endif %}
+            </h1>
 
-        <div class="row">
-            {% for enquete in enquetes %}
-                {% if is_granted ('ROLE_ADMIN') %}
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <div class="caption">
-                                <div class="row">
-                                    <div class="col-sm-10">
-                                        <h3>{{ enquete.title }}</h3>
-                                        <p>{{ enquete.description|length > 50 ? enquete.description|slice(0, 50) ~ '...' : enquete.description }}</p>
-                                        <p>
-                                            Starttijd: {% if enquete.startDate %}{{ enquete.startDate|date('d-m-y H:i') }}{% endif %}
-                                            <br>
-                                            Eindtijd: {% if enquete.endDate %}{{ enquete.endDate|date('d-m-y H:i') }}{% endif %}
-                                        </p>
-                                        {% if is_granted ('ROLE_ADMIN') %}
-                                        <p>
-                                            <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Wijzigen</a>
-                                        {% endif %}
-                                            <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Weergeven</a>
-                                        </p>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        {%  if enquete.published %} <img class="vinkje" src="{{ asset('bundles/main/images/vinkje.png') }}"/>{% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% elseif app.user %}
-                    {% if enquete.published %}
+            <div class="row">
+                {% for enquete in enquetes %}
+                    {% if is_granted ('ROLE_ADMIN') %}
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
                                 <div class="caption">
-                                    <h3><b>{{ enquete.title }}</b></h3>
-                                    <hr>
-                                    <p>{{ enquete.description }}</p>
-                                    <hr>
-                                    <p>
-                                        <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Invullen</a>
-                                    </p>
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <h3>{{ enquete.title }}</h3>
+                                            <p>{{ enquete.description|length > 50 ? enquete.description|slice(0, 50) ~ '...' : enquete.description }}</p>
+                                            <p>
+                                                Starttijd: {% if enquete.startDate %}{{ enquete.startDate|date('d-m-y H:i') }}{% endif %}
+                                                <br>
+                                                Eindtijd: {% if enquete.endDate %}{{ enquete.endDate|date('d-m-y H:i') }}{% endif %}
+                                            </p>
+                                            {% if is_granted ('ROLE_ADMIN') %}
+                                            <p>
+                                                <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Wijzigen</a>
+                                            {% endif %}
+                                                <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Weergeven</a>
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            {%  if enquete.published %} <img class="vinkje" src="{{ asset('bundles/main/images/vinkje.png') }}"/>{% endif %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    {% elseif app.user %}
+                        {% if enquete.published %}
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <div class="caption">
+                                        <h3><b>{{ enquete.title }}</b></h3>
+                                        <hr>
+                                        <p>{{ enquete.description }}</p>
+                                        <hr>
+                                        <p>
+                                            <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Invullen</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-
     {% else %}
         <div>
             <h3>Helaas, u kunt deze pagina niet bekijken.</h3>

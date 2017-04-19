@@ -6,7 +6,10 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
+                <th class="hidden-xs hidden-sm sorting"
+                    tabindex="0" aria-controls="lijst"
+                    rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                    style="width: 69px;">Id</th>
                 <th>Userid</th>
                 <th>Bedrijfsnaam</th>
                 <th>Actions</th>
@@ -15,7 +18,7 @@
         <tbody>
         {% for company in companies %}
             <tr>
-                <td><a href="{{ path('company_show', { 'id': company.id }) }}">{{ company.id }}</a></td>
+                <td class="hidden-xs hidden-sm"><a href="{{ path('company_show', { 'id': company.id }) }}">{{ company.id }}</a></td>
                 <td>{{ company.userId }}</td>
                 <td>{{ company.companyname }}</td>
                 <td>

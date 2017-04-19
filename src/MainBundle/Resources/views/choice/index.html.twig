@@ -7,7 +7,10 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th class="hidden-xs hidden-sm sorting"
+                    tabindex="0" aria-controls="lijst"
+                    rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                    style="width: 69px;">Id</th>
                 <th>Vraagnummer</th>
                 <th>Keuzemogelijkheid</th>
                 <th></th>
@@ -16,7 +19,7 @@
         <tbody>
         {% for choice in choices %}
             <tr>
-                <td><a href="{{ path('choice_show', { 'id': choice.id }) }}">{{ choice.id }}</a></td>
+                <td class="hidden-xs hidden-sm"><a href="{{ path('choice_show', { 'id': choice.id }) }}">{{ choice.id }}</a></td>
                 <td>{{ choice.questionId }}</td>
                 <td>{{ choice.choice }}</td>
                 <td>
