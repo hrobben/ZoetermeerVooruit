@@ -101,9 +101,9 @@
                         <td class="hidden-xs hidden-sm">{{ user.phone }}</td>
                         <td class="hidden-xs hidden-sm">{{ user.bankaccount }}</td>
                         <td>
-                            <a class="btn btn-info" href="{{ path('user_show', { 'id': user.id }) }}">Weergeven</a>
+                            <a class="btn btn-info btn-xs" style="padding: auto; margin: 2px; " href="{{ path('user_show', { 'id': user.id }) }}">Weergeven</a>
 
-                            <a class="btn btn-primary" href="{{ path('user_edit', { 'id': user.id }) }}">Aanpassen</a>
+                            <a class="btn btn-primary btn-xs" style="padding: auto; margin: 2px; " href="{{ path('user_edit', { 'id': user.id }) }}">Aanpassen</a>
                         </td>
                     </tr>
                 {% endfor %}
