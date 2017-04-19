@@ -11,32 +11,56 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
+                <th class="hidden-xs hidden-sm sorting"
+                    tabindex="0" aria-controls="lijst"
+                    rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                    style="width: 69px;">Id</th>
                 <th>Voornaam</th>
                 <th>Achternaam</th>
-                <th>Geslacht</th>
-                <th>Geboortedatum</th>
-                <th>Adres</th>
-                <th>Postcode</th>
-                <th>Woonplaats</th>
-                <th>Telefoonnummer</th>
-                <th>Bankrekening</th>
+                <th class="hidden-xs hidden-sm sorting"
+                    tabindex="0" aria-controls="lijst"
+                    rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                    style="width: 69px;">Geslacht</th>
+                <th class="hidden-xs hidden-sm sorting"
+                    tabindex="0" aria-controls="lijst"
+                    rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                    style="width: 69px;">Geboortedatum</th>
+                <th class="hidden-xs hidden-sm sorting"
+                    tabindex="0" aria-controls="lijst"
+                    rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                    style="width: 69px;">Adres</th>
+                <th class="hidden-xs hidden-sm sorting"
+                    tabindex="0" aria-controls="lijst"
+                    rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                    style="width: 69px;">Postcode</th>
+                <th class="hidden-xs hidden-sm sorting"
+                    tabindex="0" aria-controls="lijst"
+                    rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                    style="width: 69px;">Woonplaats</th>
+                <th class="hidden-xs hidden-sm sorting"
+                tabindex="0" aria-controls="lijst"
+                rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                style="width: 69px;">Telefoonnummer</th>
+                <th class="hidden-xs hidden-sm sorting"
+                    tabindex="0" aria-controls="lijst"
+                    rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                    style="width: 69px;">Bankrekening</th>
                 <th>Beheeracties</th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td class="hidden-xs hidden-sm"><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
-                <td>{{ user.gender }}</td>
-                <td>{% if user.birthdate %}{{ user.birthdate|date('d-m-Y') }}{% endif %}</td>
-                <td>{{ user.address }}</td>
-                <td>{{ user.postal }}</td>
-                <td>{{ user.city }}</td>
-                <td>{{ user.phone }}</td>
-                <td>{{ user.bankaccount }}</td>
+                <td class="hidden-xs hidden-sm">{{ user.gender }}</td>
+                <td class="hidden-xs hidden-sm">{% if user.birthdate %}{{ user.birthdate|date('d-m-Y') }}{% endif %}</td>
+                <td class="hidden-xs hidden-sm">{{ user.address }}</td>
+                <td class="hidden-xs hidden-sm">{{ user.postal }}</td>
+                <td class="hidden-xs hidden-sm">{{ user.city }}</td>
+                <td class="hidden-xs hidden-sm">{{ user.phone }}</td>
+                <td class="hidden-xs hidden-sm">{{ user.bankaccount }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ path('user_show', { 'id': user.id }) }}">Weergeven</a>
 

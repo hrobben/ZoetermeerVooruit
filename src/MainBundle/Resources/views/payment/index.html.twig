@@ -4,10 +4,13 @@
     {% if is_granted ('ROLE_ADMIN') %}
         <h1>Betalinglijst</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
+                <th class="hidden-xs hidden-sm sorting"
+                    tabindex="0" aria-controls="lijst"
+                    rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                    style="width: 69px;">Id</th>
                 <th>Gebruiker</th>
                 <th>Datum</th>
                 <th>Bedrag</th>
@@ -17,7 +20,7 @@
         <tbody>
         {% for payment in payments %}
             <tr>
-                <td><a href="{{ path('payment_show', { 'id': payment.id }) }}">{{ payment.id }}</a></td>
+                <td class="hidden-xs hidden-sm"><a href="{{ path('payment_show', { 'id': payment.id }) }}">{{ payment.id }}</a></td>
                 {% for user in users %}
                     {% if user.id == payment.userId %}
                         <td>{{ user.email }}</td>
