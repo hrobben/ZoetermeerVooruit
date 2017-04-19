@@ -1,0 +1,28 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    <h1>Answer</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ answer.id }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ answer.userId }}</td>
+            </tr>
+            <tr>
+                <th>Choiceid</th>
+                <td>{{ answer.choiceId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('answer_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

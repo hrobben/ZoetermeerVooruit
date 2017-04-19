@@ -1,0 +1,34 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    <h1>Answers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Userid</th>
+                <th>Choiceid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for answer in answers %}
+            <tr>
+                <td><a href="{{ path('answer_show', { 'id': answer.id }) }}">{{ answer.id }}</a></td>
+                <td>{{ answer.userId }}</td>
+                <td>{{ answer.choiceId }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('answer_show', { 'id': answer.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

@@ -4,6 +4,7 @@ namespace MainBundle\Controller;
 
 use MainBundle\Entity\Enquete;
 use MainBundle\Entity\Question;
+use MainBundle\Entity\Answer;
 use MainBundle\Form\EnqueteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -70,11 +71,27 @@ class EnqueteController extends Controller
     public function showAction(Request $request, Enquete $enquete)
     {
         $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
         $questions = $em->getRepository('MainBundle:Question')->findBy(array('enqueteId' => $enquete->getId()));
         $choices = $em->getRepository('MainBundle:Choice')->findAll();
+        $answers = $em->getRepository('MainBundle:Answer')->findBy(array('userId' => $user));
 
         $deleteForm = $this->createDeleteForm($enquete);
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $i = 0;
+            foreach ($questions as $question)
+            {
+                $i++;
+                $answer = new Answer();
+                $answer->setUserId($user);
+                $answer->setChoiceId($_POST['radio-'.$i]);
+                $em->persist($answer);
+                $em->flush($answer);
+            }
+        }
 
 //        $form = $this->createFormBuilder()->getForm();
 //        if ($request->getMethod() == 'POST')
@@ -87,10 +104,14 @@ class EnqueteController extends Controller
 //            }
 //        }
 
+
+
         return $this->render('@Main/enquete/show.html.twig', array(
             'enquete' => $enquete,
             'questions' => $questions,
             'choices' => $choices,
+            'answers' => $answers,
+            'show' => true,
             'delete_form' => $deleteForm->createView(),
         ));
     }

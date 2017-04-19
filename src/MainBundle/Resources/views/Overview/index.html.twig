@@ -54,6 +54,10 @@
                             tabindex="0" aria-controls="lijst"
                             rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
                             style="width: 69px;">Id</th>
+                        <th class="hidden-xs hidden-sm sorting"
+                            tabindex="0" aria-controls="lijst"
+                            rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                            style="width: 69px;">E-mail</th>
                         <th>Voornaam</th>
                         <th>Achternaam</th>
                         <th class="hidden-xs hidden-sm sorting"
@@ -91,6 +95,7 @@
                 {% for user in users %}
                     <tr>
                         <td class="hidden-xs hidden-sm"><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                        <td class="hidden-xs hidden-sm">{{ user.email }}</td>
                         <td>{{ user.firstname }}</td>
                         <td>{{ user.lastname }}</td>
                         <td class="hidden-xs hidden-sm">{{ user.gender }}</td>
