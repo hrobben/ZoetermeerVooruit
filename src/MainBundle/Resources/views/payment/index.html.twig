@@ -27,7 +27,7 @@
                     {% endif %}
                 {% endfor %}
                 <td>{% if payment.date %}{{ payment.date|date('d-m-Y') }}{% endif %}</td>
-                <td>&euro;{{ payment.amount }}</td>
+                <td>{% if payment.amount %}&euro;{{ payment.amount | number_format(2) }}{% endif %}</td>
                 <td>
 
                     <a class="btn btn-info btn-xs" style="padding: auto; margin: 2px; " href="{{ path('payment_show', { 'id': payment.id }) }}">Weergeven</a>

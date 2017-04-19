@@ -44,9 +44,9 @@ class Payment
     public $date;
 
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="amount", type="decimal", precision=10, scale=0)
+     * @ORM\Column(name="amount", type="decimal", precision=10, scale=2)
      */
     public $amount;
 

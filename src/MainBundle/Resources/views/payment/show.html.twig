@@ -20,11 +20,11 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{% if payment.date %}{{ payment.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if payment.date %}{{ payment.date|date('d-m-Y') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Amount</th>
-                <td>{{ payment.amount }}</td>
+                <td>&euro;{{ payment.amount | number_format(2) }}</td>
             </tr>
         </tbody>
     </table>
