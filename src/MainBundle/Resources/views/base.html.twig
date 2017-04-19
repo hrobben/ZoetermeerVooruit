@@ -47,6 +47,7 @@
                     <li {% if app.request.attributes.get( '_route' ) starts with 'logout' %} class="active" {% endif %}><a href="{{ path('fos_user_security_logout') }}">Log uit</a></li>
                 {% else %}
                     <li {% if app.request.attributes.get( '_route' ) starts with 'login' %} class="active" {% endif %}><a href="{{ path('fos_user_security_login') }}">Log in</a></li>
+                    <li {% if app.request.attributes.get( '_route' ) starts with 'login' %} class="active" {% endif %}><a href="{{ path('fos_user_registration_register') }}">Registeren</a></li>
                 {% endif %}
             </ul>
         </div><!--/.nav-collapse -->
