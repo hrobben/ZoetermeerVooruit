@@ -48,6 +48,7 @@
                 {% else %}
                     <li {% if app.request.attributes.get( '_route' ) starts with 'login' %} class="active" {% endif %}><a href="{{ path('fos_user_security_login') }}">Log in</a></li>
                     <li {% if app.request.attributes.get( '_route' ) starts with 'enquete' %} class="active" {% endif %}><a href="{{ path('enquete_index') }}">Enquetes</a></li>
+                    <li {% if app.request.attributes.get( '_route' ) starts with 'login' %} class="active" {% endif %}><a href="{{ path('fos_user_registration_register') }}">Registeren</a></li>
                 {% endif %}
             </ul>
         </div><!--/.nav-collapse -->
