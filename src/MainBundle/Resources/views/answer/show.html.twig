@@ -1,9 +1,9 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
-    <h1>Answer</h1>
+    <h1>Antwoorden</h1>
 
-    <table>
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -20,9 +20,6 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('answer_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <a class="btn btn-default" href="{{ path('answer_index') }}">Terug naar overzicht</a>
+
 {% endblock %}

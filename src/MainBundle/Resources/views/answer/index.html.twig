@@ -1,9 +1,9 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
-    <h1>Answers list</h1>
+    <h1>Antwoordenlijst</h1>
 
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -19,11 +19,7 @@
                 <td>{{ answer.userId }}</td>
                 <td>{{ answer.choiceId }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('answer_show', { 'id': answer.id }) }}">show</a>
-                        </li>
-                    </ul>
+                    <a class="btn btn-info" href="{{ path('answer_show', { 'id': answer.id }) }}">show</a>
                 </td>
             </tr>
         {% endfor %}

@@ -57,16 +57,15 @@
     <div>
         <hr>
         {% set q = 1 %}
-        {% set a = 1 %}
         {% for question in questions %}
             <p>Vraag {{ q }}: <b>{{ question.title }}</b></p>
+            {% set a = 1 %}
             {% for choice in choices if choice.questionId == question.id %}
                 <ul>
                     <li>Antwoord {{a}}: <b>{{ choice.choice }}</b></li>
                 </ul>
                 {% set a = a+1 %}
             {% endfor %}
-            {% set a = 1 %}
             {% set q = q+1 %}
             <hr>
 

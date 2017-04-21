@@ -24,10 +24,8 @@
                                                 <br>
                                                 Eindtijd: {% if enquete.endDate %}{{ enquete.endDate|date('d-m-y H:i') }}{% endif %}
                                             </p>
-                                            {% if is_granted ('ROLE_ADMIN') %}
                                             <p>
                                                 <a href="{{ path('enquete_edit', { 'id': enquete.id }) }}" class="btn btn-primary" role="button">Wijzigen</a>
-                                            {% endif %}
                                                 <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Weergeven</a>
                                             </p>
                                         </div>
