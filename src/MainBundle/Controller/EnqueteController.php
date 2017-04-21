@@ -77,7 +77,13 @@ class EnqueteController extends Controller
 
         $questions = $em->getRepository('MainBundle:Question')->findBy(array('enqueteId' => $enquete->getId()));
         $choices = $em->getRepository('MainBundle:Choice')->findAll();
-        $answers = $em->getRepository('MainBundle:Answer')->findBy(array('userId' => $user));
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            $answers = $em->getRepository('MainBundle:Answer')->findAll();
+        }
+        else {
+            $answers = $em->getRepository('MainBundle:Answer')->findBy(array('userId' => $user));
+        }
 
         $deleteForm = $this->createDeleteForm($enquete);
 
@@ -94,19 +100,6 @@ class EnqueteController extends Controller
                 $em->flush($answer);
             }
         }
-
-//        $form = $this->createFormBuilder()->getForm();
-//        if ($request->getMethod() == 'POST')
-//        {
-//            $form->getData();
-//
-//            if ($form->isSubmitted() && $form->isValid())
-//            {
-//                return true;
-//            }
-//        }
-
-
 
         return $this->render('@Main/enquete/show.html.twig', array(
             'enquete' => $enquete,

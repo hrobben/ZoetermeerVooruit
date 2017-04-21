@@ -3,6 +3,7 @@
 namespace MainBundle\Controller;
 
 use MainBundle\Entity\Answer;
+use MainBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -25,9 +26,11 @@ class AnswerController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $answers = $em->getRepository('MainBundle:Answer')->findAll();
+        $users = $em->getRepository('MainBundle:User')->findAll();
 
         return $this->render('@FOSUser/answer/index.html.twig', array(
             'answers' => $answers,
+            'users' => $users,
         ));
     }
 

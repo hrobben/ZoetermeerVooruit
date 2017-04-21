@@ -58,11 +58,34 @@
         <hr>
         {% set q = 1 %}
         {% for question in questions %}
+            {% set total = 0 %}
+            {% for choice in choices if choice.questionId == question.id %}
+                {% for answer in answers %}
+                    {% if answer.choiceId == choice.id %}
+                        {% set total = total + 1 %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
             <p>Vraag {{ q }}: <b>{{ question.title }}</b></p>
             {% set a = 1 %}
             {% for choice in choices if choice.questionId == question.id %}
+                {% set count = 0 %}
+                {% for answer in answers %}
+                    {% if answer.choiceId == choice.id %}
+                        {% set count = count + 1 %}
+                    {% endif %}
+                {% endfor %}
                 <ul>
-                    <li>Antwoord {{a}}: <b>{{ choice.choice }}</b></li>
+                    <li>
+                        <b> {{ choice.choice }} </b>
+                        <div class="progress" style="width: 100px;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ count/total*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ count/total*100 }}%">
+                                {{ (count/total*100)|number_format(0) }}%
+                            </div>
+                        </div>
+                        Aantal stemmen: {{ count }}
+                    </li>
                 </ul>
                 {% set a = a+1 %}
             {% endfor %}
@@ -102,6 +125,7 @@
                 </form>
             </div>
         {% else %}
+            {#TODO MESSAGE FOR WHEN ANSWERED#}
         <h1>NIKS</h1>
         {% endif %}
     {% else %}
