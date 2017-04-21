@@ -44,6 +44,8 @@ class EnqueteController extends Controller
     public function newAction(Request $request)
     {
         $enquete = new Enquete();
+        $enquete->setStartDate(new \DateTime("now + 1 day 12:00"));
+        $enquete->setEndDate(new \DateTime("now + 2 weeks 1 day 12:00"));
 
         $form = $this->createForm('MainBundle\Form\EnqueteType', $enquete);
         $form->handleRequest($request);

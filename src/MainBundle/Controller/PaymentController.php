@@ -41,6 +41,7 @@ class PaymentController extends Controller
     public function newAction(Request $request)
     {
         $payment = new Payment();
+        $payment->setDate(new \DateTime("now"));
         $form = $this->createForm('MainBundle\Form\PaymentType', $payment);
         $form->handleRequest($request);
 
