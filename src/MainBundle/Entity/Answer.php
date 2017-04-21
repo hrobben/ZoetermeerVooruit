@@ -29,6 +29,12 @@ class Answer
     private $userId;
 
     /**
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="id")
+     */
+    private $usIs;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="choiceId", type="integer")
@@ -93,5 +99,28 @@ class Answer
     {
         return $this->choiceId;
     }
-}
 
+    /**
+     * Set usIs
+     *
+     * @param \MainBundle\Entity\User $usIs
+     *
+     * @return Answer
+     */
+    public function setUsIs(\MainBundle\Entity\User $usIs = null)
+    {
+        $this->usIs = $usIs;
+
+        return $this;
+    }
+
+    /**
+     * Get usIs
+     *
+     * @return \MainBundle\Entity\User
+     */
+    public function getUsIs()
+    {
+        return $this->usIs;
+    }
+}

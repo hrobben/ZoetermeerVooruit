@@ -132,5 +132,28 @@ class Payment
     {
         return $this->amount;
     }
-}
 
+    /**
+     * Set uId
+     *
+     * @param \MainBundle\Entity\User $uId
+     *
+     * @return Payment
+     */
+    public function setUId(\MainBundle\Entity\User $uId = null)
+    {
+        $this->uId = $uId;
+
+        return $this;
+    }
+
+    /**
+     * Get uId
+     *
+     * @return \MainBundle\Entity\User
+     */
+    public function getUId()
+    {
+        return $this->uId;
+    }
+}
