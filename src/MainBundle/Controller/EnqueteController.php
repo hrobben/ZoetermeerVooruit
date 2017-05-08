@@ -87,6 +87,25 @@ class EnqueteController extends Controller
 
         $deleteForm = $this->createDeleteForm($enquete);
 
+        $payment = $em->getRepository('MainBundle:Payment')->findOneBy(array('userId' => $user));
+
+        if ($payment != null)
+        {
+            $amountPayed = $payment->getAmount();
+        }
+        else
+        {
+            $amountPayed = null;
+        }
+
+        if ($amountPayed != null)
+        {
+            $hasPayed = true;
+        }
+        else
+        {
+            $hasPayed = false;
+        }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $i = 0;
@@ -107,6 +126,7 @@ class EnqueteController extends Controller
             'choices' => $choices,
             'answers' => $answers,
             'show' => true,
+            'hasPayed' => $hasPayed,
             'delete_form' => $deleteForm->createView(),
         ));
     }
