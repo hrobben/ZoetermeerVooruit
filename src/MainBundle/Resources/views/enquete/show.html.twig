@@ -125,8 +125,12 @@
                 </form>
             </div>
         {% else %}
-            {#TODO MESSAGE FOR WHEN ANSWERED#}
-        <h1>NIKS</h1>
+            <div class="col-sm-6">
+                <h1>Hartelijk bedankt!</h1>
+                <p>U heeft deze enquete al een keer ingevuld.</p>
+                <p>Klik op de knop hieronder om terug te gaan naar het overzicht.</p>
+                <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
+            </div>
         {% endif %}
     {% else %}
         <div>
