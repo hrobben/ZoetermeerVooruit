@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
 <div class="col-md-6 col-md-offset-3 thumbnail" style="padding: 20px 20px 50px 20px;background-color: #f7f7f7;" >
         <h1>Betaling maken</h1>
 
@@ -15,5 +16,10 @@
 
         <a  class="btn btn-default" href="{{ path('payment_index') }}">Terug naar overzicht</a>
 </div>
-
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
 {% endblock %}

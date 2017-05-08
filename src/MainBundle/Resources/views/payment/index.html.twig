@@ -1,7 +1,7 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
-
+    {% if is_granted ('ROLE_ADMIN') %}
         <h1>Betalinglijst</h1>
 
     <table class="table table-striped">
@@ -41,4 +41,11 @@
     </table>
 
         <a class="btn btn-success" href="{{ path('payment_new') }}">Maak een betaling</a>
+
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
 {% endblock %}
