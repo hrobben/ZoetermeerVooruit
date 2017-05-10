@@ -27,12 +27,14 @@ class EnqueteController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $dateTime = new \DateTime("now");
 
         $enquetes = $em->getRepository('MainBundle:Enquete')->findBy(array(), array('id' => 'DESC'));
         $userId = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
         return $this->render('@Main/enquete/index.html.twig', array(
             'enquetes' => $enquetes,
+            'dateTime' => $dateTime,
         ));
     }
 
@@ -75,6 +77,7 @@ class EnqueteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
+        $dateTime = new \DateTime("now");
 
         $questions = $em->getRepository('MainBundle:Question')->findBy(array('enqueteId' => $enquete->getId()));
         $choices = $em->getRepository('MainBundle:Choice')->findAll();
@@ -107,6 +110,7 @@ class EnqueteController extends Controller
 
         return $this->render('@Main/enquete/show.html.twig', array(
             'enquete' => $enquete,
+            'dateTime' => $dateTime,
             'questions' => $questions,
             'choices' => $choices,
             'answers' => $answers,
