@@ -1,0 +1,40 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    <h1>Fractie</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fractie.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ fractie.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ fractie.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ fractie.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fractie_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fractie_edit', { 'id': fractie.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

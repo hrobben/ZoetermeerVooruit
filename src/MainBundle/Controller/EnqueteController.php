@@ -92,8 +92,12 @@ class EnqueteController extends Controller
         $deleteForm = $this->createDeleteForm($enquete);
 
         $payment = $em->getRepository('MainBundle:Payment')->findOneBy(array('userId' => $user));
-
         $hasPaid = $payment->getCompletePayment();
+
+        if ($payment == null)
+        {
+            $hasPaid = null;
+        }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $i = 0;
