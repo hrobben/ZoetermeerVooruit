@@ -3,38 +3,21 @@
 {% block body %}
     <h1>Informatiepagina</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
         {% for info in infos %}
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <div class="caption">
                     <div class="row">
                         <div class="col-sm-10">
-                            {{ info.name }}<br>
+                            <h4>{{ info.name }}</h4><br>
                             {{ info.description }}<br>
-                            <a href="{{ path('info_show', { 'id': info.id }) }}">show</a>
-                            <a href="{{ path('info_edit', { 'id': info.id }) }}">edit</a>
+                            <a href="{{ path('info_show', { 'id': info.id }) }}" class="btn btn-info btn-xs">show</a>
+                            <a href="{{ path('info_edit', { 'id': info.id }) }}" class="btn btn-primary btn-xs">edit</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('info_new') }}">Create a new info</a>
-        </li>
-    </ul>
+        {% endfor %}
+        <a href="{{ path('info_new') }}" class="btn btn-info">Create a new info</a>
 {% endblock %}
