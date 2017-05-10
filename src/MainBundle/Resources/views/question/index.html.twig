@@ -3,7 +3,7 @@
 {% block body %}
     {% if app.user %}
         <h1>Vragenlijst</h1>
-
+<div id="scroll">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -34,6 +34,7 @@
                 {% endfor %}
             </tbody>
         </table>
+</div>
 
         <a class="btn btn-success" href="{{ path('question_new') }}">Maak een nieuwe vraag</a>
 
