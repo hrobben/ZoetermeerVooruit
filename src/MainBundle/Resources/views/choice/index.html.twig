@@ -11,7 +11,7 @@
                     tabindex="0" aria-controls="lijst"
                     rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
                     style="width: 69px;">Id</th>
-                <th>Vraagnummer</th>
+                <th>Vraag</th>
                 <th>Keuzemogelijkheid</th>
                 <th></th>
             </tr>
@@ -20,7 +20,11 @@
         {% for choice in choices %}
             <tr>
                 <td class="hidden-xs hidden-sm"><a href="{{ path('choice_show', { 'id': choice.id }) }}">{{ choice.id }}</a></td>
-                <td>{{ choice.questionId }}</td>
+                {% for question in questions %}
+                    {% if choice.questionId == question.id %}
+                        <td>{{ question.title }}</td>
+                    {% endif %}
+                {% endfor %}
                 <td>{{ choice.choice }}</td>
                 <td>
                     <a  class="btn btn-info" href="{{ path('choice_show', { 'id': choice.id }) }}">Weergeven</a>
@@ -32,10 +36,8 @@
         </tbody>
     </table>
         </div>
-
             <a class="btn btn-success" href="{{ path('choice_new') }}">Maak een nieuw antwoord</a>
-
-
+        
     {% else %}
         <div>
             <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
