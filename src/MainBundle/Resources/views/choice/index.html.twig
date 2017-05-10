@@ -3,7 +3,7 @@
 {% block body %}
     {% if is_granted ('ROLE_ADMIN') %}
     <h1>Keuzemogelijkheden</h1>
-
+        <div id="scroll">
     <table class="table">
         <thead>
             <tr>
@@ -31,7 +31,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+        </div>
 
             <a class="btn btn-success" href="{{ path('choice_new') }}">Maak een nieuw antwoord</a>
 
