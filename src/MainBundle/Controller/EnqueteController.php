@@ -27,11 +27,14 @@ class EnqueteController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $dateTime = new \DateTime("now");
 
         $enquetes = $em->getRepository('MainBundle:Enquete')->findBy(array(), array('id' => 'DESC'));
+        $userId = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
         return $this->render('@Main/enquete/index.html.twig', array(
             'enquetes' => $enquetes,
+            'dateTime' => $dateTime,
         ));
     }
 
@@ -74,6 +77,7 @@ class EnqueteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
+        $dateTime = new \DateTime("now");
 
         $questions = $em->getRepository('MainBundle:Question')->findBy(array('enqueteId' => $enquete->getId()));
         $choices = $em->getRepository('MainBundle:Choice')->findAll();
@@ -89,23 +93,7 @@ class EnqueteController extends Controller
 
         $payment = $em->getRepository('MainBundle:Payment')->findOneBy(array('userId' => $user));
 
-        if ($payment != null)
-        {
-            $amountPayed = $payment->getAmount();
-        }
-        else
-        {
-            $amountPayed = null;
-        }
-
-        if ($amountPayed != null)
-        {
-            $hasPayed = true;
-        }
-        else
-        {
-            $hasPayed = false;
-        }
+        $hasPaid = $payment->getCompletePayment();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $i = 0;
@@ -122,11 +110,12 @@ class EnqueteController extends Controller
 
         return $this->render('@Main/enquete/show.html.twig', array(
             'enquete' => $enquete,
+            'dateTime' => $dateTime,
             'questions' => $questions,
             'choices' => $choices,
             'answers' => $answers,
             'show' => true,
-            'hasPayed' => $hasPayed,
+            'hasPaid' => $hasPaid,
             'delete_form' => $deleteForm->createView(),
         ));
     }

@@ -10,7 +10,7 @@
             </h1>
 
             <div class="row">
-                {% for enquete in enquetes %}
+                {% for enquete in enquetes  %}
                     {% if is_granted ('ROLE_ADMIN') %}
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
@@ -38,19 +38,21 @@
                         </div>
                     {% elseif app.user %}
                         {% if enquete.published %}
-                            <div class="col-sm-6 col-md-4">
-                                <div class="thumbnail">
-                                    <div class="caption">
-                                        <h3><b>{{ enquete.title }}</b></h3>
-                                        <hr>
-                                        <p>{{ enquete.description }}</p>
-                                        <hr>
-                                        <p>
-                                            <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Invullen</a>
-                                        </p>
+                            {% if enquete.startDate < dateTime and enquete.endDate > dateTime %}
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <div class="caption">
+                                            <h3><b>{{ enquete.title }}</b></h3>
+                                            <hr>
+                                            <p>{{ enquete.description }}</p>
+                                            <hr>
+                                            <p>
+                                                <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Invullen</a>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            {% endif %}
                         {% endif %}
                     {% endif %}
                 {% endfor %}

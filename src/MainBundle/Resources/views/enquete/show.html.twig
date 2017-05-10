@@ -105,26 +105,37 @@
 
     {% elseif app.user %}
         {% if show == true %}
-            {% if hasPayed == true %}
-                <div class="col-sm-6">
-                    <hr>
-                <h2>{{ enquete.title }}</h2>
-                <p>{{ enquete.description }}</p>
-                    <form name="enquete-{{ enquete.id }}" method="post">
-                        {% for question in questions %}
-                            <hr>
-                            <p><b>{{ question.title }}</b></p>
-                            {% for choice in choices if choice.questionId == question.id %}
-                                <div class="radio">
-                                    <label><input type="radio" name="radio-{{ loop.parent.loop.index }}" value="{{ choice.id }}">{{ choice.choice }}</label>
-                                </div>
-                            {% endfor %}
+            {% if hasPaid == true %}
+                {% if enquete.startDate < dateTime < enquete.endDate %}
+                    <div class="col-sm-6">
+                        <hr>
+                    <h2>{{ enquete.title }}</h2>
+                    <p>{{ enquete.description }}</p>
+                        <form name="enquete-{{ enquete.id }}" method="post">
+                            {% for question in questions %}
+                                <hr>
+                                <p><b>{{ question.title }}</b></p>
+                                {% for choice in choices if choice.questionId == question.id %}
+                                    <div class="radio">
+                                        <label><input type="radio" name="radio-{{ loop.parent.loop.index }}" value="{{ choice.id }}">{{ choice.choice }}</label>
+                                    </div>
+                                {% endfor %}
 
-                        {% endfor %}
-                            <hr>
-                            <input class="btn btn-success" type="submit" value="Versturen" style="margin-bottom: 20px">
-                    </form>
-                </div>
+                            {% endfor %}
+                                <hr>
+                                <input class="btn btn-success" type="submit" value="Versturen" style="margin-bottom: 20px">
+                        </form>
+                    </div>
+                {% else %}
+                    <div class="col-sm-6">
+                        <h1>Oeps, er is iets misgegaan!</h1>
+                        <p>
+                            Deze enquete is momenteel niet in gebruik.
+                        </p>
+                        <p>Klik op de knop hieronder om terug te gaan naar het overzicht.</p>
+                        <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
+                    </div>
+                {% endif %}
             {% else %}
                 <div class="col-sm-6">
                     <h1>Oeps, er is iets misgegaan!</h1>

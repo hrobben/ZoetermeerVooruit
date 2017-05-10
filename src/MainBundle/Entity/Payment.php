@@ -50,6 +50,13 @@ class Payment
      */
     public $amount;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="completePayment", type="boolean")
+     */
+    public $completePayment;
+
 
     /**
      * Get id
@@ -155,5 +162,29 @@ class Payment
     public function getUId()
     {
         return $this->uId;
+    }
+
+    /**
+     * Set completePayment
+     *
+     * @param boolean $completePayment
+     *
+     * @return Payment
+     */
+    public function setCompletePayment($completePayment)
+    {
+        $this->completePayment = $completePayment;
+
+        return $this;
+    }
+
+    /**
+     * Get completePayment
+     *
+     * @return boolean
+     */
+    public function getCompletePayment()
+    {
+        return $this->completePayment;
     }
 }

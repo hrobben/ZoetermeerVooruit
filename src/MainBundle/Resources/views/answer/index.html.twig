@@ -1,8 +1,9 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
     <h1>Antwoordenlijst</h1>
-
+    <div id="scroll">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -37,6 +38,12 @@
         {% endfor %}
         </tbody>
     </table>
-
+    </div>
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
     
 {% endblock %}
