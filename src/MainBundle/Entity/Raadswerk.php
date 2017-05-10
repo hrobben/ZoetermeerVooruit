@@ -5,12 +5,12 @@ namespace MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Fractie
+ * Raadswerk
  *
- * @ORM\Table(name="fractie")
- * @ORM\Entity(repositoryClass="MainBundle\Repository\FractieRepository")
+ * @ORM\Table(name="raadswerk")
+ * @ORM\Entity(repositoryClass="MainBundle\Repository\RaadswerkRepository")
  */
-class Fractie
+class Raadswerk
 {
     /**
      * @var int
@@ -31,7 +31,7 @@ class Fractie
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
@@ -51,7 +51,7 @@ class Fractie
      *
      * @param string $name
      *
-     * @return Fractie
+     * @return Raadswerk
      */
     public function setName($name)
     {
@@ -75,7 +75,7 @@ class Fractie
      *
      * @param string $description
      *
-     * @return Fractie
+     * @return Raadswerk
      */
     public function setDescription($description)
     {

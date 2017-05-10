@@ -90,3 +90,8 @@ body{
 #scroll{
     max-height: 600px; overflow: scroll;
 }
+
+#raadswerk{
+    padding-top: 40px;
+    padding-bottom: 50px;
+}
