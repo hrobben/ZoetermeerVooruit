@@ -1,40 +1,21 @@
 {% extends '@Main/base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
 
 {% block body %}
-    <h1>Fractie</h1>
+    <h1>{{ fractie.name }}</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ fractie.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ fractie.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ fractie.description }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ fractie.image }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <p>{{ fractie.description| raw }}</p>
 
-    <ul>
-        <li>
-            <a href="{{ path('fractie_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('fractie_edit', { 'id': fractie.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+
+            <a class="btn btn-default" href="{{ path('fractie_index') }}">Terug naar overzicht</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-primary" href="{{ path('fractie_edit', { 'id': fractie.id }) }}">Wijzigen</a>
+
+                {{ form_start(delete_form) }}
+                    <input class="btn btn-danger" type="submit" value="Verwijderen">
+                {{ form_end(delete_form) }}
+            {% endif %}
 {% endblock %}

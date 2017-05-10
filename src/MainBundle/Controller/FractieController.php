@@ -26,7 +26,7 @@ class FractieController extends Controller
 
         $fracties = $em->getRepository('MainBundle:Fractie')->findAll();
 
-        return $this->render('@FOSUser/fractie/index.html.twig', array(
+        return $this->render('@Main/fractie/index.html.twig', array(
             'fracties' => $fracties,
         ));
     }
@@ -51,7 +51,7 @@ class FractieController extends Controller
             return $this->redirectToRoute('fractie_show', array('id' => $fractie->getId()));
         }
 
-        return $this->render('@FOSUser/fractie/new.html.twig', array(
+        return $this->render('@Main/fractie/new.html.twig', array(
             'fractie' => $fractie,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class FractieController extends Controller
     {
         $deleteForm = $this->createDeleteForm($fractie);
 
-        return $this->render('@FOSUser/fractie/show.html.twig', array(
+        return $this->render('@Main/fractie/show.html.twig', array(
             'fractie' => $fractie,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class FractieController extends Controller
             return $this->redirectToRoute('fractie_edit', array('id' => $fractie->getId()));
         }
 
-        return $this->render('@FOSUser/fractie/edit.html.twig', array(
+        return $this->render('@Main/fractie/edit.html.twig', array(
             'fractie' => $fractie,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

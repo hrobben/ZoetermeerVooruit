@@ -1,43 +1,32 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
-    <h1>Fracties list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for fractie in fracties %}
-            <tr>
-                <td><a href="{{ path('fractie_show', { 'id': fractie.id }) }}">{{ fractie.id }}</a></td>
-                <td>{{ fractie.name }}</td>
-                <td>{{ fractie.description }}</td>
-                <td>{{ fractie.image }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('fractie_show', { 'id': fractie.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('fractie_edit', { 'id': fractie.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('fractie_new') }}">Create a new fractie</a>
-        </li>
-    </ul>
+    <div class="container">
+        <h1>Fractie lijst</h1>
+            <div class="row">
+                {% for fractie in fracties %}
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h3>{{ fractie.name }}</h3><br>
+                                        <div style="font-size: medium">
+                                            {{ fractie.description|striptags|truncate(350, true, "...")|raw }}<br>
+                                        </div>
+                                        <a href="{{ path('info_show', { 'id': info.id }) }}" class="btn btn-info btn-xs">Meer lezen</a>
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <a href="{{ path('info_edit', { 'id': info.id }) }}" class="btn btn-primary btn-xs">edit</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+{% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-success" href="{{ path('fractie_new') }}">+ Fractie</a>
+{% endif %}
 {% endblock %}
