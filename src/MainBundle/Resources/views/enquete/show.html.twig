@@ -4,7 +4,7 @@
         {% if is_granted ('ROLE_ADMIN') %}
             Bekijk {{ enquete.title }}
         {% else %}
-            Enquete - {{ enquete.title }}
+            Enquete {{ enquete.title }}
         {% endif %}
 {% endblock %}
 
@@ -58,8 +58,7 @@
         <hr>
         {% set q = 1 %}
         {% for question in questions %}
-            {#TODO SET TOTAL FIXEN#}
-            {% set total = 0.000001  %}
+            {% set total = 0.000001 %}
             {% for choice in choices if choice.questionId == question.id %}
                 {% for answer in answers %}
                     {% if answer.choiceId == choice.id %}
