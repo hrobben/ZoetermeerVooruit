@@ -23,7 +23,7 @@
                 <td class="hidden-xs hidden-sm"><a href="{{ path('payment_show', { 'id': payment.id }) }}">{{ payment.id }}</a></td>
                 {% for user in users %}
                     {% if user.id == payment.userId %}
-                        <td>{{ user.email }}</td>
+                        <td>{{ user.firstname }} {{ user.lastname }}</td>
                     {% endif %}
                 {% endfor %}
                 <td>{% if payment.date %}{{ payment.date|date('d-m-Y') }}{% endif %}</td>

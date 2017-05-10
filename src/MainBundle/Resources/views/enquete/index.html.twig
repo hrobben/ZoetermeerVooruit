@@ -10,7 +10,7 @@
             </h1>
 
             <div class="row">
-                {% for enquete in enquetes %}
+                {% for enquete in enquetes  %}
                     {% if is_granted ('ROLE_ADMIN') %}
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">

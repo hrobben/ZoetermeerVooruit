@@ -100,4 +100,3 @@ class Company
         return $this->companyname;
     }
 }
-

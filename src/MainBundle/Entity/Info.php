@@ -94,4 +94,3 @@ class Info
         return $this->description;
     }
 }
-
