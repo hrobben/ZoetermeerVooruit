@@ -1,0 +1,43 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    <h1>Fracties list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fractie in fracties %}
+            <tr>
+                <td><a href="{{ path('fractie_show', { 'id': fractie.id }) }}">{{ fractie.id }}</a></td>
+                <td>{{ fractie.name }}</td>
+                <td>{{ fractie.description }}</td>
+                <td>{{ fractie.image }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fractie_show', { 'id': fractie.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fractie_edit', { 'id': fractie.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fractie_new') }}">Create a new fractie</a>
+        </li>
+    </ul>
+{% endblock %}
