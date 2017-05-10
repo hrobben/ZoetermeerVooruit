@@ -3,6 +3,7 @@
 namespace MainBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,7 +20,13 @@ class ChoiceType extends AbstractType
                 ])
             ->add('choice', null, [
                 'label' => "Antwoord",
-                ]);
+                ])
+            ->add('save_new', SubmitType::class, array(
+                'validation_groups' => false,
+                'label'=>'Opslaan & nieuw'
+            ));
+        
+
     }
     
     /**
