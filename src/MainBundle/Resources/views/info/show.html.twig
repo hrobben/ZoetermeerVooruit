@@ -1,9 +1,14 @@
 {% extends '@Main/base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
 
 {% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
+        <div class="container">
     <h1>Info</h1>
 
-    <table>
+    <table class=" table table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -20,17 +25,19 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('info_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('info_edit', { 'id': info.id }) }}">Edit</a>
-        </li>
-        <li>
+
+            <a class="btn btn-default" href="{{ path('info_index') }}">Terug naar overzicht</a>
+
+            <a class="btn btn-primary" href="{{ path('info_edit', { 'id': info.id }) }}">Wijzigen</a>
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Verwijderen">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
 {% endblock %}
