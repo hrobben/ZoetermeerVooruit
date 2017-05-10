@@ -6,14 +6,14 @@
 
 
 {% block body %}
-    <h1>Raadswerk Wijzigen</h1>
+    <h1>Steun edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
         <input class="btn btn-primary" type="submit" value="Wijzigen" />
     {{ form_end(edit_form) }}
 
-            <a class="btn btn-default" href="{{ path('raadswerk_index') }}">Terug naar index</a>
+            <a class="btn btn-default" href="{{ path('steun_index') }}">Terug naar index</a>
 
             {{ form_start(delete_form) }}
                 <input class="btn btn-danger" type="submit" value="Verwijderen">

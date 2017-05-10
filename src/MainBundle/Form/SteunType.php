@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RaadswerkType extends AbstractType
+class SteunType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -15,12 +15,12 @@ class RaadswerkType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('title')
             ->add('description', CKEditorType::class, array(
-            'config' => array(
-                'uiColor' => '#ffffff',
-            )
-        ));
+                'config' => array(
+                    'uiColor' => '#ffffff',
+                )
+            ));
     }
     
     /**
@@ -29,7 +29,7 @@ class RaadswerkType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MainBundle\Entity\Raadswerk'
+            'data_class' => 'MainBundle\Entity\Steun'
         ));
     }
 
@@ -38,7 +38,7 @@ class RaadswerkType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'mainbundle_raadswerk';
+        return 'mainbundle_steun';
     }
 
 
