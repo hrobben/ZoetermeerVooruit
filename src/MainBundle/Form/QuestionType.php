@@ -19,6 +19,7 @@ class QuestionType extends AbstractType
             ->add('eqId', null, [
                 'label' => 'Enquetenaam',
                 'data' => 'Enquete 1',
+                'required' => true,
             ])
             ->add('title', null, [
                 'label' => 'Vraagnaam'
