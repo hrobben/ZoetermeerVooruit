@@ -2,10 +2,10 @@
 
 {% block body %}
 
+    <a class="btn btn-success pull-right" href="{{ path('standpunten_new') }}">Nieuwe tekst toevoegen</a>
     {% for standpunten in standpuntens %}
 
         {% if is_granted ('ROLE_ADMIN') %}
-            <a class="btn btn-success pull-right" href="{{ path('standpunten_new') }}">Nieuwe tekst toevoegen</a>
             <a class="btn btn-primary pull-right" href="{{ path('standpunten_edit', { 'id': standpunten.id }) }}">Wijzigen</a>
             {% endif %}
             <div class="container">
