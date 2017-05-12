@@ -1,0 +1,12 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    <h1>Standpunten maken</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="btn btn-success" type="submit" value="Opslaan" />
+    {{ form_end(form) }}
+
+    <a class="btn btn-default" href="{{ path('raadswerk_index') }}">Terug naar index</a>
+{% endblock %}
