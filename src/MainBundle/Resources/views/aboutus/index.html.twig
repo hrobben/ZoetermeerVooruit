@@ -1,9 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends '@Main/base.html.twig' %}
 
 {% block body %}
-    <h1>Aboutuses list</h1>
+    {% if is_granted ('ROLE_ADMIN') %}
+    <h1>Over ons</h1>
 
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -38,4 +39,10 @@
             <a href="{{ path('aboutus_new') }}">Create a new aboutU</a>
         </li>
     </ul>
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
 {% endblock %}
