@@ -88,7 +88,7 @@ class RaadswerkController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('raadswerk_edit', array('id' => $raadswerk->getId()));
+            return $this->redirectToRoute('raadswerk_index');
         }
 
         return $this->render('@Main/raadswerk/edit.html.twig', array(
