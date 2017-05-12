@@ -94,4 +94,3 @@ class Steun
         return $this->description;
     }
 }
-

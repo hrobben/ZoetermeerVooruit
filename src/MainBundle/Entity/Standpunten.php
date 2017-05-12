@@ -94,4 +94,3 @@ class Standpunten
         return $this->description;
     }
 }
-
