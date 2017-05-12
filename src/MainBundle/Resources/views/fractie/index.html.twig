@@ -1,43 +1,35 @@
 {% extends '@Main/base.html.twig' %}
 
-{% block body %}
-    <h1>Fracties list</h1>
+    {% block body %}
+        {% if is_granted ('ROLE_ADMIN') %}
+            <div class="container">
+                <h1>Fractielijst</h1>
+                <div class="row">
+                    {% for fractie in fracties %}
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <h4>{{ fractie.name }}</h4><br>
+                                            {{ fractie.description }}<br>
+                                            <a href="{{ path('fractie_show', { 'id': fractie.id }) }}" class="btn btn-info btn-xs">show</a>
+                                            <a href="{{ path('fractie_edit', { 'id': fractie.id }) }}" class="btn btn-primary btn-xs">edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a href="{{ path('fractie_new') }}" class="btn btn-success"> + Fractie</a>
+            </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for fractie in fracties %}
-            <tr>
-                <td><a href="{{ path('fractie_show', { 'id': fractie.id }) }}">{{ fractie.id }}</a></td>
-                <td>{{ fractie.name }}</td>
-                <td>{{ fractie.description }}</td>
-                <td>{{ fractie.image }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('fractie_show', { 'id': fractie.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('fractie_edit', { 'id': fractie.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        {% else %}
+            <div>
+                <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+                <p>Log in als Administrator om de pagina weer te geven.</p>
+            </div>
+        {% endif %}
+    {% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('fractie_new') }}">Create a new fractie</a>
-        </li>
-    </ul>
-{% endblock %}
