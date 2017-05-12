@@ -26,7 +26,7 @@ class AboutUsController extends Controller
 
         $aboutuses = $em->getRepository('MainBundle:AboutUs')->findAll();
 
-        return $this->render('aboutus/index.html.twig', array(
+        return $this->render('@Main/aboutus/index.html.twig', array(
             'aboutuses' => $aboutuses,
         ));
     }
@@ -51,7 +51,7 @@ class AboutUsController extends Controller
             return $this->redirectToRoute('aboutus_show', array('id' => $aboutU->getId()));
         }
 
-        return $this->render('aboutus/new.html.twig', array(
+        return $this->render('@Main/aboutus/new.html.twig', array(
             'aboutU' => $aboutU,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class AboutUsController extends Controller
     {
         $deleteForm = $this->createDeleteForm($aboutU);
 
-        return $this->render('aboutus/show.html.twig', array(
+        return $this->render('@Main/aboutus/show.html.twig', array(
             'aboutU' => $aboutU,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class AboutUsController extends Controller
             return $this->redirectToRoute('aboutus_edit', array('id' => $aboutU->getId()));
         }
 
-        return $this->render('aboutus/edit.html.twig', array(
+        return $this->render('@Main/aboutus/edit.html.twig', array(
             'aboutU' => $aboutU,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
