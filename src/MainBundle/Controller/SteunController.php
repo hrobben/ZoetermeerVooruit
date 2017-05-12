@@ -88,7 +88,7 @@ class SteunController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('steun_edit', array('id' => $steun->getId()));
+            return $this->redirectToRoute('steun_index');
         }
 
         return $this->render('@Main/steun/edit.html.twig', array(

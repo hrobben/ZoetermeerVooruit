@@ -2,7 +2,10 @@
 
 {% block body %}
 
+    {% if is_granted ('ROLE_ADMIN') %}
     <a class="btn btn-success pull-right" href="{{ path('standpunten_new') }}">Nieuwe tekst toevoegen</a>
+    {% endif %}
+
     {% for standpunten in standpuntens %}
 
         {% if is_granted ('ROLE_ADMIN') %}
