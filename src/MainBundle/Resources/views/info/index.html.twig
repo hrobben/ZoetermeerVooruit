@@ -1,7 +1,6 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
-    {% if is_granted ('ROLE_ADMIN') %}
 
     <div class="container">
         <h1>Informatiepagina</h1>
@@ -11,11 +10,13 @@
                     <div class="thumbnail">
                         <div class="caption">
                             <div class="row">
-                                <div class="col-sm-10">
-                                    <h4>{{ info.name }}</h4><br>
-                                    {{ info.description }}<br>
-                                    <a href="{{ path('info_show', { 'id': info.id }) }}" class="btn btn-info btn-xs">show</a>
+                                <div class="col-sm-12">
+                                    <h3>{{ info.name }}</h3><br>
+                                    {{ info.description|striptags|truncate(350, true, "...")|raw }}<br>
+                                    <a href="{{ path('info_show', { 'id': info.id }) }}" class="btn btn-info btn-xs">Meer lezen</a>
+                                    {% if is_granted('ROLE_ADMIN') %}
                                     <a href="{{ path('info_edit', { 'id': info.id }) }}" class="btn btn-primary btn-xs">edit</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -23,13 +24,9 @@
                 </div>
                 {% endfor %}
             </div>
+        {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('info_new') }}" class="btn btn-success"> + Info</a>
+        {% endif %}
     </div>
 
-    {% else %}
-        <div>
-            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
-            <p>Log in als Administrator om de pagina weer te geven.</p>
-        </div>
-    {% endif %}
 {% endblock %}

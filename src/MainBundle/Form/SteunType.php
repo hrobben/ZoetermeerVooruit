@@ -2,18 +2,25 @@
 
 namespace MainBundle\Form;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FractieType extends AbstractType
+class SteunType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('description')->add('image')        ;
+        $builder
+            ->add('title')
+            ->add('description', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff',
+                )
+            ));
     }
     
     /**
@@ -22,7 +29,7 @@ class FractieType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MainBundle\Entity\Fractie'
+            'data_class' => 'MainBundle\Entity\Steun'
         ));
     }
 
@@ -31,7 +38,7 @@ class FractieType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'mainbundle_fractie';
+        return 'mainbundle_steun';
     }
 
 

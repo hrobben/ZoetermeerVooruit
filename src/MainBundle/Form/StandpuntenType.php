@@ -2,12 +2,12 @@
 
 namespace MainBundle\Form;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
-class InfoType extends AbstractType
+class StandpuntenType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -15,7 +15,7 @@ class InfoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('title')
             ->add('description', CKEditorType::class, array(
                 'config' => array(
                     'uiColor' => '#ffffff',
@@ -29,7 +29,7 @@ class InfoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MainBundle\Entity\Info'
+            'data_class' => 'MainBundle\Entity\Standpunten'
         ));
     }
 
@@ -38,7 +38,7 @@ class InfoType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'mainbundle_info';
+        return 'mainbundle_standpunten';
     }
 
 

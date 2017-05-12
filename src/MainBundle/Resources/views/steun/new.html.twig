@@ -1,0 +1,17 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
+{% block body %}
+    <h1>Steun creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="btn btn-success" type="submit" value="Opslaan" />
+    {{ form_end(form) }}
+
+            <a class="btn btn-default" href="{{ path('steun_index') }}">Terug naar index</a>
+
+{% endblock %}

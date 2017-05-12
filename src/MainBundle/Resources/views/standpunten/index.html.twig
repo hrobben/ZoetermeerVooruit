@@ -1,0 +1,19 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+
+    {% for standpunten in standpuntens %}
+
+        {% if is_granted ('ROLE_ADMIN') %}
+            <a class="btn btn-success pull-right" href="{{ path('standpunten_new') }}">Nieuwe tekst toevoegen</a>
+            <a class="btn btn-primary pull-right" href="{{ path('standpunten_edit', { 'id': standpunten.id }) }}">Wijzigen</a>
+            {% endif %}
+            <div class="container">
+                <h1>{{ standpunten.title }}</h1>
+
+                <div id="raadswerk">
+                    <p>{{ standpunten.description|raw }}</p>
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}

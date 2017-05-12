@@ -24,7 +24,7 @@ class InfoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $infos = $em->getRepository('MainBundle:Info')->findAll();
+        $infos = $em->getRepository('MainBundle:Info')->findBy(array(), array('id' => 'DESC'));
 
         return $this->render('@Main/info/index.html.twig', array(
             'infos' => $infos,

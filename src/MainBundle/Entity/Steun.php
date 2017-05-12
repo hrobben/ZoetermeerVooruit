@@ -5,12 +5,12 @@ namespace MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Fractie
+ * Steun
  *
- * @ORM\Table(name="fractie")
- * @ORM\Entity(repositoryClass="MainBundle\Repository\FractieRepository")
+ * @ORM\Table(name="steun")
+ * @ORM\Entity(repositoryClass="MainBundle\Repository\SteunRepository")
  */
-class Fractie
+class Steun
 {
     /**
      * @var int
@@ -24,23 +24,16 @@ class Fractie
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $name;
+    private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="image", type="string", length=255)
-     */
-    private $image;
 
 
     /**
@@ -54,27 +47,27 @@ class Fractie
     }
 
     /**
-     * Set name
+     * Set title
      *
-     * @param string $name
+     * @param string $title
      *
-     * @return Fractie
+     * @return Steun
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get title
      *
      * @return string
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
@@ -82,7 +75,7 @@ class Fractie
      *
      * @param string $description
      *
-     * @return Fractie
+     * @return Steun
      */
     public function setDescription($description)
     {
@@ -99,30 +92,6 @@ class Fractie
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     *
-     * @return Fractie
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 }
 
