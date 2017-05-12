@@ -1,10 +1,12 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
+    <a class="btn btn-success pull-right" href="{{ path('raadswerk_new') }}">Nieuwe tekst toevoegen</a>
+    {% endif %}
 
     {% for raadswerk in raadswerks %}
         {% if is_granted ('ROLE_ADMIN') %}
-            <a class="btn btn-success pull-right" href="{{ path('raadswerk_new') }}">Nieuwe tekst toevoegen</a>
             <a class="btn btn-primary pull-right" href="{{ path('raadswerk_edit', { 'id': raadswerk.id }) }}">Wijzigen</a>
         {% endif %}
         <div class="container">
