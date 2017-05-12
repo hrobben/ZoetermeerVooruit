@@ -16,7 +16,8 @@ class ChoiceType extends AbstractType
     {
         $builder
             ->add('quId', null, [
-                'label' => "Vraagnaam"
+                'label' => "Vraagnaam",
+                'required' => true,
                 ])
             ->add('choice', null, [
                 'label' => "Antwoord",

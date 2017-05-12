@@ -48,7 +48,7 @@ class ChoiceController extends Controller
             $em->persist($choice);
             $em->flush($choice);
 
-            return $this->redirectToRoute('choice_show', array('id' => $choice->getId()));
+            return $this->redirectToRoute('choice_new', array('id' => $choice->getId()));
         }
 
         return $this->render('@Main/choice/new.html.twig', array(

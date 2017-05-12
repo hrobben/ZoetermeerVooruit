@@ -94,4 +94,3 @@ class AboutUs
         return $this->description;
     }
 }
-
