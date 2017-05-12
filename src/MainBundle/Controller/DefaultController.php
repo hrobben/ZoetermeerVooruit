@@ -4,6 +4,7 @@ namespace MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use MainBundle\Entity\Info;
 
 class DefaultController extends Controller
 {
@@ -12,6 +13,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MainBundle:Default:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $infos = $em->getRepository('MainBundle:Info')->findBy(array(), array('id' => 'DESC'), 3);
+
+        return $this->render('MainBundle:Default:index.html.twig', array(
+            'infos' => $infos,
+        ));
     }
 }

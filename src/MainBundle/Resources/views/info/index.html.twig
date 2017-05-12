@@ -11,8 +11,8 @@
                         <div class="caption">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h3>{{ info.name }}</h3><br>
-                                    {{ info.description|striptags|truncate(350, true, "...")|raw }}<br>
+                                    <h3>{{ info.name }}</h3>
+                                    {{ info.description|striptags|truncate(450, true, "...")|raw }}<br>
                                     <a href="{{ path('info_show', { 'id': info.id }) }}" class="btn btn-info btn-xs">Meer lezen</a>
                                     {% if is_granted('ROLE_ADMIN') %}
                                     <a href="{{ path('info_edit', { 'id': info.id }) }}" class="btn btn-primary btn-xs">edit</a>
