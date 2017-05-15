@@ -30,7 +30,6 @@ class EnqueteController extends Controller
         $dateTime = new \DateTime("now");
 
         $enquetes = $em->getRepository('MainBundle:Enquete')->findBy(array(), array('id' => 'DESC'));
-        $userId = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
         return $this->render('@Main/enquete/index.html.twig', array(
             'enquetes' => $enquetes,
@@ -92,11 +91,14 @@ class EnqueteController extends Controller
         $deleteForm = $this->createDeleteForm($enquete);
 
         $payment = $em->getRepository('MainBundle:Payment')->findOneBy(array('userId' => $user));
-        $hasPaid = $payment->getCompletePayment();
 
         if ($payment == null)
         {
             $hasPaid = null;
+        }
+        else
+        {
+            $hasPaid = $payment->getCompletePayment();
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
