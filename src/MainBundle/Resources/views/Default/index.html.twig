@@ -80,20 +80,29 @@
             <p style="text-align: center">Contact</p>
         </div>
     </div>
-    
+
     <hr>
 
-    <div class="row">
-        <div class="col-sm-8">
-            <h2>Statistieken</h2>
-            <div>
-                <p>
-                    Moet er in Zoetermeer een Intercity station komen?<br>
-                    Ja - 87%<br>
-                    Nee - 10%<br>
-                    Weet ik niet - 3%
-                </p>
-            </div>
+    <div class="container">
+        <div class="row">
+            {% for info in infos %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>{{ info.name }}</h3>
+                                    {{ info.description|striptags|truncate(450, true, "...")|raw }}<br>
+                                    <a href="{{ path('info_show', { 'id': info.id }) }}" class="btn btn-info btn-xs">Meer lezen</a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a href="{{ path('info_edit', { 'id': info.id }) }}" class="btn btn-primary btn-xs">edit</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 

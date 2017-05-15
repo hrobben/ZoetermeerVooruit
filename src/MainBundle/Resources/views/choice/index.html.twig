@@ -20,11 +20,7 @@
         {% for choice in choices %}
             <tr>
                 <td class="hidden-xs hidden-sm"><a href="{{ path('choice_show', { 'id': choice.id }) }}">{{ choice.id }}</a></td>
-                {% for question in questions %}
-                    {% if choice.questionId == question.id %}
-                        <td>{{ question.title }}</td>
-                    {% endif %}
-                {% endfor %}
+
                 <td>{{ choice.choice }}</td>
                 <td>
                     <a  class="btn btn-info" href="{{ path('choice_show', { 'id': choice.id }) }}">Weergeven</a>

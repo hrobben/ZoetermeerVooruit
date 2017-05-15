@@ -88,7 +88,7 @@ body{
 }
 
 #scroll{
-    max-height: 600px; overflow: scroll;
+    max-height: 60vh; overflow: scroll;
 }
 
 #raadswerk{

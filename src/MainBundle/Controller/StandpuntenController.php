@@ -88,7 +88,7 @@ class StandpuntenController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('standpunten_edit', array('id' => $standpunten->getId()));
+            return $this->redirectToRoute('standpunten_index');
         }
 
         return $this->render('@Main/standpunten/edit.html.twig', array(
