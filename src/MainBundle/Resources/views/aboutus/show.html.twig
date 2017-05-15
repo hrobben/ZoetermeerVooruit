@@ -1,21 +1,21 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block body %}
-    <h1>Aboutu</h1>
+    <h1>Over ons</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ aboutU.id }}</td>
+                <td>{{ aboutUs.id }}</td>
             </tr>
             <tr>
                 <th>Title</th>
-                <td>{{ aboutU.title }}</td>
+                <td>{{ aboutUs.title }}</td>
             </tr>
             <tr>
                 <th>Description</th>
-                <td>{{ aboutU.description }}</td>
+                <td>{{ aboutUs.description }}</td>
             </tr>
         </tbody>
     </table>
@@ -25,7 +25,7 @@
             <a href="{{ path('aboutus_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('aboutus_edit', { 'id': aboutU.id }) }}">Edit</a>
+            <a href="{{ path('aboutus_edit', { 'id': aboutUs.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

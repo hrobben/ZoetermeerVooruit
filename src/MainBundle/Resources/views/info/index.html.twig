@@ -15,7 +15,7 @@
                                     {{ info.description|striptags|truncate(450, true, "...")|raw }}<br>
                                     <a href="{{ path('info_show', { 'id': info.id }) }}" class="btn btn-info btn-xs">Meer lezen</a>
                                     {% if is_granted('ROLE_ADMIN') %}
-                                    <a href="{{ path('info_edit', { 'id': info.id }) }}" class="btn btn-primary btn-xs">edit</a>
+                                    <a href="{{ path('info_edit', { 'id': info.id }) }}" class="btn btn-primary btn-xs">Aanpassen</a>
                                     {% endif %}
                                 </div>
                             </div>

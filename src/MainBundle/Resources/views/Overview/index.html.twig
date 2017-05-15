@@ -55,13 +55,13 @@
                             tabindex="0" aria-controls="lijst"
                             rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
                             style="width: 69px;">Id</th>
-                        <th class="hidden-xs hidden-sm sorting"
+                        <!-- <th class="hidden-xs hidden-sm sorting"
                             tabindex="0" aria-controls="lijst"
                             rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
-                            style="width: 69px;">E-mail</th>
+                            style="width: 69px;">E-mail</th> !-->
                         <th>Voornaam</th>
                         <th>Achternaam</th>
-                        <th class="hidden-xs hidden-sm sorting"
+                        <!--    <th class="hidden-xs hidden-sm sorting"
                         tabindex="0" aria-controls="lijst"
                         rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
                         style="width: 69px;">Geslacht</th>
@@ -80,36 +80,36 @@
                         <th class="hidden-xs hidden-sm sorting"
                             tabindex="0" aria-controls="lijst"
                             rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
-                            style="width: 69px;">Woonplaats</th>
+                            style="width: 69px;">Woonplaats</th>!-->
                         <th class="hidden-xs hidden-sm sorting"
                             tabindex="0" aria-controls="lijst"
                             rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
                             style="width: 69px;">Telefoonnummer</th>
-                        <th class="hidden-xs hidden-sm sorting"
+                        <!--<th class="hidden-xs hidden-sm sorting"
                             tabindex="0" aria-controls="lijst"
                             rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
-                            style="width: 69px;">Bankrekening</th>
-                        <th>Beheeracties</th>
+                            style="width: 69px;">Bankrekening</th>!-->
+                        <th class="pull-right"Beheeracties</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for user in users %}
                     <tr>
                         <td class="hidden-xs hidden-sm"><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                        <td class="hidden-xs hidden-sm">{{ user.email }}</td>
+                        <!--<td class="hidden-xs hidden-sm">{{ user.email }}</td>!-->
                         <td>{{ user.firstname }}</td>
                         <td>{{ user.lastname }}</td>
-                        <td class="hidden-xs hidden-sm">{{ user.gender }}</td>
+                        <!--<td class="hidden-xs hidden-sm">{{ user.gender }}</td>
                         <td class="hidden-xs hidden-sm">{% if user.birthdate %}{{ user.birthdate|date('d-m-Y') }}{% endif %}</td>
                         <td class="hidden-xs hidden-sm">{{ user.address }}</td>
                         <td class="hidden-xs hidden-sm">{{ user.postal }}</td>
-                        <td class="hidden-xs hidden-sm">{{ user.city }}</td>
+                        <td class="hidden-xs hidden-sm">{{ user.city }}</td>!-->
                         <td class="hidden-xs hidden-sm">{{ user.phone }}</td>
-                        <td class="hidden-xs hidden-sm">{{ user.bankaccount }}</td>
+                        <!--<td class="hidden-xs hidden-sm">{{ user.bankaccount }}</td>!-->
                         <td>
-                            <a class="btn btn-info btn-xs" style="padding: auto; margin: 2px; " href="{{ path('user_show', { 'id': user.id }) }}">Weergeven</a>
+                            <a class="btn btn-info pull-right btn-xs" style="padding: auto; margin: 2px; " href="{{ path('user_show', { 'id': user.id }) }}">Weergeven</a>
 
-                            <a class="btn btn-primary btn-xs" style="padding: auto; margin: 2px; " href="{{ path('user_edit', { 'id': user.id }) }}">Aanpassen</a>
+                            <a class="btn btn-primary pull-right btn-xs" style="padding: auto; margin: 2px; " href="{{ path('user_edit', { 'id': user.id }) }}">Aanpassen</a>
                         </td>
                     </tr>
                 {% endfor %}
