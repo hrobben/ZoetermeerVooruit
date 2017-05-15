@@ -15,11 +15,14 @@ class InfoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name',null,[
+                'label' => 'Naam'
+            ])
             ->add('description', CKEditorType::class, array(
                 'config' => array(
                     'uiColor' => '#ffffff',
-                )
+                ),
+                'label' => 'Beschrijving',
             ));
     }
     
