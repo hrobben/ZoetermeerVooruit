@@ -5,6 +5,7 @@ namespace MainBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 class AboutUsType extends AbstractType
 {
@@ -13,7 +14,12 @@ class AboutUsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('description')        ;
+        $builder->add('title')->add('description', CKEditorType::class, array(
+            'config' => array(
+                'uiColor' => '#ffffff',
+            ),
+            'label' => 'Beschrijving',
+        ));
     }
     
     /**
