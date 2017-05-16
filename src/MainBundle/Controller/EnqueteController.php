@@ -75,7 +75,7 @@ class EnqueteController extends Controller
     public function showAction(Request $request, Enquete $enquete)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
+        $user = $this->getUser();
         $dateTime = new \DateTime("now");
 
         $questions = $em->getRepository('MainBundle:Question')->findBy(array('enqueteId' => $enquete->getId()));
@@ -85,7 +85,7 @@ class EnqueteController extends Controller
             $answers = $em->getRepository('MainBundle:Answer')->findAll();
         }
         else {
-            $answers = $em->getRepository('MainBundle:Answer')->findBy(array('userId' => $user));
+            $answers = $em->getRepository('MainBundle:Answer')->findBy(array('user' => $user));
         }
 
         $deleteForm = $this->createDeleteForm($enquete);
@@ -107,11 +107,14 @@ class EnqueteController extends Controller
             {
                 $i++;
                 $answer = new Answer();
-                $answer->setUserId($user);
+                $answer->setUser($user);
                 $answer->setChoiceId($_POST['radio-'.$i]);
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($answer);
-                $em->flush($answer);
+                $em->flush();
             }
+
+            return $this->redirect($request->getUri());
         }
 
         return $this->render('@Main/enquete/show.html.twig', array(
@@ -122,6 +125,7 @@ class EnqueteController extends Controller
             'answers' => $answers,
             'show' => true,
             'hasPaid' => $hasPaid,
+            'userId' => $user,
             'delete_form' => $deleteForm->createView(),
         ));
     }

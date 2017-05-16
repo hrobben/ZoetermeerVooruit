@@ -127,6 +127,11 @@ class User extends BaseUser
      */
     protected $bankaccount;
 
+    /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\Answer", mappedBy="user")
+     */
+    protected $answer;
+
     public function __construct()
     {
         parent::__construct();
@@ -347,5 +352,39 @@ class User extends BaseUser
     public function getBankaccount()
     {
         return $this->bankaccount;
+    }
+
+    /**
+     * Add answer
+     *
+     * @param \MainBundle\Entity\Answer $answer
+     *
+     * @return User
+     */
+    public function addAnswer(Answer $answer)
+    {
+        $this->answer[] = $answer;
+
+        return $this;
+    }
+
+    /**
+     * Remove answer
+     *
+     * @param \MainBundle\Entity\Answer $answer
+     */
+    public function removeAnswer(Answer $answer)
+    {
+        $this->answer->removeElement($answer);
+    }
+
+    /**
+     * Get answer
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
     }
 }
