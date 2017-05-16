@@ -22,17 +22,9 @@ class Answer
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="userId", type="integer")
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User", inversedBy="answer")
      */
-    private $userId;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User")
-     * @ORM\JoinColumn(name="userId", referencedColumnName="id")
-     */
-    private $usIs;
+    private $user;
 
     /**
      * @var int
@@ -122,5 +114,29 @@ class Answer
     public function getUsIs()
     {
         return $this->usIs;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \MainBundle\Entity\User $user
+     *
+     * @return Answer
+     */
+    public function setUser(\MainBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \MainBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
