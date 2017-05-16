@@ -2,9 +2,9 @@
 
 {% block title %}
         {% if is_granted ('ROLE_ADMIN') %}
-            Bekijk {{ enquete.title }}
+            Bekijk: {{ enquete.title }}
         {% else %}
-            Enquete {{ enquete.title }}
+            Enquete: {{ enquete.title }}
         {% endif %}
 {% endblock %}
 
