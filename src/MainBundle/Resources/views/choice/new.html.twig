@@ -11,7 +11,7 @@
 
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <input class="btn btn-success" type="submit" value="Opslaan" />
+        <a class="btn btn-success" href="{{ path('choice_index') }}">Opslaan</a>
         {{ form_end(form) }}
 
             <a class="btn btn-default" href="{{ path('choice_index') }}">Terug naar overzicht</a>

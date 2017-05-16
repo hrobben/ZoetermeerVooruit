@@ -2,9 +2,9 @@
 
 {% block title %}
         {% if is_granted ('ROLE_ADMIN') %}
-            Bekijk {{ enquete.title }}
+            Bekijk: {{ enquete.title }}
         {% else %}
-            Enquete {{ enquete.title }}
+            Enquete: {{ enquete.title }}
         {% endif %}
 {% endblock %}
 
@@ -33,23 +33,23 @@
                 <td>{{ enquete.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titel</th>
                 <td>{{ enquete.title }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>Beschrijving</th>
                 <td>{{ enquete.description }}</td>
             </tr>
             <tr>
-                <th>Startdate</th>
+                <th>Starttijd</th>
                 <td>{% if enquete.startDate %}{{ enquete.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Enddate</th>
+                <th>Eindtijd</th>
                 <td>{% if enquete.endDate %}{{ enquete.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Published</th>
+                <th>Gepubliceerd</th>
                 <td>{{ enquete.published }}</td>
             </tr>
         </tbody>
