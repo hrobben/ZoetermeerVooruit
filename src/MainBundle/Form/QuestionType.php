@@ -4,6 +4,7 @@ namespace MainBundle\Form;
 
 use MainBundle\Entity\Question;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,7 +24,12 @@ class QuestionType extends AbstractType
             ])
             ->add('title', null, [
                 'label' => 'Vraagnaam'
-            ]);
+            ])
+            ->add('save_new', SubmitType::class, array(
+                'validation_groups' => false,
+                'label'=>'Opslaan & nieuw'
+            ))
+        ;
 //            ->add('enqueteId')
     }
 
