@@ -17,7 +17,9 @@ class PaymentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('uId', null, ['label' => 'Gebruiker'])
+        $builder->add('uId', null, [
+                    'label' => 'Gebruiker'
+                ])
                 ->add('date', DateType::class,[
                     'format' => 'ddMMyyyy',
                     'label' => 'Datum van betaling',

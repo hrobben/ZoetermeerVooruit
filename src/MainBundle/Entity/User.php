@@ -387,4 +387,12 @@ class User extends BaseUser
     {
         return $this->answer;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->firstname . " " . $this->lastname;
+    }
 }
