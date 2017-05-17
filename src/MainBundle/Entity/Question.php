@@ -37,7 +37,7 @@ class Question
 
     /**
      * @ORM\ManyToOne(targetEntity="MainBundle\Entity\Enquete")
-     * @ORM\JoinColumn(name="enqueteId", referencedColumnName="id")
+     * @ORM\JoinColumn(name="enqueteId", referencedColumnName="id", onDelete="CASCADE")
      */
     private $eqId;
 
