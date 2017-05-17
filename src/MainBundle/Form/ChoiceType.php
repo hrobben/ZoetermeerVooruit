@@ -22,10 +22,7 @@ class ChoiceType extends AbstractType
             ->add('choice', null, [
                 'label' => "Antwoord",
                 ])
-            ->add('save_new', SubmitType::class, array(
-                'validation_groups' => false,
-                'label'=>'Opslaan & nieuw'
-            ));
+            ;
         
 
     }

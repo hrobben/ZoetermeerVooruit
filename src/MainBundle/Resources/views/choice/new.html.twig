@@ -11,10 +11,11 @@
 
         {{ form_start(form) }}
             {{ form_widget(form) }}
-        <a class="btn btn-success" href="{{ path('choice_index') }}">Opslaan</a>
+        <a class="btn btn-success" href="{{ path('choice_index') }}">Opslaan en nieuw</a>
         {{ form_end(form) }}
 
-            <a class="btn btn-default" href="{{ path('choice_index') }}">Terug naar overzicht</a>
+        <a class="btn btn-success" href="{{ path('question_new') }}">Nieuwe vraag maken</a>
+        <a class="btn btn-default" href="{{ path('choice_index') }}">Terug naar overzicht</a>
     </div>
 
     {% else %}

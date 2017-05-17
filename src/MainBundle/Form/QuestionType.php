@@ -24,12 +24,7 @@ class QuestionType extends AbstractType
             ])
             ->add('title', null, [
                 'label' => 'Vraagnaam'
-            ])
-            ->add('save_new', SubmitType::class, array(
-                'validation_groups' => false,
-                'label'=>'Opslaan & nieuw'
-            ))
-        ;
+            ]);
 //            ->add('enqueteId')
     }
 
