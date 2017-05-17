@@ -30,7 +30,7 @@ class Choice
 
     /**
      * @ORM\ManyToOne(targetEntity="MainBundle\Entity\Question")
-     * @ORM\JoinColumn(name="questionId", referencedColumnName="id")
+     * @ORM\JoinColumn(name="questionId", referencedColumnName="id", onDelete="CASCADE")
      */
     private $quId;
 
