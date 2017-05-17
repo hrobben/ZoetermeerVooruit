@@ -88,6 +88,8 @@ class EnqueteController extends Controller
             $answers = $em->getRepository('MainBundle:Answer')->findBy(array('user' => $user));
         }
 
+        $allAnswers = $em->getRepository('MainBundle:Answer')->findAll();
+
         $deleteForm = $this->createDeleteForm($enquete);
 
         $payment = $em->getRepository('MainBundle:Payment')->findOneBy(array('userId' => $user));
@@ -126,6 +128,7 @@ class EnqueteController extends Controller
             'show' => true,
             'hasPaid' => $hasPaid,
             'userId' => $user,
+            'allAnswers' => $allAnswers,
             'delete_form' => $deleteForm->createView(),
         ));
     }
