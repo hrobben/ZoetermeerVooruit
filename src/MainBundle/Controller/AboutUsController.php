@@ -48,7 +48,7 @@ class AboutUsController extends Controller
             $em->persist($aboutUs);
             $em->flush($aboutUs);
 
-            return $this->redirectToRoute('aboutus_show', array('id' => $aboutUs->getId()));
+            return $this->redirectToRoute('aboutus_index');
         }
 
         return $this->render('@Main/aboutus/new.html.twig', array(
