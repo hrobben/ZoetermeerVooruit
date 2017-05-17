@@ -22,7 +22,7 @@ class Answer
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User", inversedBy="answer")
+     * @ORM\ManyToOne(targetEntity="MainBundle\Entity\User", inversedBy="an")
      */
     private $user;
 
@@ -42,30 +42,6 @@ class Answer
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     *
-     * @return Answer
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return int
-     */
-    public function getUserId()
-    {
-        return $this->userId;
     }
 
     /**
@@ -90,30 +66,6 @@ class Answer
     public function getChoiceId()
     {
         return $this->choiceId;
-    }
-
-    /**
-     * Set usIs
-     *
-     * @param \MainBundle\Entity\User $usIs
-     *
-     * @return Answer
-     */
-    public function setUsIs(\MainBundle\Entity\User $usIs = null)
-    {
-        $this->usIs = $usIs;
-
-        return $this;
-    }
-
-    /**
-     * Get usIs
-     *
-     * @return \MainBundle\Entity\User
-     */
-    public function getUsIs()
-    {
-        return $this->usIs;
     }
 
     /**
