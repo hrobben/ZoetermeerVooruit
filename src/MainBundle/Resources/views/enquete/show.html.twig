@@ -126,6 +126,44 @@
                                 <input class="btn btn-success" type="submit" value="Versturen" style="margin-bottom: 20px">
                         </form>
                     </div>
+                {% elseif enquete.endDate < dateTime %}
+                    {% set q = 1 %}
+                    {% for question in questions %}
+                        {% set total = 0.000001 %}
+                        {% for choice in choices if choice.questionId == question.id %}
+                            {% for answer in allAnswers %}
+                                {% if answer.choiceId == choice.id %}
+                                    {% set total = total + 1 %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+
+                        <p><b>{{ question.title }}</b></p>
+                        {% set a = 1 %}
+                        {% for choice in choices if choice.questionId == question.id %}
+                            {% set count = 0 %}
+                            {% for answer in allAnswers %}
+                                {% if answer.choiceId == choice.id %}
+                                    {% set count = count + 1 %}
+                                {% endif %}
+                            {% endfor %}
+                            <ul>
+                                <li>
+                                    <b> {{ choice.choice }} </b>
+                                    <div class="progress" style="width: 100px;">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ count/total*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ count/total*100 }}%">
+                                            {{ (count/total*100)|number_format(0) }}%
+                                        </div>
+                                    </div>
+                                    Aantal stemmen: {{ count }}
+                                </li>
+                            </ul>
+                            {% set a = a+1 %}
+                        {% endfor %}
+                        {% set q = q+1 %}
+                        <hr>
+
+                    {% endfor %}
                 {% else %}
                     <div class="col-sm-6">
                         <h1>Oeps, er is iets misgegaan!</h1>
@@ -147,12 +185,12 @@
                     <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
                 </div>
             {% endif %}
-        {% elseif enquete.endDate < dateTime %}
+        {% elseif show != true and enquete.endDate < dateTime %}
             {% set q = 1 %}
             {% for question in questions %}
                 {% set total = 0.000001 %}
                 {% for choice in choices if choice.questionId == question.id %}
-                    {% for answer in answers %}
+                    {% for answer in allAnswers %}
                         {% if answer.choiceId == choice.id %}
                             {% set total = total + 1 %}
                         {% endif %}
@@ -163,7 +201,7 @@
                 {% set a = 1 %}
                 {% for choice in choices if choice.questionId == question.id %}
                     {% set count = 0 %}
-                    {% for answer in answers %}
+                    {% for answer in allAnswers %}
                         {% if answer.choiceId == choice.id %}
                             {% set count = count + 1 %}
                         {% endif %}
@@ -183,7 +221,6 @@
                 {% endfor %}
                 {% set q = q+1 %}
                 <hr>
-
             {% endfor %}
         {% else %}
             <div class="col-sm-6">
