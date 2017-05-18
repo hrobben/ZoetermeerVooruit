@@ -11,10 +11,11 @@
 
             {{ form_start(form) }}
                 {{ form_widget(form) }}
-                <input class="btn btn-success" type="submit" value="Opslaan" />
+            <input class="btn btn-success" type="submit" value="Opslaan en nieuw" />
             {{ form_end(form) }}
 
 
+            <a class="btn btn-success" href="{{ path('choice_new') }}">Antwoord maken</a>
             <a class="btn btn-default" href="{{ path('question_index') }}">Terug naar overzicht</a>
         </div>
     {% else %}

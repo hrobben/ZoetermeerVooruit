@@ -52,7 +52,7 @@ class QuestionController extends Controller
             $em->persist($question);
             $em->flush($question);
 
-            return $this->redirectToRoute('choice_new', array('id' => $question->getId()));
+            return $this->redirectToRoute('question_new', array('id' => $question->getId()));
         }
 
         return $this->render('@Main/question/new.html.twig', array(
