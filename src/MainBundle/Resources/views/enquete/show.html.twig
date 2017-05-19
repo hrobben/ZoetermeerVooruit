@@ -76,17 +76,15 @@
                         {% set count = count + 1 %}
                     {% endif %}
                 {% endfor %}
-                <ul>
-                    <li>
+                <div class="col-md-12">
                         <b> {{ choice.choice }} </b>
                         <div class="progress" style="width: 100px;">
                             <div class="progress-bar" role="progressbar" aria-valuenow="{{ count/total*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ count/total*100 }}%">
                                 {{ (count/total*100)|number_format(0) }}%
                             </div>
                         </div>
-                        Aantal stemmen: {{ count }}
-                    </li>
-                </ul>
+                        <p>Aantal stemmen: {{ count }}</p><br>
+                </div>
                 {% set a = a+1 %}
             {% endfor %}
             {% set q = q+1 %}

@@ -128,7 +128,7 @@ class User extends BaseUser
     protected $bankaccount;
 
     /**
-     * @ORM\OneToMany(targetEntity="MainBundle\Entity\Answer", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\Answer", mappedBy="user", cascade={"remove"})
      */
     protected $answer;
 
