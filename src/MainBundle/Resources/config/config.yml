@@ -11,3 +11,5 @@ fos_user:
 twig:
     form_themes: ['bootstrap_3_layout.html.twig']
 
+parameters:
+    brochures_directory: '%kernel.root_dir%/../web/uploads/brochures'
