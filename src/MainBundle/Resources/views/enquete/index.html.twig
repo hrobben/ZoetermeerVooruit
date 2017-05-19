@@ -3,9 +3,9 @@
 {% block body %}
     {% if app.user %}
         <div class="container">
-            <h1>Enquete overzicht
+            <h1>Enquête overzicht
             {% if is_granted ('ROLE_ADMIN') %}
-                <a class=" btn btn-success" href="{{ path('enquete_new') }}">+ Enquete</a>
+                <a class=" btn btn-success" href="{{ path('enquete_new') }}">+ Enquête</a>
             {% endif %}
             </h1>
 
@@ -58,7 +58,7 @@
                                         <div class="caption">
                                             <h3>{{ enquete.title }}</h3>
                                             <hr>
-                                            <h4><b>Deze enquete is gesloten!</b></h4>
+                                            <h4><b>Deze enquête is gesloten!</b></h4>
                                             <p></p>
                                             <hr>
                                             <p>

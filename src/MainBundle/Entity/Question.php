@@ -2,6 +2,7 @@
 
 namespace MainBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,9 +38,27 @@ class Question
 
     /**
      * @ORM\ManyToOne(targetEntity="MainBundle\Entity\Enquete")
-     * @ORM\JoinColumn(name="enqueteId", referencedColumnName="id")
+     * @ORM\JoinColumn(name="enqueteId", referencedColumnName="id", onDelete="CASCADE")
      */
     private $eqId;
+
+
+    protected $choices;
+
+    public function __construct()
+    {
+        $this->choices = new ArrayCollection();
+    }
+
+    public function newChoice(Choice $choice)
+    {
+        $this->choices->add($choice);
+    }
+
+    public function removeChoice(Choice $choice)
+    {
+        $this->choices->removeElement($choice);
+    }
 
     /**
      * Get id
@@ -100,6 +119,22 @@ class Question
     }
 
     /**
+     * @return ArrayCollection
+     */
+    public function getChoices()
+    {
+        return $this->choices;
+    }
+
+    /**
+     * @param ArrayCollection $choices
+     */
+    public function setChoices($choices)
+    {
+        $this->choices = $choices;
+    }
+
+    /**
      * Set eqId
      *
      * @param \MainBundle\Entity\Enquete $eqId
@@ -127,4 +162,6 @@ class Question
     {
         return $this->title;
     }
+
+
 }

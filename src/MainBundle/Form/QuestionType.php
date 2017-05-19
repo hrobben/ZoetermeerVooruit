@@ -18,19 +18,12 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('eqId', null, [
-                'label' => 'Enquetenaam',
-                'data' => 'Enquete 1',
+                'label' => 'Enquêtenaam',
                 'required' => true,
             ])
             ->add('title', null, [
                 'label' => 'Vraagnaam'
-            ])
-            ->add('save_new', SubmitType::class, array(
-                'validation_groups' => false,
-                'label'=>'Opslaan & nieuw'
-            ))
-        ;
-//            ->add('enqueteId')
+            ]);
     }
 
     /**

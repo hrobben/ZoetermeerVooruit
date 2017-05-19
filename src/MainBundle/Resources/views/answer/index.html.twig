@@ -8,7 +8,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Userid</th>
                 <th>Voornaam</th>
                 <th>Achternaam</th>
                 <th>Choiceid</th>
@@ -19,17 +18,8 @@
         {% for answer in answers %}
             <tr>
                 <td><a href="{{ path('answer_show', { 'id': answer.id }) }}">{{ answer.id }}</a></td>
-                <td>{{ answer.userId }}</td>
-                {% for user in users %}
-                    {% if user.id == answer.userId %}
-                        <td>{{ user.firstname }}</td>
-                        <td>{{ user.lastname }}</td>
-                    {% else %}
-                        <td></td>
-                        <td></td>
-                    {% endif %}
-                {% endfor %}
-                <td>{{ answer.userId }}</td>
+                <td>{{ answer.user.firstname }}</td>
+                <td>{{ answer.user.lastname }}</td>
                 <td>{{ answer.choiceId }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ path('answer_show', { 'id': answer.id }) }}">show</a>

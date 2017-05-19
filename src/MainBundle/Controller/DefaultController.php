@@ -14,7 +14,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $infos = $em->getRepository('MainBundle:Info')->findBy(array(), array('id' => 'DESC'), 3);
+        $infos = $em->getRepository('MainBundle:Info')->findBy(array(), array('id' => 'DESC'), 2);
 
         return $this->render('MainBundle:Default:index.html.twig', array(
             'infos' => $infos,
