@@ -18,7 +18,7 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('eqId', null, [
-                'label' => 'Enquetenaam',
+                'label' => 'Enquêtenaam',
                 'required' => true,
             ])
             ->add('title', null, [
