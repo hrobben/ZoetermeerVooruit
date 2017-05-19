@@ -15,39 +15,39 @@
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
-                <th>Firstname</th>
+                <th>Voornaam</th>
                 <td>{{ user.firstname }}</td>
             </tr>
             <tr>
-                <th>Lastname</th>
+                <th>Achternaam</th>
                 <td>{{ user.lastname }}</td>
             </tr>
             <tr>
-                <th>Gender</th>
+                <th>Geslacht</th>
                 <td>{{ user.gender }}</td>
             </tr>
             <tr>
-                <th>Birthdate</th>
+                <th>Geboortedatum</th>
                 <td>{% if user.birthdate %}{{ user.birthdate|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Address</th>
+                <th>Adres/th>
                 <td>{{ user.address }}</td>
             </tr>
             <tr>
-                <th>Postal</th>
+                <th>Postcodel</th>
                 <td>{{ user.postal }}</td>
             </tr>
             <tr>
-                <th>City</th>
+                <th>Woonplaats</th>
                 <td>{{ user.city }}</td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>Telefoon</th>
                 <td>{{ user.phone }}</td>
             </tr>
             <tr>
-                <th>Bankaccount</th>
+                <th>Bankrekening</th>
                 <td>{{ user.bankaccount }}</td>
             </tr>
         </tbody>
@@ -57,7 +57,7 @@
             <a class="btn btn-primary" href="{{ path('user_edit', { 'id': user.id }) }}">Wijzigen</a>
 
             {{ form_start(delete_form) }}
-                <input class="btn btn-danger" type="submit" value="Delete" value="Verwijderen">
+                <input class="btn btn-danger" type="submit" value="Verwijderen">
             {{ form_end(delete_form) }}
 
     {% else %}
