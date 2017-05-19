@@ -44,7 +44,7 @@
                                         <div class="caption">
                                             <h3><b>{{ enquete.title }}</b></h3>
                                             <hr>
-                                            <p>{{ enquete.description }}</p>
+                                            <p>{{ enquete.description|length > 250 ? enquete.description|slice(0, 250) ~ '...' : enquete.description }}</p>
                                             <hr>
                                             <p>
                                                 <a href="{{ path('enquete_show', { 'id': enquete.id }) }}" class="btn btn-info" role="button">Invullen</a>
