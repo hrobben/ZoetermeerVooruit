@@ -4,9 +4,9 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
+    // Define changes to default configuration here. For example:
+    // config.language = 'fr';
+    // config.uiColor = '#AADC6E';
     var envs = window.location.pathname.match(/\/app[_a-z]*\.php\//);
     if (envs !== null && envs.length === 1)
     {
