@@ -18,7 +18,7 @@ class EnqueteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', null, ['label' => 'Enquetenaam'])
+            ->add('title', null, ['label' => 'Enquêtenaam'])
             ->add('description', null, ['label' => 'Beschrijving'])
             ->add('startDate', DateTimeType::class,[
                 'date_format' => 'dd MM yyyy',
