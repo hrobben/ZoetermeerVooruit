@@ -15,12 +15,15 @@ class SteunType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('description', CKEditorType::class, array(
-                'config' => array(
+            ->add('title',null,[
+                'label' => 'Naam'
+            ])
+            ->add('description', CKEditorType::class, [
+                'config' => [
                     'uiColor' => '#ffffff',
-                )
-            ));
+                    ],
+                'label' => 'Beschrijving',
+            ]);
     }
     
     /**

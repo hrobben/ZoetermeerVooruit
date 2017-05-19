@@ -15,11 +15,14 @@ class StandpuntenType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title',null,[
+                'label' => 'Naam'
+            ])
             ->add('description', CKEditorType::class, array(
                 'config' => array(
                     'uiColor' => '#ffffff',
-                )
+                ),
+                'label' => 'Beschrijving',
             ));
     }
     
