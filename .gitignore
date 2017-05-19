@@ -15,3 +15,4 @@
 /web/bundles/
 .idea/
 /vendor/
+!/web/bundles/ivoryckeditor/
