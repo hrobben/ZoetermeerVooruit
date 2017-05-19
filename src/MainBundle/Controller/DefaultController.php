@@ -14,10 +14,19 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $infos = $em->getRepository('MainBundle:Info')->findBy(array(), array('id' => 'DESC'), 3);
+        $today = new \DateTime("now");
+        $enquete = $em->createQuery('SELECT e FROM MainBundle:Enquete e WHERE e.endDate < CURRENT_DATE() ORDER BY e.id DESC')->setMaxResults(1)->getSingleResult();
+        $questions = $em->getRepository('MainBundle:Question')->findBy(array('enqueteId' => $enquete->getId()));
+        $choices = $em->getRepository('MainBundle:Choice')->findAll();
+        $allAnswers = $em->getRepository('MainBundle:Answer')->findAll();
+        $infos = $em->getRepository('MainBundle:Info')->findBy(array(), array('id' => 'DESC'), 2);
 
         return $this->render('MainBundle:Default:index.html.twig', array(
             'infos' => $infos,
+            'enquete' => $enquete,
+            'choices' => $choices,
+            'questions' => $questions,
+            'allAnswers' => $allAnswers,
         ));
     }
 }
