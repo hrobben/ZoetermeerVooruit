@@ -1,11 +1,11 @@
 {% extends '@Main/base.html.twig' %}
 
 {% block title %}
-        {% if is_granted ('ROLE_ADMIN') %}
-            Bekijk: {{ enquete.title }}
-        {% else %}
-            Enquete: {{ enquete.title }}
-        {% endif %}
+    {% if is_granted ('ROLE_ADMIN') %}
+        Bekijk: {{ enquete.title }}
+    {% else %}
+        Enquete: {{ enquete.title }}
+    {% endif %}
 {% endblock %}
 
 {% block stylesheets %}
@@ -24,10 +24,10 @@
 
 {% block body %}
     {% if is_granted ('ROLE_ADMIN') %}
-    <h1>Enquete</h1>
+        <h1>Enquete</h1>
 
-    <table class="table table-striped">
-        <tbody>
+        <table class="table table-striped">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ enquete.id }}</td>
@@ -52,31 +52,31 @@
                 <th>Gepubliceerd</th>
                 <td>{{ enquete.published }}</td>
             </tr>
-        </tbody>
-    </table>
-    <div>
-        <hr>
-        {% set q = 1 %}
-        {% for question in questions %}
-            {% set total = 0.000001 %}
-            {% for choice in choices if choice.questionId == question.id %}
-                {% for answer in answers %}
-                    {% if answer.choiceId == choice.id %}
-                        {% set total = total + 1 %}
-                    {% endif %}
+            </tbody>
+        </table>
+        <div>
+            <hr>
+            {% set q = 1 %}
+            {% for question in questions %}
+                {% set total = 0.000001 %}
+                {% for choice in choices if choice.questionId == question.id %}
+                    {% for answer in answers %}
+                        {% if answer.choiceId == choice.id %}
+                            {% set total = total + 1 %}
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
 
-            <p>Vraag {{ q }}: <b>{{ question.title }}</b></p>
-            {% set a = 1 %}
-            {% for choice in choices if choice.questionId == question.id %}
-                {% set count = 0 %}
-                {% for answer in answers %}
-                    {% if answer.choiceId == choice.id %}
-                        {% set count = count + 1 %}
-                    {% endif %}
-                {% endfor %}
-                <div class="col-md-12">
+                <p>Vraag {{ q }}: <b>{{ question.title }}</b></p>
+                {% set a = 1 %}
+                {% for choice in choices if choice.questionId == question.id %}
+                    {% set count = 0 %}
+                    {% for answer in answers %}
+                        {% if answer.choiceId == choice.id %}
+                            {% set count = count + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="col-md-12">
                         <b> {{ choice.choice }} </b>
                         <div class="progress" style="width: 100px;">
                             <div class="progress-bar" role="progressbar" aria-valuenow="{{ count/total*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ count/total*100 }}%">
@@ -84,21 +84,21 @@
                             </div>
                         </div>
                         <p>Aantal stemmen: {{ count }}</p><br>
-                </div>
-                {% set a = a+1 %}
-            {% endfor %}
-            {% set q = q+1 %}
-            <hr>
+                    </div>
+                    {% set a = a+1 %}
+                {% endfor %}
+                {% set q = q+1 %}
+                <hr>
 
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
 
         <a id="button" class="btn btn-default" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
 
         <a id="button" class="btn btn-primary" href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Wijzigen</a>
 
         {{ form_start(delete_form) }}
-            <input id="button" class="btn btn-danger" type="submit" value="Verwijderen">
+        <input id="button" class="btn btn-danger" type="submit" value="Verwijderen">
         {{ form_end(delete_form) }}
 
     {% elseif app.user %}
@@ -107,8 +107,8 @@
                 {% if enquete.startDate < dateTime and enquete.endDate > dateTime %}
                     <div class="col-sm-6">
                         <hr>
-                    <h2>{{ enquete.title }}</h2>
-                    <p>{{ enquete.description }}</p>
+                        <h2>{{ enquete.title }}</h2>
+                        <p>{{ enquete.description }}</p>
                         <form name="enquete-{{ enquete.id }}" method="post">
                             {% for question in questions %}
                                 <hr>
@@ -120,10 +120,11 @@
                                 {% endfor %}
 
                             {% endfor %}
-                                <hr>
-                                <input class="btn btn-success" type="submit" value="Versturen" style="margin-bottom: 20px">
+                            <hr>
+                            <input class="btn btn-success" type="submit" value="Versturen" style="margin-bottom: 20px">
                         </form>
                     </div>
+                    <div class="container">
                 {% elseif enquete.endDate < dateTime %}
                     {% set q = 1 %}
                     {% for question in questions %}
@@ -160,8 +161,9 @@
                         {% endfor %}
                         {% set q = q+1 %}
                         <hr>
-
                     {% endfor %}
+                    <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
+                    </div>
                 {% else %}
                     <div class="col-sm-6">
                         <h1>Oeps, er is iets misgegaan!</h1>
@@ -220,6 +222,7 @@
                 {% set q = q+1 %}
                 <hr>
             {% endfor %}
+            <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
         {% else %}
             <div class="col-sm-6">
                 <h1>Hartelijk bedankt!</h1>
