@@ -25,6 +25,12 @@
         </tbody>
     </table>
 
+        <h2>Keuzes</h2>
+        <ul>
+            {% for choice in choices %}
+                <li>{{ choice.choice }}</li>
+            {% endfor %}
+        </ul>
 
             <a class="btn btn-default" href="{{ path('question_index') }}">Terug naar het overzicht</a>
 

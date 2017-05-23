@@ -3,7 +3,6 @@
 namespace MainBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,16 +14,12 @@ class ChoiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quId', null, [
-                'label' => "Vraagnaam",
-                'required' => true,
+           /* ->add('quId', null, [
+                'label' => "Vraagnaam"
                 ])
-            ->add('choice', null, [
+*/            ->add('choice', null, [
                 'label' => "Antwoord",
-                ])
-            ;
-        
-
+                ]);
     }
     
     /**

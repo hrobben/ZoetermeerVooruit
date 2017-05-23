@@ -52,6 +52,8 @@ class Question
 
     public function newChoice(Choice $choice)
     {
+        $choice->addQuestion($this);
+
         $this->choices->add($choice);
     }
 
@@ -164,4 +166,19 @@ class Question
     }
 
 
+
+    /**
+     * Add choice
+     *
+     * @param \MainBundle\Entity\Choice $choice
+     *
+     * @return Question
+     */
+    public function addChoice(\MainBundle\Entity\Choice $choice)
+    {
+        $choice->setQuId($this);
+        $this->choices[] = $choice;
+
+        return $this;
+    }
 }
