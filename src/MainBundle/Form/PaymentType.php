@@ -31,6 +31,10 @@ class PaymentType extends AbstractType
                 ->add('completePayment', CheckboxType::class, [
                 'label' => 'Is dit het volledige bedrag?',
                 'required' => false,
+                ])
+                ->add('end_date', DateType::class,[
+                    'format' => 'ddMMyyyy',
+                    'label' => 'Geldig tot',
     ]);
     }
     

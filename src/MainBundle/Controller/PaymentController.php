@@ -42,6 +42,7 @@ class PaymentController extends Controller
     {
         $payment = new Payment();
         $payment->setDate(new \DateTime("now"));
+        $payment->setEndDate(new \DateTime("now + 1 month"));
         $form = $this->createForm('MainBundle\Form\PaymentType', $payment);
         $form->handleRequest($request);
 

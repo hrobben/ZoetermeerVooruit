@@ -2,7 +2,7 @@
 
 {% block body %}
     {% if is_granted ('ROLE_ADMIN') %}
-        <h1>Betalinglijst</h1>
+        <h1>Betalingslijst</h1>
 
     <table class="table table-striped">
         <thead>
@@ -13,8 +13,8 @@
                     style="width: 69px;">Id</th>
                 <th>Gebruiker</th>
                 <th>Datum</th>
+                <th>Geldig tot</th>
                 <th>Bedrag</th>
-                <th>Volledige betaling</th>
                 <th>Acties</th>
             </tr>
         </thead>
@@ -28,8 +28,8 @@
                     {% endif %}
                 {% endfor %}
                 <td>{% if payment.date %}{{ payment.date|date('d-m-Y') }}{% endif %}</td>
+                <td>{% if payment.endDate %}{{ payment.endDate|date('d-m-Y') }}{% endif %}</td>
                 <td>{% if payment.amount %}&euro;{{ payment.amount | number_format(2)|replace('.',',') }}{% endif %}</td>
-                <td>{% if payment.completePayment %}Ja{% else %}-{% endif %}</td>
                 <td>
 
                     <a class="btn btn-info btn-xs" style="padding: auto; margin: 2px; " href="{{ path('payment_show', { 'id': payment.id }) }}">Weergeven</a>

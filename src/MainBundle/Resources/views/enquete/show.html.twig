@@ -42,11 +42,11 @@
             </tr>
             <tr>
                 <th>Starttijd</th>
-                <td>{% if enquete.startDate %}{{ enquete.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if enquete.startDate %}{{ enquete.startDate|date('d-m-Y H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Eindtijd</th>
-                <td>{% if enquete.endDate %}{{ enquete.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if enquete.endDate %}{{ enquete.endDate|date('d-m-Y H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Gepubliceerd</th>

@@ -44,19 +44,18 @@ class Payment
     public $date;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="date")
+     */
+    public $endDate;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="amount", type="decimal", precision=10, scale=2)
      */
     public $amount;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="completePayment", type="boolean")
-     */
-    public $completePayment;
-
 
     /**
      * Get id
@@ -186,5 +185,29 @@ class Payment
     public function getCompletePayment()
     {
         return $this->completePayment;
+    }
+
+    /**
+     * Set endDate
+     *
+     * @param \DateTime $endDate
+     *
+     * @return Payment
+     */
+    public function setEndDate($endDate)
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * Get endDate
+     *
+     * @return \DateTime
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
     }
 }

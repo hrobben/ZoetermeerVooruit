@@ -92,7 +92,16 @@ class EnqueteController extends Controller
 
         $deleteForm = $this->createDeleteForm($enquete);
 
-        $payment = $em->getRepository('MainBundle:Payment')->findOneBy(array('userId' => $user));
+//        $payment = $em->getRepository('MainBundle:Payment')->findOneBy(array('userId' => $user, 'endDate' => $dateTime));
+
+        $query = $em->createQuery(
+            'SELECT p
+            FROM MainBundle:Payment p
+            WHERE p.userId = :user 
+            AND p.endDate > :date '
+        )->setParameter('user', $user)
+        ->setParameter('date', $dateTime);
+        $payment = $query->getResult();
 
         if ($payment == null)
         {
@@ -100,7 +109,7 @@ class EnqueteController extends Controller
         }
         else
         {
-            $hasPaid = $payment->getCompletePayment();
+            $hasPaid = true;
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
