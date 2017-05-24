@@ -2,6 +2,7 @@
 
 namespace MainBundle\Controller;
 
+use MainBundle\Entity\Choice;
 use MainBundle\Entity\Question;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -42,17 +43,36 @@ class QuestionController extends Controller
     public function newAction(Request $request)
     {
         $question = new Question();
+
+       /* $choice1 = new Choice();
+        $question->getChoices()->add($choice1);*/
+
         $form = $this->createForm('MainBundle\Form\QuestionType', $question);
         $form->handleRequest($request);
 
-        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($question);
-            $em->flush($question);
 
-            return $this->redirectToRoute('question_new', array('id' => $question->getId()));
+           /* $em->persist($question);
+            $em->flush();
+
+            $choice1->setQuId($question);
+            $em->persist($choice1);
+            $em->flush();*/
+            $em->persist($question);
+
+            $this->getDoctrine()->getManager()->flush();
+
+           // dump($question->getChoices());die;
+            foreach ($question->getChoices() as $choice){
+                $question->addChoice($choice);
+
+                $em->persist($choice);
+            }
+
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('question_new');
         }
 
         return $this->render('@Main/question/new.html.twig', array(
@@ -69,10 +89,13 @@ class QuestionController extends Controller
      */
     public function showAction(Question $question)
     {
-        $deleteForm = $this->createDeleteForm($question);
+        $em = $this->getDoctrine()->getManager();
+        $choices = $em->getRepository('MainBundle:Choice')->findBy(['questionId'=>$question->getId()]);
 
+        $deleteForm = $this->createDeleteForm($question);
         return $this->render('@Main/question/show.html.twig', array(
             'question' => $question,
+            'choices' => $choices,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -86,10 +109,22 @@ class QuestionController extends Controller
     public function editAction(Request $request, Question $question)
     {
         $deleteForm = $this->createDeleteForm($question);
+
+        $em = $this->getDoctrine()->getManager();
+        $choices = $em->getRepository('MainBundle:Choice')->findBy(['questionId'=>$question->getId()]);
+
+       $question->setChoices($choices);
+
         $editForm = $this->createForm('MainBundle\Form\QuestionType', $question);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            foreach ($question->getChoices() as $choice){
+                $question->addChoice($choice);
+                $em->persist($choice);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('question_edit', array('id' => $question->getId()));
@@ -97,6 +132,7 @@ class QuestionController extends Controller
 
         return $this->render('@Main/question/edit.html.twig', array(
             'question' => $question,
+            'choices' => $choices,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

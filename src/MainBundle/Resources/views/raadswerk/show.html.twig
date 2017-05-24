@@ -10,11 +10,11 @@
                 <td>{{ raadswerk.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>Titel</th>
                 <td>{{ raadswerk.name }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>Beschrijving</th>
                 <td>{{ raadswerk.description }}</td>
             </tr>
         </tbody>
@@ -22,10 +22,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('raadswerk_index') }}">Back to the list</a>
+            <a href="{{ path('raadswerk_index') }}">Terug naar overzicht</a>
         </li>
         <li>
-            <a href="{{ path('raadswerk_edit', { 'id': raadswerk.id }) }}">Edit</a>
+            <a href="{{ path('raadswerk_edit', { 'id': raadswerk.id }) }}">Aanpassen</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

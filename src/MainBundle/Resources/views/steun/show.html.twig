@@ -10,11 +10,11 @@
                 <td>{{ steun.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titel</th>
                 <td>{{ steun.title }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>Beschrijving</th>
                 <td>{{ steun.description }}</td>
             </tr>
         </tbody>
@@ -22,10 +22,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('steun_index') }}">Back to the list</a>
+            <a href="{{ path('steun_index') }}">Terug naar overzicht</a>
         </li>
         <li>
-            <a href="{{ path('steun_edit', { 'id': steun.id }) }}">Edit</a>
+            <a href="{{ path('steun_edit', { 'id': steun.id }) }}">Aanpassen</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

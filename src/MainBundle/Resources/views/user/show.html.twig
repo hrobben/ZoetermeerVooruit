@@ -6,7 +6,7 @@
 
 {% block body %}
     {% if is_granted ('ROLE_ADMIN') %}
-    <h1>User</h1>
+    <h1>Gebruiker</h1>
 
     <table class="table table-striped">
         <tbody>
@@ -28,10 +28,10 @@
             </tr>
             <tr>
                 <th>Geboortedatum</th>
-                <td>{% if user.birthdate %}{{ user.birthdate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if user.birthdate %}{{ user.birthdate|date('d-m-Y') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Adres/th>
+                <th>Adres</th>
                 <td>{{ user.address }}</td>
             </tr>
             <tr>

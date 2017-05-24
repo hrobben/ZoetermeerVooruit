@@ -52,6 +52,13 @@ class Choice
         return $this->id;
     }
 
+    public function addQuestion(Question $question)
+    {
+        if (!$this->choice->contains($question)) {
+            $this->choice->add($question);
+        }
+    }
+
     /**
      * Set questionId
      *
