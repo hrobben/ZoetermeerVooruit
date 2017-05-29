@@ -164,30 +164,6 @@ class Payment
     }
 
     /**
-     * Set completePayment
-     *
-     * @param boolean $completePayment
-     *
-     * @return Payment
-     */
-    public function setCompletePayment($completePayment)
-    {
-        $this->completePayment = $completePayment;
-
-        return $this;
-    }
-
-    /**
-     * Get completePayment
-     *
-     * @return boolean
-     */
-    public function getCompletePayment()
-    {
-        return $this->completePayment;
-    }
-
-    /**
      * Set endDate
      *
      * @param \DateTime $endDate

@@ -6,7 +6,7 @@ body{
     background-image: -webkit-linear-gradient(top,#0a89d5 0,#0a89d5 100%);
     background-image: -o-linear-gradient(top,#0a89d5 0,#0a89d5 100%);
     background-image: -webkit-gradient(linear,left top,left bottom,from(#0a89d5),to(#0a89d5));
-    background-image: linear-gradient(to bottom, #0a89d5 0, #0a89d5 100%);
+    background-image: linear-gradient(to bottom, #0072B9 0, #0072B9 100%);
     border-radius: 0;
 }
 
@@ -40,6 +40,7 @@ body{
     width: auto;
     z-index: 100;
     margin-top: 3px;
+    box-shadow: 0 0 7px #FFCE02;
 }
 
 .active{

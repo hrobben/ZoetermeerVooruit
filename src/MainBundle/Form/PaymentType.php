@@ -24,17 +24,13 @@ class PaymentType extends AbstractType
                     'format' => 'ddMMyyyy',
                     'label' => 'Datum van betaling',
                 ])
-                ->add('amount', MoneyType::class, [
-                'divisor' => 1,
-                'label'=>'Bedrag',
-                ])
-                ->add('completePayment', CheckboxType::class, [
-                'label' => 'Is dit het volledige bedrag?',
-                'required' => false,
-                ])
                 ->add('end_date', DateType::class,[
                     'format' => 'ddMMyyyy',
                     'label' => 'Geldig tot',
+                ])
+                ->add('amount', MoneyType::class, [
+                    'divisor' => 1,
+                    'label'=>'Bedrag',
     ]);
     }
     

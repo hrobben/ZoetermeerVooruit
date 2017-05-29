@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Aboutus controller.
  *
- * @Route("aboutus")
+ * @Route("overons")
  */
 class AboutUsController extends Controller
 {

@@ -50,7 +50,7 @@
             </tr>
             <tr>
                 <th>Gepubliceerd</th>
-                <td>{{ enquete.published }}</td>
+                <td>{% if enquete.published %}ja{% else %}nee{% endif %}</td>
             </tr>
             </tbody>
         </table>

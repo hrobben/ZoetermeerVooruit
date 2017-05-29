@@ -27,16 +27,16 @@ class QuestionType extends AbstractType
             ->add('title', null, [
                 'label' => 'Vraagnaam'
             ])
-        ->add('choices',CollectionType::class,[
-            'label' => 'Keuzes',
-            'entry_type' => ChoiceType::class,
-            'allow_add' => true,
-            'prototype' => true,
-            'by_reference' => false,
-            'allow_delete' =>true,
-            'delete_empty' => true,
-        ]);
-//            ->add('enqueteId')
+            ->add('choices',CollectionType::class,[
+                'label' => 'Keuzes',
+                'entry_type' => ChoiceType::class,
+                'allow_add' => true,
+                'prototype' => true,
+                'by_reference' => false,
+                'allow_delete' =>true,
+                'delete_empty' => true,
+            ]);
+
     }
 
     /**

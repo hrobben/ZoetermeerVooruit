@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Info controller.
  *
- * @Route("info")
+ * @Route("nieuws")
  */
 class InfoController extends Controller
 {
