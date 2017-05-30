@@ -6,7 +6,7 @@
 
 {% block body %}
     {% if is_granted ('ROLE_ADMIN') %}
-        <h1>Betalingen</h1>
+        <h1>Betaling</h1>
 
     <table class="table table-striped">
         <tbody>
@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <th>Bedrag</th>
-                <td>{% if payment.amount %}&euro;{{ payment.amount | number_format(2)|replace('.',',') }}{% endif %}</td>
+                <td>{% if payment.amount %}&euro;{{ payment.amount | number_format(2) }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
