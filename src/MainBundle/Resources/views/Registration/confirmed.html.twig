@@ -3,9 +3,10 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
-    <a href="{{ path('main_default_index') }}" class="btn btn-info btn-xs">Terug naar de hoofdpagina</a>
+    <div class="container">
+        <p>Gefeliciteerd {{ user.username }}, uw account is succesvol aangemaakt.</p>
+        <p>Na goedkeuring van de beheerder heeft u toegang tot de enquétes en kunt u bijdragen aan het succes van Zoetermeer Vooruit.</p>
+        <p>Klik op de knop hieronder om terug te keren naar de hoofdpagina.</p>
+        <a href="{{ path('main_default_index') }}" class="btn btn-info btn-sm">Hoofdpagina</a>
+    </div>
 {% endblock fos_user_content %}
