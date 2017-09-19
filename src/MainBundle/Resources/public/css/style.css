@@ -196,3 +196,8 @@ footer { background-color: #0c1a1e; min-height:350px; font-family: 'Open Sans', 
 li{
     list-style: disc;
 }
+
+#news{
+    height: 350px;
+    width: 350px;
+}
