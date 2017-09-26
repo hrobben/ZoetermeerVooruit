@@ -16,11 +16,8 @@
                             {% else %} <p>geen</p>{% endif %}
 
                             <div class="caption">
-                                <h3>{{ aboutus.title }}</h3>
-                                <em>{{ aboutus.function }}</em>
-                                {% if is_granted ('ROLE_ADMIN') %}
-                                    <a class="btn btn-primary pull-right" href="{{ path('aboutus_edit', { 'id': aboutus.id }) }}">Wijzigen</a>
-                                {% endif %}
+                                <h3 style="text-align: center">{{ aboutus.title }}</h3>
+                                <p style="text-align: center">{{ aboutus.function }}</p>
                             </div>
                         </div>
                     </div>
@@ -31,6 +28,9 @@
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                                         <h4 class="modal-title" id="myModalLabel">Meer weten over <strong>{{ aboutus.title }}</strong></h4>
+                                        {% if is_granted ('ROLE_ADMIN') %}
+                                            <a class="btn btn-primary pull-right" href="{{ path('aboutus_edit', { 'id': aboutus.id }) }}">Wijzigen</a>
+                                        {% endif %}
                                     </div>
                                     <div class="modal-body">
                                         <center>
