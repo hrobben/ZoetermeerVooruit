@@ -3,6 +3,7 @@
 namespace MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * AboutUs
@@ -27,6 +28,23 @@ class AboutUs
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "application/pdf", "image/jpg", "image/png", "image/jpeg" })
+     */
+    private $picture;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="function", type="string", length=255)
+     */
+    private $function;
 
     /**
      * @var string
@@ -92,5 +110,53 @@ class AboutUs
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return AboutUs
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set function
+     *
+     * @param string $function
+     *
+     * @return AboutUs
+     */
+    public function setFunction($function)
+    {
+        $this->function = $function;
+
+        return $this;
+    }
+
+    /**
+     * Get function
+     *
+     * @return string
+     */
+    public function getFunction()
+    {
+        return $this->function;
     }
 }

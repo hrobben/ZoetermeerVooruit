@@ -5,7 +5,8 @@ namespace MainBundle\Controller;
 use MainBundle\Entity\AboutUs;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Aboutus controller.
@@ -44,11 +45,29 @@ class AboutUsController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // $file stores the uploaded PDF file
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $aboutUs->getPicture();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('brochures_directory'),
+                $fileName
+            );
+
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $aboutUs->setPicture($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($aboutUs);
-            $em->flush($aboutUs);
+            $em->flush();
 
-            return $this->redirectToRoute('aboutus_index');
+            return $this->redirectToRoute('aboutus_index', array('id' => $aboutUs->getId()));
         }
 
         return $this->render('@Main/aboutus/new.html.twig', array(
@@ -86,6 +105,24 @@ class AboutUsController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            // $file stores the uploaded PDF file
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $aboutUs->getPicture();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fileName
+            );
+
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $aboutUs->setPicture($fileName);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('aboutus_edit', array('id' => $aboutUs->getId()));

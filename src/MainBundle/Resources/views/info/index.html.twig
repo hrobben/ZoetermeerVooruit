@@ -4,29 +4,29 @@
 
     <div class="container">
         {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('info_new') }}" class="btn btn-success"> + Nieuw bericht aanmaken</a>
+            <a href="{{ path('info_new') }}" class="btn btn-success pull-right"> + Info</a>
         {% endif %}
-
         <h1>Nieuws</h1>
         <div class="row">
-            {% for info in infos %}
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h3>{{ info.name }}</h3>
-                                {{ info.description|striptags|truncate(450, true, "...")|raw }}<br>
-                                <a href="{{ path('info_show', { 'id': info.id }) }}" class="btn btn-info btn-xs">Meer lezen</a>
-                                {% if is_granted('ROLE_ADMIN') %}
-                                <a href="{{ path('info_edit', { 'id': info.id }) }}" class="btn btn-primary btn-xs">Aanpassen</a>
-                                {% endif %}
+                {% for info in infos %}
+                    <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail" id="news">
+                        <div class="caption">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>{{ info.name }}</h3>
+                                    {{ info.description|raw|truncate(450, true, "...")|raw }}<br>
+                                    <a href="{{ path('info_show', { 'id': info.id }) }}" class="btn btn-info btn-xs">Meer lezen</a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a href="{{ path('info_edit', { 'id': info.id }) }}" class="btn btn-primary btn-xs">Aanpassen</a>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
     </div>
+
 {% endblock %}

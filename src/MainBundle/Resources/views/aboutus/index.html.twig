@@ -2,22 +2,64 @@
 
 {% block body %}
 
-    {% if is_granted ('ROLE_ADMIN') %}
-        <a class="btn btn-success pull-right" href="{{ path('aboutus_new') }}">Nieuwe tekst toevoegen</a>
-    {% endif %}
 
-    {% for aboutus in aboutuses %}
-        {% if is_granted ('ROLE_ADMIN') %}
-            <a class="btn btn-primary pull-right" href="{{ path('aboutus_edit', { 'id': aboutus.id }) }}">Wijzigen</a>
-        {% endif %}
+
         <div class="container">
-            <h1>{{ aboutus.title }}</h1>
+            <div class="row">
+                {% set counter = 0 %}
+                {% for aboutus in aboutuses %}
+                    <div class="col-sm-6 col-md-4" style="padding-top: 15px">
+                        <div class="thumbnail">
+                            <a href="#aboutModal" data-toggle="modal" data-target="#myModal{{ counter }}">
+                                {% if aboutus.picture == true %}
+                                <img src="{{ asset('uploads/brochures/' ~ aboutus.picture) }}" name="aboutme" width="140" height="140" class="img-circle"></a>
+                            {% else %} <p>geen</p>{% endif %}
 
-            <div id="raadswerk">
-                <p>{{ aboutus.description|raw }}</p>
+                            <div class="caption">
+                                <h3 style="text-align: center">{{ aboutus.title }}</h3>
+                                <p style="text-align: center">{{ aboutus.function }}</p>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal{{ counter }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                        <h4 class="modal-title" id="myModalLabel">Meer weten over <strong>{{ aboutus.title }}</strong></h4>
+                                        {% if is_granted ('ROLE_ADMIN') %}
+                                            <a class="btn btn-primary pull-right" href="{{ path('aboutus_edit', { 'id': aboutus.id }) }}">Wijzigen</a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="modal-body">
+                                        <center>
+                                            {% if aboutus.picture == true %}
+                                            <img src="{{ asset('uploads/brochures/' ~ aboutus.picture) }}" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
+                                            {% else %} <p>geen</p>{% endif %}
+                                            <h3 class="media-heading">{{ aboutus.function }}</h3>
+                                        </center>
+                                        <hr>
+                                        <center>
+                                            <p class="text-left"><strong>Bio: </strong><br>
+                                                {{ aboutus.description|raw }}</p>
+                                            <br>
+                                        </center>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <center>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Afsluiten</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% set counter = counter + 1 %}
+                {% endfor %}
             </div>
+            {% if is_granted ('ROLE_ADMIN') %}
+                <a class="btn btn-success pull-right" href="{{ path('aboutus_new') }}">Nieuwe tekst toevoegen</a>
+            {% endif %}
         </div>
-
-    {% endfor %}
 
 {% endblock %}
