@@ -1,36 +1,23 @@
 {% extends '@Main/base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Raadswerk</h1>
+    {#{% if is_granted ('ROLE_ADMIN') %}#}
+    <div class="container">
+        <h1>{{ raadswerk.name }}</h1><br>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ raadswerk.id }}</td>
-            </tr>
-            <tr>
-                <th>Titel</th>
-                <td>{{ raadswerk.name }}</td>
-            </tr>
-            <tr>
-                <th>Beschrijving</th>
-                <td>{{ raadswerk.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <p>{{ raadswerk.description|raw}}</p>
 
-    <ul>
-        <li>
-            <a href="{{ path('raadswerk_index') }}">Terug naar overzicht</a>
-        </li>
-        <li>
-            <a href="{{ path('raadswerk_edit', { 'id': raadswerk.id }) }}">Aanpassen</a>
-        </li>
-        <li>
+        <a class="btn btn-default" href="{{ path('raadswerk_index') }}">Terug naar overzicht</a>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-primary" href="{{ path('raadswerk_edit', { 'id': raadswerk.id }) }}">Wijzigen</a>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input class="btn btn-danger" type="submit" value="Verwijderen">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        {% endif %}
+    </div>
 {% endblock %}
