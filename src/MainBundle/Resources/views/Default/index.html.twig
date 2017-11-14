@@ -95,6 +95,10 @@
                                 <hr>
                                 {% if enquete != null %}
                                     {% set q = 1 %}
+                                    <div class="col-sm-12">
+                                        <p><b>{{ enquete.title }}</b></p>
+                                        <p>{{ enquete.description }}</p>
+                                    </div>
                                     {% for question in questions %}
                                         {% set total = 0.000001 %}
                                         {% for choice in choices if choice.questionId == question.id %}
@@ -105,7 +109,10 @@
                                             {% endfor %}
                                         {% endfor %}
 
-                                        <p><b>{{ question.title }}</b></p>
+                                        <div style="border-top: solid 1px lightgrey;" class="col-sm-12">
+                                            <p></p>
+                                            <p><b>{{ question.title }}</b></p>
+                                        </div>
                                         {% set a = 1 %}
                                         {% for choice in choices if choice.questionId == question.id %}
                                             {% set count = 0 %}
@@ -114,7 +121,7 @@
                                                     {% set count = count + 1 %}
                                                 {% endif %}
                                             {% endfor %}
-                                            <div class="col-sm-6" style="list-style-type: none; padding-left: 0">
+                                            <div class="col-sm-6" style="list-style-type: none;">
                                                 <b> {{ choice.choice }} </b>
                                                 <div class="progress" style="width: 100px;">
                                                     <div class="progress-bar" role="progressbar" aria-valuenow="{{ count/total*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ count/total*100 }}%">

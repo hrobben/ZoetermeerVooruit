@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Aboutus controller.
@@ -47,7 +48,6 @@ class AboutUsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $aboutUs->getPicture();
 
             // Generate a unique name for the file before saving it
@@ -104,10 +104,14 @@ class AboutUsController extends Controller
         $editForm = $this->createForm('MainBundle\Form\AboutUsType', $aboutUs);
         $editForm->handleRequest($request);
 
+        // Oude afbeelding ophalen
+        $aboutUs->setPicture(
+            new File($this->getParameter('brochures_directory').'/'.$aboutUs->getPicture())
+        );
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $aboutUs->getPicture();
 
             // Generate a unique name for the file before saving it
@@ -115,7 +119,7 @@ class AboutUsController extends Controller
 
             // Move the file to the directory where brochures are stored
             $file->move(
-                $this->getParameter('images_directory'),
+                $this->getParameter('brochures_directory'),
                 $fileName
             );
 

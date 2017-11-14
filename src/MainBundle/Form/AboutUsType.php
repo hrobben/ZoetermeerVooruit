@@ -26,8 +26,8 @@ class AboutUsType extends AbstractType
                     ))
             ->add('picture', FileType::class,[
             'data_class' => null,
-            'empty_data' => $builder->getForm()->getData('AboutUs')->getpicture(),
-            'label' => 'logo image file',
+            'empty_data' => $builder->getForm()->getData('AboutUs')->getPicture(),
+            'label' => 'Afbeelding',
             'required' => false
 
     ]);
