@@ -24,7 +24,7 @@ class RaadswerkController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $raadswerks = $em->getRepository('MainBundle:Raadswerk')->findAll();
+        $raadswerks = $em->getRepository('MainBundle:Raadswerk')->findBy(array(), array('id' => 'DESC'));
 
         return $this->render('@Main/raadswerk/index.html.twig', array(
             'raadswerks' => $raadswerks,

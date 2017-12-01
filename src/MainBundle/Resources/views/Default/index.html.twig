@@ -87,16 +87,16 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4">
+                <p class="text-center" style="font-weight: bold; font-size: large">Laatste resultaten</p>
+                <hr>
                 <div class="thumbnail">
                     <div class="caption">
                         <div class="row">
                             <div class="col-sm-12">
-                                <p class="text-center" style="font-weight: bold; font-size: large">Laatste resultaten</p>
-                                <hr>
                                 {% if enquete != null %}
                                     {% set q = 1 %}
                                     <div class="col-sm-12">
-                                        <p><b>{{ enquete.title }}</b></p>
+                                        <p class="text-center" style="font-weight: bold; font-size: medium">{{ enquete.title }}</p>
                                         <p>{{ enquete.description }}</p>
                                     </div>
                                     {% for question in questions %}
@@ -141,6 +141,8 @@
                     </div>
                 </div>
             </div>
+            <p class="text-center" style="font-weight: bold; font-size: large">Laatste informatie</p>
+            <hr>
             {% for info in infos %}
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
@@ -176,9 +178,10 @@
                     <p><i class="fa fa-phone"></i> Telefoon : (+31) 06 55 72 72 74</p>
                     <p><i class="fa fa-envelope"></i>E-mail : <a href="mailto:info@zoetermeervooruit.nl" target="_top">info@zoetermeervooruit.nl</a></p>
 
+                    <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=400&amp;wkst=2&amp;bgcolor=%23ffffff&amp;src=079vooruit%40gmail.com&amp;color=%231B887A&amp;ctz=Europe%2FAmsterdam" style="border-width:0" width="300" height="250" frameborder="0" scrolling="no"></iframe>
                 </div>
                 <div class="col-md-4 col-sm-12 paddingtop-bottom" style="padding-left: 3px">
-                    <div class="fb-page" data-href="https://www.facebook.com/ZoetermeerVooruit/?fref=ts" data-tabs="timeline" data-height="300" data-small-header="false" style="margin-bottom:15px;" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                    <div class="fb-page" data-href="https://www.facebook.com/ZoetermeerVooruit/?fref=ts" data-tabs="timeline" data-height="410" data-small-header="false" style="margin-bottom:15px;" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 paddingtop-bottom twitter-line">

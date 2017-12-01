@@ -189,7 +189,7 @@ footer { background-color: #0c1a1e; min-height:350px; font-family: 'Open Sans', 
 
 .twitter-line
 {
-    max-height: 300px;
+    max-height: 410px;
     overflow-y: scroll;
 }
 
@@ -197,6 +197,9 @@ li{
     list-style: disc;
 }
 
+.bottom_ul li{
+    list-style: none;
+}
 #news{
     height: 350px;
     width: 350px;

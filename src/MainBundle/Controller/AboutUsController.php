@@ -105,11 +105,13 @@ class AboutUsController extends Controller
         $editForm->handleRequest($request);
 
         // Oude afbeelding ophalen
-        $aboutUs->setPicture(
-            new File($this->getParameter('brochures_directory').'/'.$aboutUs->getPicture())
-        );
+
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $aboutUs->setPicture(
+                new File($this->getParameter('brochures_directory') . '/' . $aboutUs->getPicture())
+            );
 
             // $file stores the uploaded PDF file
             $file = $aboutUs->getPicture();
