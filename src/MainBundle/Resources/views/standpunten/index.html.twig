@@ -2,21 +2,26 @@
 
 {% block body %}
 
-    {% if is_granted ('ROLE_ADMIN') %}
-    <a class="btn btn-success pull-right" href="{{ path('standpunten_new') }}">Nieuwe tekst toevoegen</a>
-    {% endif %}
-
-    {% for standpunten in standpuntens %}
-
-        {% if is_granted ('ROLE_ADMIN') %}
-            <a class="btn btn-primary pull-right" href="{{ path('standpunten_edit', { 'id': standpunten.id }) }}">Wijzigen</a>
-            {% endif %}
-            <div class="container">
-                <h1>{{ standpunten.title }}</h1>
-
-                <div id="raadswerk">
-                    <p>{{ standpunten.description|raw }}</p>
+        <h1>Raadswerk</h1>
+        <div class="row">
+            {% for standpunten in standpuntens %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>{{ standpunten.title }}</h3>
+                                    {{ standpunten.description|striptags|truncate(450, true, "...")|raw }}<br>
+                                    <a href="{{ path('standpunten_show', { 'id': standpunten.id }) }}" class="btn btn-info btn-xs">Meer lezen</a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a href="{{ path('standpunten_edit', { 'id': standpunten.id }) }}" class="btn btn-primary btn-xs">Aanpassen</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

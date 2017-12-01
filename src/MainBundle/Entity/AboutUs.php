@@ -3,6 +3,7 @@
 namespace MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * AboutUs
@@ -31,8 +32,9 @@ class AboutUs
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255)
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      *
+     * @Assert\File(mimeTypes={ "application/pdf", "image/jpg", "image/png", "image/jpeg" })
      */
     private $picture;
 
