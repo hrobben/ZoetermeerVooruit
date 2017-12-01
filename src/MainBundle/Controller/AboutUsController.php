@@ -109,9 +109,12 @@ class AboutUsController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-            $aboutUs->setPicture(
-                new File($this->getParameter('brochures_directory') . '/' . $aboutUs->getPicture())
-            );
+            if (strlen($aboutUs->getPicture()) > 25){
+
+                $aboutUs->setPicture(
+                    new File($this->getParameter('brochures_directory') . '/' . $aboutUs->getPicture())
+                );
+            }
 
             // $file stores the uploaded PDF file
             $file = $aboutUs->getPicture();

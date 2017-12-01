@@ -101,85 +101,73 @@
         <input id="button" class="btn btn-danger" type="submit" value="Verwijderen">
         {{ form_end(delete_form) }}
 
-    {% elseif app.user %}
+    {% else %}
         {% if show == true %}
-            {% if hasPaid == true %}
-                {% if enquete.startDate < dateTime and enquete.endDate > dateTime %}
-                    <div class="col-sm-6">
-                        <hr>
-                        <h2>{{ enquete.title }}</h2>
-                        <p>{{ enquete.description }}</p>
-                        <form name="enquete-{{ enquete.id }}" method="post">
-                            {% for question in questions %}
-                                <hr>
-                                <p><b>{{ question.title }}</b></p>
-                                {% for choice in choices if choice.questionId == question.id %}
-                                    <div class="radio">
-                                        <label><input type="radio" name="radio-{{ loop.parent.loop.index }}" value="{{ choice.id }}">{{ choice.choice }}</label>
-                                    </div>
-                                {% endfor %}
-
-                            {% endfor %}
+            {% if enquete.startDate < dateTime and enquete.endDate > dateTime %}
+                <div class="col-sm-6">
+                    <hr>
+                    <h2>{{ enquete.title }}</h2>
+                    <p>{{ enquete.description }}</p>
+                    <form name="enquete-{{ enquete.id }}" method="post">
+                        {% for question in questions %}
                             <hr>
-                            <input class="btn btn-success" type="submit" value="Versturen" style="margin-bottom: 20px">
-                        </form>
-                    </div>
-                    <div class="container">
-                {% elseif enquete.endDate < dateTime %}
-                    {% set q = 1 %}
-                    {% for question in questions %}
-                        {% set total = 0.000001 %}
-                        {% for choice in choices if choice.questionId == question.id %}
-                            {% for answer in allAnswers %}
-                                {% if answer.choiceId == choice.id %}
-                                    {% set total = total + 1 %}
-                                {% endif %}
+                            <p><b>{{ question.title }}</b></p>
+                            {% for choice in choices if choice.questionId == question.id %}
+                                <div class="radio">
+                                    <label><input type="radio" name="radio-{{ loop.parent.loop.index }}" value="{{ choice.id }}">{{ choice.choice }}</label>
+                                </div>
                             {% endfor %}
-                        {% endfor %}
 
-                        <p><b>{{ question.title }}</b></p>
-                        {% set a = 1 %}
-                        {% for choice in choices if choice.questionId == question.id %}
-                            {% set count = 0 %}
-                            {% for answer in allAnswers %}
-                                {% if answer.choiceId == choice.id %}
-                                    {% set count = count + 1 %}
-                                {% endif %}
-                            {% endfor %}
-                            <ul>
-                                <li>
-                                    <b> {{ choice.choice }} </b>
-                                    <div class="progress" style="width: 100px;">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ count/total*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ count/total*100 }}%">
-                                            {{ (count/total*100)|number_format(0) }}%
-                                        </div>
-                                    </div>
-                                    Aantal stemmen: {{ count }}
-                                </li>
-                            </ul>
-                            {% set a = a+1 %}
                         {% endfor %}
-                        {% set q = q+1 %}
                         <hr>
+                        <input class="btn btn-success" type="submit" value="Versturen" style="margin-bottom: 20px">
+                    </form>
+                </div>
+                <div class="container">
+            {% elseif enquete.endDate < dateTime %}
+                {% set q = 1 %}
+                {% for question in questions %}
+                    {% set total = 0.000001 %}
+                    {% for choice in choices if choice.questionId == question.id %}
+                        {% for answer in allAnswers %}
+                            {% if answer.choiceId == choice.id %}
+                                {% set total = total + 1 %}
+                            {% endif %}
+                        {% endfor %}
                     {% endfor %}
-                    <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
-                    </div>
-                {% else %}
-                    <div class="col-sm-6">
-                        <h1>Oeps, er is iets misgegaan!</h1>
-                        <p>
-                            Deze enquête is momenteel niet in gebruik.
-                        </p>
-                        <p>Klik op de knop hieronder om terug te gaan naar het overzicht.</p>
-                        <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
-                    </div>
-                {% endif %}
+
+                    <p><b>{{ question.title }}</b></p>
+                    {% set a = 1 %}
+                    {% for choice in choices if choice.questionId == question.id %}
+                        {% set count = 0 %}
+                        {% for answer in allAnswers %}
+                            {% if answer.choiceId == choice.id %}
+                                {% set count = count + 1 %}
+                            {% endif %}
+                        {% endfor %}
+                        <ul>
+                            <li>
+                                <b> {{ choice.choice }} </b>
+                                <div class="progress" style="width: 100px;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ count/total*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ count/total*100 }}%">
+                                        {{ (count/total*100)|number_format(0) }}%
+                                    </div>
+                                </div>
+                                Aantal stemmen: {{ count }}
+                            </li>
+                        </ul>
+                        {% set a = a+1 %}
+                    {% endfor %}
+                    {% set q = q+1 %}
+                    <hr>
+                {% endfor %}
+                <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
+                </div>
             {% else %}
                 <div class="col-sm-6">
                     <h1>Oeps, er is iets misgegaan!</h1>
                     <p>
-                        Waarschijnlijk heeft u nog geen betaling voldaan aan Zoetermeer Vooruit.
-                        U kunt pas enquêtes invullen op het moment dat u een geldig lidmaatschap heeft.
+                        Deze enquête is momenteel niet in gebruik.
                     </p>
                     <p>Klik op de knop hieronder om terug te gaan naar het overzicht.</p>
                     <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>

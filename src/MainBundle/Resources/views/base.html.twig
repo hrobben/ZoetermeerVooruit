@@ -61,7 +61,6 @@
             <ul class="nav navbar-nav">
                 {% if app.user %}
                     <li {% if app.request.attributes.get( '_route' ) starts with '/' %} class="active" {% endif %}><a href="{{ path('main_default_index') }}">Home</a></li>
-                    <li {% if app.request.attributes.get( '_route' ) starts with 'enquete' %} class="active" {% endif %}><a href="{{ path('enquete_index') }}">Enquêtes</a></li>
                     {% if is_granted ('ROLE_ADMIN') %}
                     <li {% if app.request.attributes.get( '_route' ) starts with 'overview' %} class="active" {% endif %}><a href="{{ path('overview_index') }}">Beheer</a></li>
                     <li {% if app.request.attributes.get( '_route' ) starts with 'payment' %} class="active" {% endif %}><a href="{{ path('payment_index') }}">Betalingen</a></li>
@@ -73,6 +72,7 @@
                         <li><a href="{{ path('steun_index') }}">Steun Ons</a></li>
                         <li {% if app.request.attributes.get( '_route' ) starts with 'logout' %} class="active" {% endif %}><a href="{{ path('fos_user_security_logout') }}">Uitloggen</a></li>
                 {% else %}
+                    <li {% if app.request.attributes.get( '_route' ) starts with 'enquete' %} class="active" {% endif %}><a href="{{ path('enquete_index') }}">Enquêtes</a></li>
                         <li><a href="{{ path('info_index') }}">Nieuws</a></li>
                         <li><a href="{{ path('aboutus_index') }}">Over Ons</a></li>
                         <li><a href="{{ path('standpunten_index') }}">Standpunten</a></li>
