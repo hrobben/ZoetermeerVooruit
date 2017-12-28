@@ -1,0 +1,34 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% if is_granted ('ROLE_USER') %}
+    <div class="col-md-6 col-md-offset-3 thumbnail" style="padding: 20px 20px 50px 20px;background-color: #f7f7f7;" >
+        <h1>Gebruiker aanpassen</h1>
+        {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input class="btn btn-success" type="submit"  value="Opslaan"/>
+        {{ form_end(edit_form) }}
+
+        {% if is_granted ('ROLE_ADMIN') %}
+       <a class="btn btn-default" href="{{ path('overview_index') }}">Terug naar overzicht</a>
+{% else %}
+    <a class="btn btn-default" href="{{ path('homepage') }}">Terug</a>
+
+    {% endif %}
+
+        {{ form_start(delete_form) }}
+            <input class="btn btn-danger" type="submit" value="Verwijderen">
+        {{ form_end(delete_form) }}
+
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}

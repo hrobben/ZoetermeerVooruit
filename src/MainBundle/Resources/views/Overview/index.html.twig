@@ -1,0 +1,128 @@
+{% extends "@Main/base.html.twig" %}
+
+{% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
+        <br><br>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h3>Enquêtes aanmaken</h3>
+                                <a href="{{ path('enquete_new') }}" class="btn btn-success" role="button">+ Enquête</a>
+                                <a href="{{ path('enquete_index') }}" class="btn btn-default" role="button">Ga naar enquêtes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h3>Vraag aanmaken</h3>
+                            <a href="{{ path('question_new') }}" class="btn btn-success" role="button">+ Vraag</a>
+                            <a href="{{ path('question_index') }}" class="btn btn-default" role="button">Ga naar vragen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h3>Antwoord aanmaken</h3>
+                            <a href="{{ path('choice_new') }}" class="btn btn-success" role="button">+ Antwoord</a>
+                            <a href="{{ path('choice_index') }}" class="btn btn-default" role="button">Ga naar antwoorden</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <h2>Gebruikers</h2>
+            <div id="scroll">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="hidden-xs hidden-sm sorting"
+                            tabindex="0" aria-controls="lijst"
+                            rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                            style="width: 69px;">Id</th>
+                        <!-- <th class="hidden-xs hidden-sm sorting"
+                            tabindex="0" aria-controls="lijst"
+                            rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                            style="width: 69px;">E-mail</th> !-->
+                        <th>Voornaam</th>
+                        <th>Achternaam</th>
+                        <!--    <th class="hidden-xs hidden-sm sorting"
+                        tabindex="0" aria-controls="lijst"
+                        rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                        style="width: 69px;">Geslacht</th>
+                        <th class="hidden-xs hidden-sm sorting"
+                            tabindex="0" aria-controls="lijst"
+                            rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                            style="width: 69px;">Geboortedatum</th>
+                        <th class="hidden-xs hidden-sm sorting"
+                            tabindex="0" aria-controls="lijst"
+                            rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                            style="width: 69px;">Adres</th>
+                        <th class="hidden-xs hidden-sm sorting"
+                            tabindex="0" aria-controls="lijst"
+                            rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                            style="width: 69px;">Postcode</th>
+                        <th class="hidden-xs hidden-sm sorting"
+                            tabindex="0" aria-controls="lijst"
+                            rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                            style="width: 69px;">Woonplaats</th>!-->
+                        <th class="hidden-xs hidden-sm sorting"
+                            tabindex="0" aria-controls="lijst"
+                            rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                            style="width: 69px;">Telefoonnummer</th>
+                        <!--<th class="hidden-xs hidden-sm sorting"
+                            tabindex="0" aria-controls="lijst"
+                            rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                            style="width: 69px;">Bankrekening</th>!-->
+                        <th class="pull-right"Beheeracties</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td class="hidden-xs hidden-sm"><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                        <!--<td class="hidden-xs hidden-sm">{{ user.email }}</td>!-->
+                        <td>{{ user.firstname }}</td>
+                        <td>{{ user.lastname }}</td>
+                        <!--<td class="hidden-xs hidden-sm">{{ user.gender }}</td>
+                        <td class="hidden-xs hidden-sm">{% if user.birthdate %}{{ user.birthdate|date('d-m-Y') }}{% endif %}</td>
+                        <td class="hidden-xs hidden-sm">{{ user.address }}</td>
+                        <td class="hidden-xs hidden-sm">{{ user.postal }}</td>
+                        <td class="hidden-xs hidden-sm">{{ user.city }}</td>!-->
+                        <td class="hidden-xs hidden-sm">{{ user.phone }}</td>
+                        <!--<td class="hidden-xs hidden-sm">{{ user.bankaccount }}</td>!-->
+                        <td>
+                            <a class="btn btn-info pull-right btn-xs" style="padding: auto; margin: 2px; " href="{{ path('user_show', { 'id': user.id }) }}">Weergeven</a>
+
+                            <a class="btn btn-primary pull-right btn-xs" style="padding: auto; margin: 2px; " href="{{ path('user_edit', { 'id': user.id }) }}">Aanpassen</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
+    <h1>Antwoorden</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ answer.id }}</td>
+            </tr>
+            <tr>
+                <th>Gebruiker</th>
+                <td>{{ answer.user }}</td>
+            </tr>
+            <tr>
+                <th>Choiceid</th>
+                <td>{{ answer.choiceId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-default" href="{{ path('answer_index') }}">Terug naar overzicht</a>
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
+{% endblock %}

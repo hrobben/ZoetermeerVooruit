@@ -1,0 +1,240 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block title %}
+    {% if is_granted ('ROLE_ADMIN') %}
+        Bekijk: {{ enquete.title }}
+    {% else %}
+        Enquete: {{ enquete.title }}
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
+{% for question in questions %}
+    {% for choice in choices if choice.questionId == question.id %}
+        {% for answer in answers %}
+            {% if answer.choiceId == choice.id %}
+                {% set show = false %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+
+{% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
+        <h1>Enquete</h1>
+
+        <table class="table table-striped">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ enquete.id }}</td>
+            </tr>
+            <tr>
+                <th>Titel</th>
+                <td>{{ enquete.title }}</td>
+            </tr>
+            <tr>
+                <th>Beschrijving</th>
+                <td>{{ enquete.description }}</td>
+            </tr>
+            <tr>
+                <th>Starttijd</th>
+                <td>{% if enquete.startDate %}{{ enquete.startDate|date('d-m-Y H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Eindtijd</th>
+                <td>{% if enquete.endDate %}{{ enquete.endDate|date('d-m-Y H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Gepubliceerd</th>
+                <td>{% if enquete.published %}ja{% else %}nee{% endif %}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <hr>
+            {% set q = 1 %}
+            {% for question in questions %}
+                {% set total = 0.000001 %}
+                {% for choice in choices if choice.questionId == question.id %}
+                    {% for answer in answers %}
+                        {% if answer.choiceId == choice.id %}
+                            {% set total = total + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+
+                <p>Vraag {{ q }}: <b>{{ question.title }}</b></p>
+                {% set a = 1 %}
+                {% for choice in choices if choice.questionId == question.id %}
+                    {% set count = 0 %}
+                    {% for answer in answers %}
+                        {% if answer.choiceId == choice.id %}
+                            {% set count = count + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="col-md-12">
+                        <b> {{ choice.choice }} </b>
+                        <div class="progress" style="width: 100px;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ count/total*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ count/total*100 }}%">
+                                {{ (count/total*100)|number_format(0) }}%
+                            </div>
+                        </div>
+                        <p>Aantal stemmen: {{ count }}</p><br>
+                    </div>
+                    {% set a = a+1 %}
+                {% endfor %}
+                {% set q = q+1 %}
+                <hr>
+
+            {% endfor %}
+        </div>
+
+        <a id="button" class="btn btn-default" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
+
+        <a id="button" class="btn btn-primary" href="{{ path('enquete_edit', { 'id': enquete.id }) }}">Wijzigen</a>
+
+        {{ form_start(delete_form) }}
+        <input id="button" class="btn btn-danger" type="submit" value="Verwijderen">
+        {{ form_end(delete_form) }}
+
+    {% elseif app.user %}
+        {% if show == true %}
+            {#{% if hasPaid == true %}#}
+                {% if enquete.startDate < dateTime and enquete.endDate > dateTime %}
+                    <div class="col-sm-6">
+                        <hr>
+                        <h2>{{ enquete.title }}</h2>
+                        <p>{{ enquete.description }}</p>
+                        <form name="enquete-{{ enquete.id }}" method="post">
+                            {% for question in questions %}
+                                <hr>
+                                <p><b>{{ question.title }}</b></p>
+                                {% for choice in choices if choice.questionId == question.id %}
+                                    <div class="radio">
+                                        <label><input type="radio" name="radio-{{ loop.parent.loop.index }}" value="{{ choice.id }}">{{ choice.choice }}</label>
+                                    </div>
+                                {% endfor %}
+
+                            {% endfor %}
+                            <hr>
+                            <input class="btn btn-success" type="submit" value="Versturen" style="margin-bottom: 20px">
+                        </form>
+                    </div>
+                    <div class="container">
+                {% elseif enquete.endDate < dateTime %}
+                    {% set q = 1 %}
+                    {% for question in questions %}
+                        {% set total = 0.000001 %}
+                        {% for choice in choices if choice.questionId == question.id %}
+                            {% for answer in allAnswers %}
+                                {% if answer.choiceId == choice.id %}
+                                    {% set total = total + 1 %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+
+                        <p><b>{{ question.title }}</b></p>
+                        {% set a = 1 %}
+                        {% for choice in choices if choice.questionId == question.id %}
+                            {% set count = 0 %}
+                            {% for answer in allAnswers %}
+                                {% if answer.choiceId == choice.id %}
+                                    {% set count = count + 1 %}
+                                {% endif %}
+                            {% endfor %}
+                            <ul>
+                                <li>
+                                    <b> {{ choice.choice }} </b>
+                                    <div class="progress" style="width: 100px;">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ count/total*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ count/total*100 }}%">
+                                            {{ (count/total*100)|number_format(0) }}%
+                                        </div>
+                                    </div>
+                                    Aantal stemmen: {{ count }}
+                                </li>
+                            </ul>
+                            {% set a = a+1 %}
+                        {% endfor %}
+                        {% set q = q+1 %}
+                        <hr>
+                    {% endfor %}
+                    <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
+                    </div>
+                {% else %}
+                    <div class="col-sm-6">
+                        <h1>Oeps, er is iets misgegaan!</h1>
+                        <p>
+                            Deze enquête is momenteel niet in gebruik.
+                        </p>
+                        <p>Klik op de knop hieronder om terug te gaan naar het overzicht.</p>
+                        <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
+                    </div>
+                {% endif %}
+            {#{% else %}#}
+                {#<div class="col-sm-6">#}
+                    {#<h1>Oeps, er is iets misgegaan!</h1>#}
+                    {#<p>#}
+                        {#Waarschijnlijk heeft u nog geen betaling voldaan aan Zoetermeer Vooruit.#}
+                        {#U kunt pas enquêtes invullen op het moment dat u een geldig lidmaatschap heeft.#}
+                    {#</p>#}
+                    {#<p>Klik op de knop hieronder om terug te gaan naar het overzicht.</p>#}
+                    {#<a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>#}
+                {#</div>#}
+            {#{% endif %}#}
+        {% elseif show != true and enquete.endDate < dateTime %}
+            {% set q = 1 %}
+            {% for question in questions %}
+                {% set total = 0.000001 %}
+                {% for choice in choices if choice.questionId == question.id %}
+                    {% for answer in allAnswers %}
+                        {% if answer.choiceId == choice.id %}
+                            {% set total = total + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+
+                <p><b>{{ question.title }}</b></p>
+                {% set a = 1 %}
+                {% for choice in choices if choice.questionId == question.id %}
+                    {% set count = 0 %}
+                    {% for answer in allAnswers %}
+                        {% if answer.choiceId == choice.id %}
+                            {% set count = count + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    <ul>
+                        <li>
+                            <b> {{ choice.choice }} </b>
+                            <div class="progress" style="width: 100px;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{ count/total*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ count/total*100 }}%">
+                                    {{ (count/total*100)|number_format(0) }}%
+                                </div>
+                            </div>
+                            Aantal stemmen: {{ count }}
+                        </li>
+                    </ul>
+                    {% set a = a+1 %}
+                {% endfor %}
+                {% set q = q+1 %}
+                <hr>
+            {% endfor %}
+            <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
+        {% else %}
+            <div class="col-sm-6">
+                <h1>Hartelijk bedankt!</h1>
+                <p>U heeft deze enquête ingevuld.</p>
+                <p>Klik op de knop hieronder om terug te gaan naar het overzicht.</p>
+                <a class="btn btn-info btn-lg" href="{{ path('enquete_index') }}">Terug naar overzicht</a>
+            </div>
+        {% endif %}
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
+{% endblock %}

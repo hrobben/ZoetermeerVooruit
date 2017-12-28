@@ -1,0 +1,22 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
+
+{% block body %}
+    <h1>Steun aanpassen</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input class="btn btn-primary" type="submit" value="Wijzigen" />
+    {{ form_end(edit_form) }}
+
+            <a class="btn btn-default" href="{{ path('steun_index') }}">Terug naar index</a>
+
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Verwijderen">
+            {{ form_end(delete_form) }}
+
+{% endblock %}

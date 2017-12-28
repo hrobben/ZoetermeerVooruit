@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/main/images/ZVLogo-vierkant.png') }}" />
+
+    <title>{% block title %}Zoetermeer Vooruit{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('bundles/main/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="{{ asset('bundles/main/css/bootstrap-theme.min.css') }}" rel="stylesheet">
+    <!-- Own base theme -->
+    <link href="{{ asset('bundles/main/css/style.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+
+
+
+</head>
+
+<body>
+
+{#Social Media, negeer dit maar niet verwijderen#}
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/nl_NL/sdk.js#xfbml=1&version=v2.9&appId=207155752713615";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/nl_NL/sdk.js#xfbml=1&version=v2.9&appId=207155752713615";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+{#--------------------------------------------------------------------------------------------------#}
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse">
+    <div class="container extra-padding-left">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand negative-margin" href="{{ path('main_default_index') }}"><img src="{{ asset('bundles/main/images/ZV Logo Volledigetekst achtergrond.png') }}"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                {% if app.user %}
+                    <li {% if app.request.attributes.get( '_route' ) starts with '/' %} class="active" {% endif %}><a href="{{ path('main_default_index') }}">Home</a></li>
+                    {% if is_granted ('ROLE_ADMIN') %}
+                    <li {% if app.request.attributes.get( '_route' ) starts with 'overview' %} class="active" {% endif %}><a href="{{ path('overview_index') }}">Beheer</a></li>
+                    <li {% if app.request.attributes.get( '_route' ) starts with 'payment' %} class="active" {% endif %}><a href="{{ path('payment_index') }}">Betalingen</a></li>
+                    {% endif %}
+                        <li><a href="{{ path('info_index') }}">Nieuws</a></li>
+                        <li><a href="{{ path('aboutus_index') }}">Over Ons</a></li>
+                        <li><a href="{{ path('standpunten_index') }}">Standpunten</a></li>
+                        <li><a href="{{ path('raadswerk_index') }}">Raadswerk</a></li>
+                        <li><a href="{{ path('steun_index') }}">Steun Ons</a></li>
+                        <li><a href="{{ path('user_edit', {'id': app.user.id}) }}">Profile</a></li>
+                        <li {% if app.request.attributes.get( '_route' ) starts with 'logout' %} class="active" {% endif %}><a href="{{ path('fos_user_security_logout') }}">Uitloggen</a></li>
+                {% else %}
+                    <li {% if app.request.attributes.get( '_route' ) starts with 'enquete' %} class="active" {% endif %}><a href="{{ path('enquete_index') }}">Enquêtes</a></li>
+                        <li><a href="{{ path('info_index') }}">Nieuws</a></li>
+                        <li><a href="{{ path('aboutus_index') }}">Over Ons</a></li>
+                        <li><a href="{{ path('standpunten_index') }}">Standpunten</a></li>
+                        <li><a href="{{ path('raadswerk_index') }}">Raadswerk</a></li>
+                        <li><a href="{{ path('steun_index') }}">Steun Ons</a></li>
+                        <li {% if app.request.attributes.get( '_route' ) starts with 'login' %} class="active" {% endif %}><a href="{{ path('fos_user_security_login') }}">Inloggen</a></li>
+                {% endif %}
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+
+    {% block body %}{% endblock %}
+    {% block fos_user_content %}{% endblock fos_user_content %}
+
+</div> <!-- /container -->
+<hr>
+
+{% block footer %}
+{% endblock %}
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{{ asset('bundles/main/js/bootstrap.min.js') }}"></script>
+
+{% block javascripts %}{% endblock %}
+
+</body>
+</html>

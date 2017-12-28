@@ -1,0 +1,120 @@
+diff -u -r ../kcfinder-2.51/config.php src/lib/KCFinderBundle/kcfinder/config.php
+--- ../kcfinder-2.51/config.php	2011-08-25 14:17:45.000000000 +0200
++++ src/lib/KCFinderBundle/kcfinder/config.php	2013-07-18 19:50:22.279849556 +0200
+@@ -18,18 +18,18 @@
+ 
+ $_CONFIG = array(
+ 
+-    'disabled' => true,
++    'disabled' => false,
+     'denyZipDownload' => false,
+     'denyUpdateCheck' => false,
+     'denyExtensionRename' => false,
+ 
+     'theme' => "oxygen",
+ 
+-    'uploadURL' => "upload",
+-    'uploadDir' => "",
++    'uploadURL' => "http://{$_SERVER['HTTP_HOST']}/upload", // Should point to /web/upload
++    'uploadDir' => __DIR__ . '/../../../../web/upload',
+ 
+-    'dirPerms' => 0755,
+-    'filePerms' => 0644,
++    'dirPerms' => 0775,
++    'filePerms' => 0664,
+ 
+     'access' => array(
+ 
+diff -u -r ../kcfinder-2.51/core/autoload.php src/lib/KCFinderBundle/kcfinder/core/autoload.php
+--- ../kcfinder-2.51/core/autoload.php	2011-08-25 14:11:57.000000000 +0200
++++ src/lib/KCFinderBundle/kcfinder/core/autoload.php	2013-07-16 19:18:48.171791353 +0200
+@@ -45,7 +45,7 @@
+ 
+ 
+ // MAGIC AUTOLOAD CLASSES FUNCTION
+-function __autoload($class) {
++function kcfinder__autoload($class) {
+     if ($class == "uploader")
+         require "core/uploader.php";
+     elseif ($class == "browser")
+@@ -57,7 +57,7 @@
+     elseif (file_exists("lib/helper_$class.php"))
+         require "lib/helper_$class.php";
+ }
+-
++spl_autoload_register('kcfinder__autoload');
+ 
+ // json_encode() IMPLEMENTATION IF JSON EXTENSION IS MISSING
+ if (!function_exists("json_encode")) {
+diff -u -r ../kcfinder-2.51/core/uploader.php src/lib/KCFinderBundle/kcfinder/core/uploader.php
+--- ../kcfinder-2.51/core/uploader.php	2011-08-25 14:11:57.000000000 +0200
++++ src/lib/KCFinderBundle/kcfinder/core/uploader.php	2013-07-16 19:19:11.618456867 +0200
+@@ -127,21 +127,6 @@
+ 
+         // LOAD DEFAULT CONFIGURATION
+         require "config.php";
+-
+-        // SETTING UP SESSION
+-        if (isset($_CONFIG['_sessionLifetime']))
+-            ini_set('session.gc_maxlifetime', $_CONFIG['_sessionLifetime'] * 60);
+-        if (isset($_CONFIG['_sessionDir']))
+-            ini_set('session.save_path', $_CONFIG['_sessionDir']);
+-        if (isset($_CONFIG['_sessionDomain']))
+-            ini_set('session.cookie_domain', $_CONFIG['_sessionDomain']);
+-        switch ($this->cms) {
+-            case "drupal": break;
+-            default: session_start(); break;
+-        }
+-
+-        // RELOAD DEFAULT CONFIGURATION
+-        require "config.php";
+         $this->config = $_CONFIG;
+ 
+         // LOAD SESSION CONFIGURATION IF EXISTS
+diff -u -r ../kcfinder-2.51/js/browser/joiner.php src/lib/KCFinderBundle/kcfinder/js/browser/joiner.php
+--- ../kcfinder-2.51/js/browser/joiner.php	2011-08-25 14:11:57.000000000 +0200
++++ src/lib/KCFinderBundle/kcfinder/js/browser/joiner.php	2013-07-18 20:59:33.559645587 +0200
+@@ -12,8 +12,11 @@
+   *      @link http://kcfinder.sunhater.com
+   */
+ 
+-chdir(".."); // For compatibality
+-chdir("..");
++if (!file_exists('lib/helper_httpCache.php'))
++{
++	exit();
++}
++
+ require "lib/helper_httpCache.php";
+ require "lib/helper_dir.php";
+ $files = dir::content("js/browser", array(
+diff -u -r ../kcfinder-2.51/tpl/tpl_css.php src/lib/KCFinderBundle/kcfinder/tpl/tpl_css.php
+--- ../kcfinder-2.51/tpl/tpl_css.php	2011-08-22 22:34:22.000000000 +0200
++++ src/lib/KCFinderBundle/kcfinder/tpl/tpl_css.php	2013-07-16 19:30:11.251757791 +0200
+@@ -1,2 +1,2 @@
+ <link href="css.php?type=<?php echo $this->type ?>" rel="stylesheet" type="text/css" />
+-<link href="themes/<?php echo $this->config['theme'] ?>/style.css" rel="stylesheet" type="text/css" />
++<link href="/bundles/libkcfinder/themes/<?php echo $this->config['theme'] ?>/style.css" rel="stylesheet" type="text/css" />
+diff -u -r ../kcfinder-2.51/tpl/tpl_javascript.php src/lib/KCFinderBundle/kcfinder/tpl/tpl_javascript.php
+--- ../kcfinder-2.51/tpl/tpl_javascript.php	2011-08-22 22:34:22.000000000 +0200
++++ src/lib/KCFinderBundle/kcfinder/tpl/tpl_javascript.php	2013-07-16 19:35:44.291741427 +0200
+@@ -1,14 +1,14 @@
+-<script src="js/jquery.js" type="text/javascript"></script>
+-<script src="js/jquery.rightClick.js" type="text/javascript"></script>
+-<script src="js/jquery.drag.js" type="text/javascript"></script>
+-<script src="js/helper.js" type="text/javascript"></script>
++<script src="/bundles/libkcfinder/js/jquery.js" type="text/javascript"></script>
++<script src="/bundles/libkcfinder/js/jquery.rightClick.js" type="text/javascript"></script>
++<script src="/bundles/libkcfinder/js/jquery.drag.js" type="text/javascript"></script>
++<script src="/bundles/libkcfinder/js/helper.js" type="text/javascript"></script>
+ <script src="js/browser/joiner.php" type="text/javascript"></script>
+ <script src="js_localize.php?lng=<?php echo $this->lang ?>" type="text/javascript"></script>
+ <?php IF (isset($this->opener['TinyMCE']) && $this->opener['TinyMCE']): ?>
+ <script src="<?php echo $this->config['_tinyMCEPath'] ?>/tiny_mce_popup.js" type="text/javascript"></script>
+ <?php ENDIF ?>
+ <?php IF (file_exists("themes/{$this->config['theme']}/init.js")): ?>
+-<script src="themes/<?php echo $this->config['theme'] ?>/init.js" type="text/javascript"></script>
++<script src="/bundles/libkcfinder/themes/<?php echo $this->config['theme'] ?>/init.js" type="text/javascript"></script>
+ <?php ENDIF ?>
+ <script type="text/javascript">
+ browser.version = "<?php echo self::VERSION ?>";

@@ -1,0 +1,73 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
+    <h1>Gebruiker</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>E-mail</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Voornaam</th>
+                <td>{{ user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Achternaam</th>
+                <td>{{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Geslacht</th>
+                <td>{{ user.gender }}</td>
+            </tr>
+            <tr>
+                <th>Geboortedatum</th>
+                <td>{% if user.birthdate %}{{ user.birthdate|date('d-m-Y') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Adres</th>
+                <td>{{ user.address }}</td>
+            </tr>
+            <tr>
+                <th>Postcodel</th>
+                <td>{{ user.postal }}</td>
+            </tr>
+            <tr>
+                <th>Woonplaats</th>
+                <td>{{ user.city }}</td>
+            </tr>
+            <tr>
+                <th>Telefoon</th>
+                <td>{{ user.phone }}</td>
+            </tr>
+            <tr>
+                <th>Bankrekening</th>
+                <td>{{ user.bankaccount }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+            <a class="btn btn-default" href="{{ path('overview_index') }}">Terug naar overzicht</a>
+            <a class="btn btn-primary" href="{{ path('user_edit', { 'id': user.id }) }}">Wijzigen</a>
+
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Verwijderen">
+            {{ form_end(delete_form) }}
+
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
+{% endblock %}

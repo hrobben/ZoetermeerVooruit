@@ -1,0 +1,47 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    {% if app.user %}
+        <h1>Vragenlijst</h1>
+<div id="scroll">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Vraagnaam</th>
+                    <th>Enquêtenaam</th>
+                    <th>Beheeracties</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for question in questions %}
+                    <tr>
+                        <td><a href="{{ path('question_show', { 'id': question.id }) }}">{{ question.id }}</a></td>
+                        <td>{{ question.title }}</td>
+                        {% for enquete in enquetes %}
+                            {% if enquete.id == question.enqueteId %}
+                            <td>{{ enquete.title }}</td>
+                            {% endif %}
+                        {% endfor %}
+                        <td>
+
+                            <a class="btn btn-info" href="{{ path('question_show', { 'id': question.id }) }}">Weergeven</a>
+
+                            <a class="btn btn-primary" href="{{ path('question_edit', { 'id': question.id }) }}">Wijzigen</a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+
+        <a class="btn btn-success" href="{{ path('question_new') }}">Maak een nieuwe vraag</a>
+
+    {% else %}
+        <div>
+            <h3>Pagina niet gevonden</h3>
+            <p>Deze pagina is niet voor u geschikt</p>
+        </div>
+    {% endif %}
+{% endblock %}

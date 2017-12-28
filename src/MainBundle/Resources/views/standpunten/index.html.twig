@@ -1,0 +1,31 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        {% if is_granted ('ROLE_ADMIN') %}
+            <a class="btn btn-success pull-right" href="{{ path('standpunten_new') }}">+ Nieuw bericht aanmaken</a>
+        {% endif %}
+        <h1>Standpunten</h1>
+        <div class="row">
+            {% for standpunten in standpuntens %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail" id="news">
+                        <div class="caption">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>{{ standpunten.title }}</h3>
+                                    {{ standpunten.description|striptags|truncate(450, true, "...")|raw }}<br>
+                                    <a href="{{ path('standpunten_show', { 'id': standpunten.id }) }}" class="btn btn-info btn-xs">Meer lezen</a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a href="{{ path('standpunten_edit', { 'id': standpunten.id }) }}" class="btn btn-primary btn-xs">Aanpassen</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

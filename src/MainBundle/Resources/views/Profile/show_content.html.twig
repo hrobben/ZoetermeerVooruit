@@ -1,0 +1,54 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show">
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Gebruikersnaam:</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Emailadres:</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Voornaam:</th>
+                <td>{{ user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Achternaam:</th>
+                <td>{{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Geslacht:</th>
+                <td>{{ user.gender }}</td>
+            </tr>
+            <tr>
+                <th>Geboortedatum:</th>
+                <td>{{ user.birthdate|date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <th>Adres:</th>
+                <td>{{ user.address }}</td>
+            </tr>
+            <tr>
+                <th>Postcode:</th>
+                <td>{{ user.postal }}</td>
+            </tr>
+            <tr>
+                <th>Woonplaats:</th>
+                <td>{{ user.city }}</td>
+            </tr>
+            <tr>
+                <th>Telefoonnummer:</th>
+                <td>{{ user.phone }}</td>
+            </tr>
+            <tr>
+                <th>Bankrekening:</th>
+                <td>{{ user.bankaccount }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-lg btn-primary center-block">Profiel aanpassen</a>
+</div>

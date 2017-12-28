@@ -1,0 +1,49 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+    <h1>Vragen</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ question.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ question.title }}</td>
+            </tr>
+            <tr>
+                <th>Enqueteid</th>
+                <td>{{ question.enqueteId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <h2>Keuzes</h2>
+        <ul>
+            {% for choice in choices %}
+                <li>{{ choice.choice }}</li>
+            {% endfor %}
+        </ul>
+
+            <a class="btn btn-default" href="{{ path('question_index') }}">Terug naar het overzicht</a>
+
+            <a class="btn btn-primary" href="{{ path('question_edit', { 'id': question.id }) }}">Wijzigen</a>
+
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Verwijderen">
+            {{ form_end(delete_form) }}
+
+    {% else %}
+        <div>
+            <h3>Pagina niet gevonden</h3>
+            <p>Deze pagina is niet voor u geschikt</p>
+        </div>
+    {% endif %}
+{% endblock %}

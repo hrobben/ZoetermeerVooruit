@@ -1,0 +1,28 @@
+{% extends '@Main/base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
+        <div class="container">
+    <h1>Nieuws Wijzigen</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input class="btn btn-primary" type="submit" value="Wijzigen" />
+    {{ form_end(edit_form) }}
+
+            <a class="btn btn-default" href="{{ path('info_index') }}">Terug naar overzicht</a>
+
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Verwijderen">
+            {{ form_end(delete_form) }}
+        </div>
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
+{% endblock %}

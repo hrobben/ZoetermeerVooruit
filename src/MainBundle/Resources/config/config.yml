@@ -1,0 +1,18 @@
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: MainBundle\Entity\User
+    from_email:
+        address: "admin@admin.nl"
+        sender_name: "Admin"
+    registration:
+        form:
+            type: MainBundle\Form\RegistrationType
+    profile:
+        form:
+            type: MainBundle\Form\ProfileType
+twig:
+    form_themes: ['bootstrap_3_layout.html.twig']
+
+parameters:
+    brochures_directory: '%kernel.root_dir%/../web/uploads/brochures'

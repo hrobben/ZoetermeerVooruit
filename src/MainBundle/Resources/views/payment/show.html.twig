@@ -1,0 +1,51 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
+        <h1>Betaling</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ payment.id }}</td>
+            </tr>
+            <tr>
+                <th>Gebruiker</th>
+                <td>{{ payment.uId }}</td>
+            </tr>
+            <tr>
+                <th>Datum</th>
+                <td>{% if payment.date %}{{ payment.date|date('d-m-Y') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Geldig tot</th>
+                <td>{% if payment.endDate %}{{ payment.endDate|date('d-m-Y') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Bedrag</th>
+                <td>{% if payment.amount %}&euro;{{ payment.amount | number_format(2) }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+            <a class="btn btn-default" href="{{ path('payment_index') }}">Terug naar overzicht</a>
+
+            <a class="btn btn-primary" href="{{ path('payment_edit', { 'id': payment.id }) }}">Wijzigen</a>
+
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Verwijderen">
+            {{ form_end(delete_form) }}
+
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
+{% endblock %}

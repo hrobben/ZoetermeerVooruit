@@ -1,0 +1,211 @@
+{% extends "@Main/base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/landingpagina.css') }}">
+{% endblock %}
+
+{% block body %}
+    <header class="business-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="tagline" >Zoetermeer Vooruit, <i>omdat het anders kan!</i></h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="flip-container">
+                <div class="flipper">
+                    <div class="front">
+                        <!-- front content -->
+                        <div>
+                            <img class="img-circle img-responsive img-center" src="{{ asset('bundles/main/images/enquetelogo1geelaccent.png') }}">
+                        </div>
+                    </div>
+                    <div class="back">
+                        <!-- back content -->
+                        <h2>Enquêtes</h2>
+                        <p>Leuk dat u een kijkje wilt nemen bij onze enquêtes. <br>
+                            Meedoen? Als u lid bent kunt u meedoen en uw mening kenbaar maken.</p>
+                        <a href="{{ path('enquete_index') }}" class="btn btn-primary btn-xs">Enquéte</a>
+
+                    </div>
+                </div>
+            </div>
+            <p class="text-center"><b>Enquêtes</b></p>
+        </div>
+        <div class="col-sm-4">
+            <div class="flip-container">
+                <div class="flipper">
+                    <div class="front">
+                        <!-- front content -->
+                        <div>
+                            <img class="img-circle img-responsive img-center" src="{{ asset('bundles/main/images/enquetelogo2-7.png') }}">
+                        </div>
+                    </div>
+                    <div class="back">
+                        <!-- back content -->
+                        <div>
+                            <a href="{{ path('info_index') }}"><img class="img-circle img-responsive img-center" src="{{ asset('bundles/main/images/enqueteinfoknop.png') }}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center"><b>Informatie</b></p>
+        </div>
+        <div class="col-sm-4">
+            <div class="flip-container">
+                <div class="flipper">
+                    <div class="front">
+                        <!-- front content -->
+                        <div>
+                            <img class="img-circle img-responsive img-center" src={{ asset('bundles/main/images/enquetelogo3-aangepast.png') }}>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <!-- back content -->
+                        <h2>Contact</h2>
+                            Zoetermeer Vooruit<br>
+                            Juliette Meurs-Troch<br>
+                            Tel: 06 55 72 72 74<br>
+                            info@zoetermeervooruit.nl<br>
+                            <a href="mailto:info@zoetermeervooruit.nl" target="_top">Stuur een mail!</a>
+                            <a class="twitter-follow-button" href="https://twitter.com/079Vooruit" data-size="large">
+                            Follow @079Vooruit</a>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center"><b>Contact</b></p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <p class="text-center" style="font-weight: bold; font-size: large">Laatste resultaten</p>
+                <hr>
+                <div class="thumbnail">
+                    <div class="caption">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {% if enquete != null %}
+                                    {% set q = 1 %}
+                                    <div class="col-sm-12">
+                                        <p class="text-center" style="font-weight: bold; font-size: medium">{{ enquete.title }}</p>
+                                        <p>{{ enquete.description }}</p>
+                                    </div>
+                                    {% for question in questions %}
+                                        {% set total = 0.000001 %}
+                                        {% for choice in choices if choice.questionId == question.id %}
+                                            {% for answer in allAnswers %}
+                                                {% if answer.choiceId == choice.id %}
+                                                    {% set total = total + 1 %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+
+                                        <div style="border-top: solid 1px lightgrey;" class="col-sm-12">
+                                            <p></p>
+                                            <p><b>{{ question.title }}</b></p>
+                                        </div>
+                                        {% set a = 1 %}
+                                        {% for choice in choices if choice.questionId == question.id %}
+                                            {% set count = 0 %}
+                                            {% for answer in allAnswers %}
+                                                {% if answer.choiceId == choice.id %}
+                                                    {% set count = count + 1 %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            <div class="col-sm-6" style="list-style-type: none;">
+                                                <b> {{ choice.choice }} </b>
+                                                <div class="progress" style="width: 100px;">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ count/total*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ count/total*100 }}%">
+                                                        {{ (count/total*100)|number_format(0) }}%
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% set a = a+1 %}
+                                        {% endfor %}
+                                        {% set q = q+1 %}
+                                    {% endfor %}
+                                {% else %}
+                                    <p>Er zijn momenteel geen resultaten beschikbaar.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center" style="font-weight: bold; font-size: large">Laatste informatie</p>
+            <hr>
+            {% for info in infos %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>{{ info.name }}</h3>
+                                    {{ info.description|raw|truncate(450, true, "...")|raw }}<br>
+                                    <a href="{{ path('info_show', { 'id': info.id }) }}" class="btn btn-info btn-xs">Meer lezen</a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a href="{{ path('info_edit', { 'id': info.id }) }}" class="btn btn-primary btn-xs">Wijzigen</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 footerleft ">
+                    <div class="logofooter">Contact</div>
+                    <p>Zoetermeer Vooruit is een lokale politieke partij.
+                        Fractievoorzitter en partijvoorzitter is Juliette Meurs-Troch.</p>
+                    <p><i class="fa fa-map-pin"></i> </p>
+                    <p><i class="fa fa-phone"></i> Telefoon : (+31) 06 55 72 72 74</p>
+                    <p><i class="fa fa-envelope"></i>E-mail : <a href="mailto:info@zoetermeervooruit.nl" target="_top">info@zoetermeervooruit.nl</a></p>
+
+                    <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=400&amp;wkst=2&amp;bgcolor=%23ffffff&amp;src=079vooruit%40gmail.com&amp;color=%231B887A&amp;ctz=Europe%2FAmsterdam" style="border-width:0" width="300" height="250" frameborder="0" scrolling="no"></iframe>
+                </div>
+                <div class="col-md-4 col-sm-12 paddingtop-bottom" style="padding-left: 3px">
+                    <div class="fb-page" data-href="https://www.facebook.com/ZoetermeerVooruit/?fref=ts" data-tabs="timeline" data-height="410" data-small-header="false" style="margin-bottom:15px;" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 paddingtop-bottom twitter-line">
+                    <a class="twitter-timeline" href="https://twitter.com/079Vooruit">Tweets by ZoetermeerVooruit</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright">
+        <div class="container">
+            <div class="col-md-6">
+                <p>© 2017 - Ontwikkeld door <a target="_blank" href="http://www.pmrprojects.com">PMR Projects</a> in samenwerking met
+                    <a target="_blank" href="https://www.mborijnland.nl">MboRijnland</a></p>
+            </div>
+            <div class="col-md-6">
+                <ul class="bottom_ul">
+                    <li><a href="{{ path('enquete_index') }}">Enquêtes</a></li>
+                    <li><a href="{{ path('info_index') }}">Info</a></li>
+                    <li><a href="{{ path('raadswerk_index') }}">Raadswerk</a></li>
+                    <li><a href="{{ path('standpunten_index') }}">Standpunten</a></li>
+                    <li><a href="{{ path('steun_index') }}">Steun Ons</a></li>
+                    <li><a href="{{ path('aboutus_index') }}">Over Ons</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

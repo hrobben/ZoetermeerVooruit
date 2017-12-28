@@ -1,0 +1,23 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/main/css/button.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>{{ standpunten.title }}</h1><br>
+
+        <p>{{ standpunten.description|raw}}</p>
+
+        <a class="btn btn-default" href="{{ path('standpunten_index') }}">Terug naar overzicht</a>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-primary" href="{{ path('standpunten_edit', { 'id': standpunten.id }) }}">Wijzigen</a>
+            {{ form_start(delete_form) }}
+            <input class="btn btn-danger" type="submit" value="Verwijderen">
+            {{ form_end(delete_form) }}
+        {% endif %}
+    </div>
+{% endblock %}

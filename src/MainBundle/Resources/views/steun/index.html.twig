@@ -1,0 +1,23 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+
+    {% if is_granted ('ROLE_ADMIN') %}
+    <a class="btn btn-success pull-right" href="{{ path('steun_new') }}">Nieuwe tekst toevoegen</a>
+    {% endif %}
+
+    {% for steun in steuns %}
+        {% if is_granted ('ROLE_ADMIN') %}
+            <a class="btn btn-primary pull-right" href="{{ path('steun_edit', { 'id': steun.id }) }}">Wijzigen</a>
+        {% endif %}
+            <div class="container">
+                <h1>{{ steun.title }}</h1>
+
+                <div id="raadswerk">
+                    <p>{{ steun.description|raw }}</p>
+                    <a class="btn btn-lg btn-primary" href="{{ path('fos_user_security_login') }}">Meld u aan als ZoetermeerVooruit steunlid!</a>
+                </div>
+            </div>
+    {% endfor %}
+
+{% endblock %}

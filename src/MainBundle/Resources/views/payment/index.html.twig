@@ -1,0 +1,53 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    {% if is_granted ('ROLE_ADMIN') %}
+        <h1>Betalingslijst</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="hidden-xs hidden-sm sorting"
+                    tabindex="0" aria-controls="lijst"
+                    rowspan="1" colspan="1" aria-label=": activate to sort column ascending"
+                    style="width: 69px;">Id</th>
+                <th>Gebruiker</th>
+                <th>Datum</th>
+                <th>Geldig tot</th>
+                <th>Bedrag</th>
+                <th>Acties</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for payment in payments %}
+            <tr>
+                <td class="hidden-xs hidden-sm"><a href="{{ path('payment_show', { 'id': payment.id }) }}">{{ payment.id }}</a></td>
+                {% for user in users %}
+                    {% if user.id == payment.userId %}
+                        <td>{{ user.firstname }} {{ user.lastname }}</td>
+                    {% endif %}
+                {% endfor %}
+                <td>{% if payment.date %}{{ payment.date|date('d-m-Y') }}{% endif %}</td>
+                <td>{% if payment.endDate %}{{ payment.endDate|date('d-m-Y') }}{% endif %}</td>
+                <td>{% if payment.amount %}&euro;{{ payment.amount | number_format(2) }}{% endif %}</td>
+                <td>
+
+                    <a class="btn btn-info btn-xs" style="padding: auto; margin: 2px; " href="{{ path('payment_show', { 'id': payment.id }) }}">Weergeven</a>
+
+                    <a class="btn btn-primary btn-xs" style="padding: auto; margin: 2px; " href="{{ path('payment_edit', { 'id': payment.id }) }}">Wijzigen</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <a class="btn btn-success" href="{{ path('payment_new') }}">Maak een betaling</a>
+
+    {% else %}
+        <div>
+            <h3>Helaas, u kunt deze pagina niet bekijken.</h3>
+            <p>Log in als Administrator om de pagina weer te geven.</p>
+        </div>
+    {% endif %}
+{% endblock %}

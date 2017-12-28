@@ -1,0 +1,36 @@
+{% extends '@Main/base.html.twig' %}
+
+{% block body %}
+    <h1>Over ons</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ aboutUs.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ aboutUs.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ aboutUs.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('aboutus_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('aboutus_edit', { 'id': aboutUs.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
